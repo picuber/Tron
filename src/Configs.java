@@ -7,6 +7,7 @@ import java.util.Map;
  * @author Leon
  */
 public class Configs {
+
    private static final Map<String,Integer> configs;
    static{
        configs=new HashMap<>();
