@@ -6,7 +6,8 @@
  */
 public class LaserField extends Wall implements Timed{
 
-    public LaserField() {
+    public LaserField(Matrix m) {
+        super(m);
         Clock.getInstance().login(this);
     }
     
