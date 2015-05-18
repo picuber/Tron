@@ -17,7 +17,7 @@ public class Clock implements ActionListener {
 
     private Clock() {
         timedObjects = new LinkedList<>();
-        timer = new Timer(Configs.getGamespeed(), this);
+        timer = new Timer(Configs.getConfigValue("gamespeed"), this);
         timer.start();
     }
 

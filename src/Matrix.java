@@ -8,7 +8,7 @@ public class Matrix {
     private Field[][] map;
 
     public Matrix() {
-        map = new Field[Configs.getSizeX()][Configs.getSizeY()];
+        map = new Field[Configs.getConfigValue("sizeX")][Configs.getConfigValue("sizeY")];
     }
 
     public void setField(int x, int y, Field f) {
