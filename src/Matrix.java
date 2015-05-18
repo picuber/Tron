@@ -20,7 +20,7 @@ public class Matrix {
         if (f != null) {
             f.undraw();
         }
-       // map[x][y]=null;
+        map[x][y]=null;
     }
 
 }
