@@ -21,7 +21,6 @@ public class Matrix {
             f.undraw();
         }
         map[x][y]=null;
-
     }
 
 }

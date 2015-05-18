@@ -4,8 +4,8 @@
  */
 public class Configs {
     private static int gamespeed = 10;
-    private static int sizeX=5;
-    private static int sizeY=5;
+    private static int sizeX=10;
+    private static int sizeY=10;
     private static int height=1;
 
     public static int getGamespeed() {
