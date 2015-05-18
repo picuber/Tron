@@ -3,11 +3,17 @@
  *
  * @author Leon
  */
-public class Wall extends Field{
+public class Wall extends Field {
+
+    private Matrix m;
+
+    public Wall(Matrix m) {
+        this.m = m;
+    }
 
     @Override
     public void collide(Bike b) {
-       b.die();
+        b.die();
     }
 
     @Override

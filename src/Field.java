@@ -5,7 +5,7 @@
  */
 public abstract class Field implements Drawable {
 
-    private int x, y;
+    protected int x, y;
 
     public abstract void collide(Bike b);
 
