@@ -16,6 +16,6 @@ public class LaserField extends Wall implements Timed {
 
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       m.deleteField(x, y);
     }
 }

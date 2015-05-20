@@ -5,7 +5,7 @@
  */
 public class Wall extends Field {
 
-    private Matrix m;
+    protected final Matrix m;
 
     public Wall(Matrix m) {
         this.m = m;
