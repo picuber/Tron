@@ -1,14 +1,21 @@
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+
 /**
  *
  * @author Leon
  */
 public class Wall extends Field {
 
-    protected final Matrix m;
 
-    public Wall(Matrix m) {
+
+    public Wall(int x,int y,Matrix m) {
         this.m = m;
+        this.x=x;
+        this.y=y;
+        
     }
 
     @Override
@@ -18,12 +25,11 @@ public class Wall extends Field {
 
     @Override
     public void draw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     Graphics g=m.getGraphic().bufferGraphics;
+      g.setColor(Color.darkGray);
+      g.fillRect(x*10, y*10, 10,10 );
     }
 
-    @Override
-    public void undraw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

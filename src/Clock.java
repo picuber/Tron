@@ -11,14 +11,14 @@ import javax.swing.Timer;
  */
 public class Clock implements ActionListener {
 
-    private static Clock instance;
+    private static Clock instance=new Clock();
     private List<Timed> timedObjects;
     private Timer timer;
 
     private Clock() {
         timedObjects = new LinkedList<>();
         timer = new Timer(Configs.getConfigValue("gamespeed"), this);
-        timer.start();
+        
     }
 
     public static Clock getInstance() {
@@ -39,7 +39,9 @@ public class Clock implements ActionListener {
             timedObject.tick();
         }
     }
-
+    public void start(){
+        timer.start();
+    }
     public void stop() {
         timer.stop();
     }
