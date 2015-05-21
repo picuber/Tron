@@ -15,6 +15,8 @@ public class Configs {
        configs.put("sizeX", 5);
        configs.put("sizeY",5);
        configs.put("height",1);
+       configs.put("scaleX",10);
+       configs.put("scaleY",10);
    }
    public static int getConfigValue(String key){
        return configs.get(key);

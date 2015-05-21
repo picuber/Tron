@@ -19,7 +19,6 @@ public class Tron {
     private static Tron instance = new Tron();
     private List<Matrix> world;
     private List<Bike> bikes;
-  
 
     private Tron() {
         world = new ArrayList<>();
@@ -30,23 +29,22 @@ public class Tron {
         return instance;
     }
 
-    public static void main(String[] args)  {
-        Matrix m=new Matrix();
+    public static void main(String[] args) {
+        Matrix m = new Matrix();
         MatrixGraphic mg = new MatrixGraphic(m);
         m.setGraphic(mg);
-        TestWindow f= new TestWindow(mg);
-       
-       f.setVisible(true);
+        TestWindow f = new TestWindow(mg);
+
+        f.setVisible(true);
         mg.init();
-       Wall w=new Wall(1,1,m);
-       m.setField(1, 1, w);
-       w.draw();
-             LaserField lf=new LaserField(1,2,m);
-       m.setField(1, 2, lf);
-       lf.draw();
-       Clock.getInstance().start();
-     
-   
+        Wall w = new Wall(1, 1, m);
+        m.setField(1, 1, w);
+        w.draw();
+        LaserField lf = new LaserField(1, 2, m);
+        m.setField(1, 2, lf);
+        lf.draw();
+        Clock.getInstance().start();
+
     }
 
     public List<Matrix> getWorld() {
@@ -56,7 +54,5 @@ public class Tron {
     public List<Bike> getBikes() {
         return bikes;
     }
-
- 
 
 }

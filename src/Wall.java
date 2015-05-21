@@ -2,20 +2,17 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-
 /**
  *
  * @author Leon
  */
 public class Wall extends Field {
 
-
-
-    public Wall(int x,int y,Matrix m) {
+    public Wall(int x, int y, Matrix m) {
         this.m = m;
-        this.x=x;
-        this.y=y;
-        
+        this.x = x;
+        this.y = y;
+
     }
 
     @Override
@@ -25,11 +22,9 @@ public class Wall extends Field {
 
     @Override
     public void draw() {
-     Graphics g=m.getGraphic().bufferGraphics;
-      g.setColor(Color.darkGray);
-      g.fillRect(x*10, y*10, 10,10 );
+        Graphics g = m.getGraphic().bufferGraphics;
+        g.setColor(Color.darkGray);
+        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
-
-   
 
 }
