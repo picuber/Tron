@@ -3,13 +3,27 @@
  *
  * @author Leon
  */
-public class Matrix{
+public class Matrix {
 
     private Field[][] map;
     private MatrixGraphic graphic;
 
     public Matrix() {
         map = new Field[Configs.getConfigValue("sizeX")][Configs.getConfigValue("sizeY")];
+        init();
+    }
+
+    public void init() {
+        for (int i = 0; i < map.length; i++) {
+            map[i][0] = new Wall(i, 0, this);
+            map[i][map[i].length-1] = new Wall(i, map[i].length-1, this);
+        }
+        for (int i = 1; i < map[0].length-1; i++) {
+            map[0][i] = new Wall(0, i, this);
+        }
+        for (int i = 1; i < map[map.length-1].length-1; i++) {
+            map[map.length-1][i] = new Wall(map.length-1, i, this);
+        }
     }
 
     public void setField(int x, int y, Field f) {
@@ -27,12 +41,13 @@ public class Matrix{
     public void setGraphic(MatrixGraphic mg) {
         graphic = mg;
     }
-    public MatrixGraphic getGraphic(){
+
+    public MatrixGraphic getGraphic() {
         return graphic;
     }
 
     public Field[][] getFields() {
-     return map;
+        return map;
     }
 
 }
