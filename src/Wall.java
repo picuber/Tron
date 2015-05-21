@@ -12,7 +12,8 @@ public class Wall extends Field {
         this.m = m;
         this.x = x;
         this.y = y;
-
+        m.setField(x, y, this);
+        draw();
     }
 
     @Override
