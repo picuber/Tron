@@ -11,15 +11,14 @@ import javax.swing.JPanel;
  */
 public class MatrixGraphic extends JPanel implements Timed {
 
-    private Graphics g;
-    private final Matrix m;
+    private static final long serialVersionUID = 1L;
+    private Graphics bufferGraphics;
+    private Image offscreen;
 
-    public MatrixGraphic(Matrix m) {
+    public MatrixGraphic() {
         this.setSize(500, 500);
         this.setBackground(Color.lightGray);
-        this.m = m;
         Clock.getInstance().login(this);
-
     }
 
     @Override
@@ -27,26 +26,28 @@ public class MatrixGraphic extends JPanel implements Timed {
         repaint();
     }
 
-    Graphics bufferGraphics;
-
-    Image offscreen;
-
-    Dimension dim;
-    int curX, curY;
-
     public void init() {
-        dim = getSize();
+        Dimension dim = getSize();
         offscreen = createImage(dim.width, dim.height);
         bufferGraphics = offscreen.getGraphics();
 
     }
 
+    @Override
     public void paint(Graphics g) {
         g.drawImage(offscreen, 0, 0, this);
     }
 
+    @Override
     public void update(Graphics g) {
         paint(g);
+    }
+
+    /**
+     * @return the bufferGraphics
+     */
+    public Graphics getBufferGraphics() {
+        return bufferGraphics;
     }
 
 }

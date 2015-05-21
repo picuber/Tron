@@ -11,24 +11,38 @@ import javax.swing.Timer;
  */
 public class Clock implements ActionListener {
 
-    private static Clock instance=new Clock();
-    private List<Timed> timedObjects;
-    private Timer timer;
+    private static final Clock instance = new Clock();
+    private final List<Timed> timedObjects;
+    private final Timer timer;
 
     private Clock() {
         timedObjects = new LinkedList<>();
         timer = new Timer(Configs.getConfigValue("gamespeed"), this);
-        
+
     }
 
+    /**
+     *
+     * @return the actual Instance of the Clock
+     */
     public static Clock getInstance() {
         return instance;
     }
 
+    /**
+     * registers the Timed-Object to get impulses
+     *
+     * @param t
+     */
     public void login(Timed t) {
         timedObjects.add(t);
     }
 
+    /**
+     * unregisters the Timed-Object t
+     *
+     * @param t
+     */
     public void logout(Timed t) {
         timedObjects.remove(t);
     }
@@ -39,13 +53,26 @@ public class Clock implements ActionListener {
             timedObject.tick();
         }
     }
-    public void start(){
+
+    /**
+     * starts the Clock
+     */
+    public void start() {
         timer.start();
     }
+
+    /**
+     * stops the Clock
+     */
     public void stop() {
         timer.stop();
     }
 
+    /**
+     * sets the time gap between two impulses
+     *
+     * @param delay the time gap
+     */
     public void setGamespeed(int delay) {
         timer.setDelay(delay);
     }

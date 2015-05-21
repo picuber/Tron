@@ -15,17 +15,17 @@ public class LaserField extends Wall implements Timed {
         Clock.getInstance().login(this);
     }
 
+    @Override
     public void draw() {
-        Graphics g = m.getGraphic().bufferGraphics;
+        Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(Color.yellow);
-        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
+        g.fillRect(x * 10, y * 10, 10, 10);
     }
 
     @Override
     public void tick() {
         if (++counter == 200) {
             m.deleteField(x, y);
-            System.out.println("aha");
         }
     }
 }

@@ -8,9 +8,10 @@ import java.util.List;
  */
 public class Tron {
 
-    private static Tron instance = new Tron();
-    private List<Matrix> world;
-    private List<Bike> bikes;
+    private static final Tron instance = new Tron();
+    private final List<Matrix> world;
+    private final List<Bike> bikes;
+  
 
     private Tron() {
         world = new ArrayList<>();
@@ -21,9 +22,9 @@ public class Tron {
         return instance;
     }
 
-    public static void main(String[] args) {
-        Matrix m = new Matrix();
-        MatrixGraphic mg = new MatrixGraphic(m);
+    public static void main(String[] args)  {
+        Matrix m=new Matrix();
+        MatrixGraphic mg = new MatrixGraphic();
         m.setGraphic(mg);
         TestWindow f = new TestWindow(mg);
 
