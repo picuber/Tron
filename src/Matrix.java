@@ -3,12 +3,13 @@
  *
  * @author Leon
  */
-public class Matrix {
+public class Matrix{
 
     private Field[][] map;
+    private MatrixGraphic graphic;
 
     public Matrix() {
-        map = new Field[Configs.getSizeX()][Configs.getSizeY()];
+        map = new Field[Configs.getConfigValue("sizeX")][Configs.getConfigValue("sizeY")];
     }
 
     public void setField(int x, int y, Field f) {
@@ -20,7 +21,18 @@ public class Matrix {
         if (f != null) {
             f.undraw();
         }
-        map[x][y]=null;
+        map[x][y] = null;
+    }
+
+    public void setGraphic(MatrixGraphic mg) {
+        graphic = mg;
+    }
+    public MatrixGraphic getGraphic(){
+        return graphic;
+    }
+
+    public Field[][] getFields() {
+     return map;
     }
 
 }

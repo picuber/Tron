@@ -1,36 +1,23 @@
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Leon
  */
 public class Configs {
-    private static int gamespeed = 10;
-    private static int sizeX=10;
-    private static int sizeY=10;
-    private static int height=1;
 
-    public static int getGamespeed() {
-        return gamespeed;
-    }
-
-    /**
-     * @return the sizeX
-     */
-    public static int getSizeX() {
-        return sizeX;
-    }
-
-    /**
-     * @return the sizeY
-     */
-    public static int getSizeY() {
-        return sizeY;
-    }
-
-    /**
-     * @return the height
-     */
-    public static int getHeight() {
-        return height;
-    }
+   private static final Map<String,Integer> configs;
+   static{
+       configs=new HashMap<>();
+       configs.put("gamespeed",10);
+       configs.put("sizeX", 5);
+       configs.put("sizeY",5);
+       configs.put("height",1);
+   }
+   public static int getConfigValue(String key){
+       return configs.get(key);
+   }
     
 }
