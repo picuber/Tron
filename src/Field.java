@@ -43,7 +43,7 @@ public abstract class Field implements Drawable {
     @Override
     public void undraw() {
         Graphics g = m.getGraphic().getBufferGraphics();
-        g.clearRect(x * 10, y * 10, 10, 10);
+        g.clearRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
 
 }

@@ -24,7 +24,7 @@ public class Wall extends Field {
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(Color.darkGray);
-        g.fillRect(x * 10, y * 10, 10, 10);
+        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
 
 }

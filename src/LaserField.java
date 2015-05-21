@@ -19,7 +19,7 @@ public class LaserField extends Wall implements Timed {
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(Color.yellow);
-        g.fillRect(x * 10, y * 10, 10, 10);
+        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
 
     @Override
