@@ -30,6 +30,8 @@ public class Tron {
 
         f.setVisible(true);
         mg.init();
+        m.setBorderWalls();
+        m.drawBorderWalls();
         Wall w = new Wall(1, 1, m);
         m.setField(1, 1, w);
         w.draw();
