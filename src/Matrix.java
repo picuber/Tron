@@ -5,7 +5,7 @@
  */
 public class Matrix{
 
-    private Field[][] map;
+    private final Field[][] map;
     private MatrixGraphic graphic;
 
     public Matrix() {
@@ -16,6 +16,12 @@ public class Matrix{
         map[x][y] = f;
     }
 
+    /**
+     * deletes a Field from the Matrix
+     * by undrawing it and removing it from map
+     * @param x x-position of Field
+     * @param y y-position of Field
+     */
     public void deleteField(int x, int y) {
         Field f = map[x][y];
         if (f != null) {
@@ -31,6 +37,10 @@ public class Matrix{
         return graphic;
     }
 
+    /**
+     * 
+     * @return internal Field[][]
+     */
     public Field[][] getFields() {
      return map;
     }
