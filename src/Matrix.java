@@ -25,19 +25,6 @@ public class Matrix {
         }
     }
 
-    public void drawBorderWalls() {
-        for (int i = 0; i < map.length; i++) {//top and bottom walls
-            map[i][0].draw();
-            map[i][map[i].length - 1].draw();
-        }
-        for (int i = 1; i < map[0].length - 1; i++) {//left walls
-            map[0][i].draw();
-        }
-        for (int i = 1; i < map[map.length - 1].length - 1; i++) {//right walls
-            map[map.length - 1][i].draw();
-        }
-    }
-
     public void setField(int x, int y, Field f) {
         map[x][y] = f;
     }

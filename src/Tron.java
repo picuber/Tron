@@ -31,7 +31,6 @@ public class Tron {
         f.setVisible(true);
         mg.init();
         m.setBorderWalls();
-        m.drawBorderWalls();
         Wall w = new Wall(1, 1, m);
         LaserField lf = new LaserField(1, 2, m);
         Clock.getInstance().start();
