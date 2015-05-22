@@ -1,37 +1,47 @@
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+
 /**
  *
  * @author Leon
  */
 public class Bike implements Timed,Drawable{
-
+    int x,y,length=10,broadth=5;
+    private final Matrix m;
     @Override
     public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return x;
     }
 
     @Override
     public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return y;
     }
 
     @Override
     public void draw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Graphics g = m.getGraphic().getBufferGraphics();
+        g.setColor(Color.red);
+        g.fillRect((x-broadth/2)* Configs.getConfigValue("scaleX"), (y)* Configs.getConfigValue("scaleY"), broadth*Configs.getConfigValue("scaleX"), length*Configs.getConfigValue("scaleY"));
     }
 
     @Override
     public void undraw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Graphics g = m.getGraphic().getBufferGraphics();
+        g.clearRect((x-broadth/2)* Configs.getConfigValue("scaleX"), (y)* Configs.getConfigValue("scaleY"), broadth*Configs.getConfigValue("scaleX"), length*Configs.getConfigValue("scaleY"));
+    
     }
 
     enum Orientation {
 
         UP, DOWN, RIGHT, LEFT
     }
-    private Orientation or;
+    private Orientation or=Orientation.UP;
 
     public void turnRight() {
+        System.out.println("right");
         switch (or) {
             case UP:
                 or = Orientation.RIGHT;
@@ -48,7 +58,8 @@ public class Bike implements Timed,Drawable{
         }
     }
     
-    public void trunLeft(){
+    public void turnLeft(){
+        System.out.println("left");
         switch (or) {
             case UP:
                 or = Orientation.LEFT;
@@ -65,17 +76,33 @@ public class Bike implements Timed,Drawable{
         }
     }
 
-    public Bike() {
-
+    public Bike(int x,int y,Matrix m) {
+        this.m=m;
+        this.x=x;
+        this.y=y;
+        Clock.getInstance().login(this);
     }
 
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      undraw();
+      y--;
+      draw();
+      Field f=m.getFields()[x][y];
+      m.setField(x, y-1+length, new LaserField(x,y+length,m));
+      if(f!=null){
+      f.collide(this);
+      }
+      
     }
 
     void die() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Clock.getInstance().logout(this);
+        System.out.println("Bike died");
+        undraw();
+        for(int i=x-broadth/2;i<=x+broadth/2;i++){
+            m.getFields()[i][y].draw();
+        }
     }
 
 }
