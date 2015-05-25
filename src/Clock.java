@@ -49,8 +49,8 @@ public class Clock implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Timed timedObject : timedObjects) {
-            timedObject.tick();
+        for (int i=0;i<timedObjects.size();i++) {
+            timedObjects.get(i).tick();
         }
     }
 
