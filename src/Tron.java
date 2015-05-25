@@ -35,16 +35,16 @@ public class Tron {
         MatrixGraphic mg = new MatrixGraphic();
         m.setGraphic(mg);
         TestWindow f = new TestWindow(mg);
-   f.addKeyListener(new Wheel(new Bike(30,200,m),39,37));
+   f.addKeyListener(new Wheel(new Bike(30,200,m),KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_UP,KeyEvent.VK_DOWN));
        
         Tron.getInstance().getWorld().add(m);
         f.setVisible(true);
         mg.init();
         m.setBorderWalls();
-        
-        new Bike(60,200,m);
-        new Bike(90,200,m);
-        new Bike(120,200,m);
+     
+//        new Bike(60,200,m);
+//        new Bike(90,200,m);
+//        new Bike(120,200,m);
         Clock.getInstance().start();
 
     }

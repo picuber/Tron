@@ -26,7 +26,7 @@ public class LaserField extends Wall implements Timed {
 
     @Override
     public void tick() {
-        if (++counter == 50) {
+        if (++counter == 200) {
             m.deleteField(x, y);
             Clock.getInstance().logout(this);
         }
