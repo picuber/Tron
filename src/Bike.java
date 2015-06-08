@@ -169,7 +169,6 @@ public class Bike implements Timed, Drawable {
                 x--;
                 break;
         }
-
         draw();
         Field f = m.getFields()[x][y];
         switch (or) {
