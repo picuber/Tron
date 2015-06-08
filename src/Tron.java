@@ -1,12 +1,7 @@
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,7 +12,6 @@ public class Tron {
     private static final Tron instance = new Tron();
     private final List<Matrix> world;
     private final List<Bike> bikes;
-
 
     private Tron() {
 
@@ -35,13 +29,14 @@ public class Tron {
         MatrixGraphic mg = new MatrixGraphic();
         m.setGraphic(mg);
         TestWindow f = new TestWindow(mg);
-   f.addKeyListener(new Wheel(new Bike(30,200,m),KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_UP,KeyEvent.VK_DOWN));
-       
+        f.addKeyListener(new Wheel(new Bike(30, 200, m), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+        f.addKeyListener(new Wheel(new Bike(600, 500, m), KeyEvent.VK_D, KeyEvent.VK_A));
+
         Tron.getInstance().getWorld().add(m);
         f.setVisible(true);
         mg.init();
         m.setBorderWalls();
-     
+
 //        new Bike(60,200,m);
 //        new Bike(90,200,m);
 //        new Bike(120,200,m);

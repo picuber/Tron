@@ -59,7 +59,6 @@ public class Bike implements Timed, Drawable {
         }
         
         if (or == Orientation.DOWN || or == Orientation.UP) {
-
             int drawy = y * Configs.getConfigValue("scaleY");
             if (or == Orientation.DOWN) {
                 drawy = (y - length) * Configs.getConfigValue("scaleY");
@@ -67,7 +66,6 @@ public class Bike implements Timed, Drawable {
                g.drawImage(img,(x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"),null);
         
         } else {
-
             int drawx = x * Configs.getConfigValue("scaleX");
             if (or == Orientation.DOWN) {
                 drawx = (x - length) * Configs.getConfigValue("scaleX");
@@ -112,9 +110,7 @@ public class Bike implements Timed, Drawable {
     private Orientation or = Orientation.UP;
     private Orientation lastor = Orientation.UP;
 
-    @Deprecated
     public void turnRight() {
-        System.out.println("right");
         switch (or) {
             case UP:
                 setOr(Orientation.RIGHT);
@@ -131,9 +127,7 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    @Deprecated
     public void turnLeft() {
-        System.out.println("left");
         switch (or) {
             case UP:
                 setOr(Orientation.LEFT);
