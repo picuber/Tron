@@ -59,16 +59,13 @@ public class Bike implements Timed, Drawable {
         }
         g.setColor(Color.red);
         if (or == Orientation.DOWN || or == Orientation.UP) {
-
             int drawy = y * Configs.getConfigValue("scaleY");
             if (or == Orientation.DOWN) {
                 drawy = (y - length) * Configs.getConfigValue("scaleY");
             }
-               g.drawImage(img,(x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"),null);
-        
-          //  g.fillRect((x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"));
+            g.drawImage(img, (x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"), null);
+            //  g.fillRect((x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"));
         } else {
-
             int drawx = x * Configs.getConfigValue("scaleX");
             if (or == Orientation.DOWN) {
                 drawx = (x - length) * Configs.getConfigValue("scaleX");
