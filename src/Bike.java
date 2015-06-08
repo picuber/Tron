@@ -57,22 +57,21 @@ public class Bike implements Timed, Drawable {
                 img = imgleft;
                 break;
         }
-        g.setColor(Color.red);
+        
         if (or == Orientation.DOWN || or == Orientation.UP) {
             int drawy = y * Configs.getConfigValue("scaleY");
             if (or == Orientation.DOWN) {
                 drawy = (y - length) * Configs.getConfigValue("scaleY");
             }
-            g.drawImage(img, (x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"), null);
-            //  g.fillRect((x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"));
+               g.drawImage(img,(x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"),null);
+        
         } else {
             int drawx = x * Configs.getConfigValue("scaleX");
             if (or == Orientation.DOWN) {
                 drawx = (x - length) * Configs.getConfigValue("scaleX");
             }
             g.drawImage(img, drawx, (y - broadth / 2) * Configs.getConfigValue("scaleY"), length * Configs.getConfigValue("scaleX"), broadth * Configs.getConfigValue("scaleY"), null);
-            //   g.fillRect(drawx, (y - broadth / 2) * Configs.getConfigValue("scaleY"), length * Configs.getConfigValue("scaleX"), broadth * Configs.getConfigValue("scaleY"));
-
+        
         }
     }
 
@@ -197,10 +196,7 @@ public class Bike implements Timed, Drawable {
         Clock.getInstance().logout(this);
         System.out.println("Bike died");
         undraw();
-        for (int i = x - broadth / 2; i <= x + broadth / 2; i++) {
-
-            // m.getFields()[i][y].draw();
-        }
+        
     }
 
 }
