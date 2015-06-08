@@ -173,16 +173,16 @@ public class Bike implements Timed, Drawable {
         Field f = m.getFields()[x][y];
         switch (or) {
             case UP:
-                new LaserField(x, y + length, m);
+                new LaserField(x, y, m);
                 break;
             case DOWN:
-                new LaserField(x, y - length - 1, m);
+                new LaserField(x, y, m);
                 break;
             case LEFT:
-                new LaserField(x + length, y, m);
+                new LaserField(x, y, m);
                 break;
             case RIGHT:
-                new LaserField(x - 1, y, m);
+                new LaserField(x, y, m);
                 break;
         }
 
