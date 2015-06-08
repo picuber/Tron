@@ -114,9 +114,7 @@ public class Bike implements Timed, Drawable {
     private Orientation or = Orientation.UP;
     private Orientation lastor = Orientation.UP;
 
-    @Deprecated
     public void turnRight() {
-        System.out.println("right");
         switch (or) {
             case UP:
                 setOr(Orientation.RIGHT);
@@ -133,9 +131,7 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    @Deprecated
     public void turnLeft() {
-        System.out.println("left");
         switch (or) {
             case UP:
                 setOr(Orientation.LEFT);
