@@ -57,21 +57,11 @@ public class Bike implements Timed, Drawable {
                 img = imgleft;
                 break;
         }
-        
+
         if (or == Orientation.DOWN || or == Orientation.UP) {
-            int drawy = y * Configs.getConfigValue("scaleY");
-            if (or == Orientation.DOWN) {
-                drawy = (y - length) * Configs.getConfigValue("scaleY");
-            }
-               g.drawImage(img,(x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"),null);
-        
+            g.drawImage(img, (x - broadth / 2) * Configs.getConfigValue("scaleX"), (y - length / 2) * Configs.getConfigValue("scaleY"), broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"), null);
         } else {
-            int drawx = x * Configs.getConfigValue("scaleX");
-            if (or == Orientation.DOWN) {
-                drawx = (x - length) * Configs.getConfigValue("scaleX");
-            }
-            g.drawImage(img, drawx, (y - broadth / 2) * Configs.getConfigValue("scaleY"), length * Configs.getConfigValue("scaleX"), broadth * Configs.getConfigValue("scaleY"), null);
-        
+            g.drawImage(img, (x - length / 2) * Configs.getConfigValue("scaleX"), (y - broadth / 2) * Configs.getConfigValue("scaleY"), length * Configs.getConfigValue("scaleX"), broadth * Configs.getConfigValue("scaleY"), null);
         }
     }
 
@@ -80,18 +70,9 @@ public class Bike implements Timed, Drawable {
         Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(Color.white);
         if (lastor == Orientation.DOWN || lastor == Orientation.UP) {
-            int drawy = y * Configs.getConfigValue("scaleY");
-            if (lastor == Orientation.DOWN) {
-                drawy = (y - length) * Configs.getConfigValue("scaleY");
-            }
-            g.clearRect((x - broadth / 2) * Configs.getConfigValue("scaleX"), drawy, broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"));
+            g.clearRect((x - broadth / 2) * Configs.getConfigValue("scaleX"), (y - length / 2) * Configs.getConfigValue("scaleY"), broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"));
         } else {
-            int drawx = x * Configs.getConfigValue("scaleX");
-            if (lastor == Orientation.DOWN) {
-                drawx = (x - length) * Configs.getConfigValue("scaleX");
-            }
-            g.clearRect(drawx, (y - broadth / 2) * Configs.getConfigValue("scaleY"), length * Configs.getConfigValue("scaleX"), broadth * Configs.getConfigValue("scaleY"));
-
+            g.clearRect((x - length / 2) * Configs.getConfigValue("scaleX"), (y - broadth / 2) * Configs.getConfigValue("scaleY"), length * Configs.getConfigValue("scaleX"), broadth * Configs.getConfigValue("scaleY"));
         }
 
     }
@@ -196,7 +177,7 @@ public class Bike implements Timed, Drawable {
         Clock.getInstance().logout(this);
         System.out.println("Bike died");
         undraw();
-        
+
     }
 
 }
