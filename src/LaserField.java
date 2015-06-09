@@ -28,7 +28,7 @@ public class LaserField extends Wall implements Timed {
 
     @Override
     public void tick() {
-        if (++counter == 200) {
+        if (++counter == Configs.getConfigValue("laserlength")) {
             m.deleteField(x, y);
             Clock.getInstance().logout(this);
         }

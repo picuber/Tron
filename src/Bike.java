@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
  */
 public class Bike implements Timed, Drawable {
 
-    int x, y, length = 30, broadth = 15;
+    int x, y, length = Configs.getConfigValue("bikelength"), broadth = Configs.getConfigValue("bikebroadth");
     private Color c;
     static Image imgright, imgleft, imgup, imgdown;
 
