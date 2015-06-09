@@ -135,6 +135,27 @@ public class Bike implements Timed, Drawable {
     @Override
     public void tick() {
         undraw();
+        Field[][] ms = this.m.getFields();
+
+        if (lastor == Orientation.DOWN || lastor == Orientation.UP) {
+            for (int i = (x - broadth / 2); i < (x + broadth / 2); i++) {
+                for (int j = (y - length / 2); j < (y + length / 2); j++) {
+                 
+                    if (ms[i][j] != null) {
+                        ms[i][j].draw();
+                    }
+                }
+            }
+
+        } else {
+            for (int i = (x - length / 2); i < x + length/2; i++) {
+                for (int j = (y - broadth / 2); j < y + broadth/2; j++) {
+                    if (ms[i][j] != null) {
+                        ms[i][j].draw();
+                    }
+                }
+            }
+        }
         switch (or) {
             case UP:
                 y--;
