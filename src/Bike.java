@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 public class Bike implements Timed, Drawable {
 
     int x, y, length = 30, broadth = 15;
+    private Color c;
     static Image imgright, imgleft, imgup, imgdown;
 
     static {
@@ -125,10 +126,11 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    public Bike(int x, int y, Matrix m) {
+    public Bike(int x, int y, Color c, Matrix m) {
         this.m = m;
         this.x = x;
         this.y = y;
+        this.c = c;
         Clock.getInstance().login(this);
     }
 
@@ -140,7 +142,7 @@ public class Bike implements Timed, Drawable {
         if (lastor == Orientation.DOWN || lastor == Orientation.UP) {
             for (int i = (x - broadth / 2); i < (x + broadth / 2); i++) {
                 for (int j = (y - length / 2); j < (y + length / 2); j++) {
-                 
+
                     if (ms[i][j] != null) {
                         ms[i][j].draw();
                     }
@@ -148,8 +150,8 @@ public class Bike implements Timed, Drawable {
             }
 
         } else {
-            for (int i = (x - length / 2); i < x + length/2; i++) {
-                for (int j = (y - broadth / 2); j < y + broadth/2; j++) {
+            for (int i = (x - length / 2); i < x + length / 2; i++) {
+                for (int j = (y - broadth / 2); j < y + broadth / 2; j++) {
                     if (ms[i][j] != null) {
                         ms[i][j].draw();
                     }
@@ -174,16 +176,16 @@ public class Bike implements Timed, Drawable {
         Field f = m.getFields()[x][y];
         switch (or) {
             case UP:
-                new LaserField(x, y, m);
+                new LaserField(x, y, c, m);
                 break;
             case DOWN:
-                new LaserField(x, y, m);
+                new LaserField(x, y, c, m);
                 break;
             case LEFT:
-                new LaserField(x, y, m);
+                new LaserField(x, y, c, m);
                 break;
             case RIGHT:
-                new LaserField(x, y, m);
+                new LaserField(x, y, c, m);
                 break;
         }
 

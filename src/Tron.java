@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class Tron {
         MatrixGraphic mg = new MatrixGraphic();
         m.setGraphic(mg);
         TestWindow f = new TestWindow(mg);
-        f.addKeyListener(new Wheel(new Bike(30, 200, m), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
-        f.addKeyListener(new Wheel(new Bike(600, 500, m), KeyEvent.VK_D, KeyEvent.VK_A));
+        f.addKeyListener(new Wheel(new Bike(30, 200, Color.orange, m), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+        f.addKeyListener(new Wheel(new Bike(600, 500, Color.cyan, m), KeyEvent.VK_D, KeyEvent.VK_A));
 
         Tron.getInstance().getWorld().add(m);
         f.setVisible(true);

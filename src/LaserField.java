@@ -9,9 +9,11 @@ import java.awt.Graphics;
 public class LaserField extends Wall implements Timed {
 
     private int counter = 0;
+    private Color c;
 
-    public LaserField(int x, int y, Matrix m) {
+    public LaserField(int x, int y, Color c, Matrix m) {
         super(x, y, m);
+        this.c = c;
         m.setField(x, y, this);
         draw();
         Clock.getInstance().login(this);
@@ -20,7 +22,7 @@ public class LaserField extends Wall implements Timed {
     @Override
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
-        g.setColor(Color.yellow);
+        g.setColor(c);
         g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
 
