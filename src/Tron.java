@@ -22,6 +22,21 @@ public class Tron {
         return instance;
     }
 
+    public static void main2(String[] args) {
+        Matrix m = new Matrix();
+        MatrixGraphic mg = new MatrixGraphic();
+        m.setGraphic(mg);
+        TestWindow f = new TestWindow(mg);
+        world.add(m);
+        initBikes(f);
+        Tron.getInstance().getWorld().add(m);
+        f.setVisible(true);
+        mg.init();
+        m.setBorderWalls();
+        Clock.getInstance().start();
+
+    }
+
     public static void main(String[] args) {
         initWorld();
         TestWindow f = new TestWindow(world.get(0).getGraphic());
@@ -30,7 +45,6 @@ public class Tron {
         world.get(0).getGraphic().init();
         world.get(0).setBorderWalls();
         Clock.getInstance().start();
-
     }
 
     private static void initWorld() {
