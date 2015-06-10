@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -11,14 +12,10 @@ import java.util.List;
 public class Tron {
 
     private static final Tron instance = new Tron();
-    private final List<Matrix> world;
-    private final List<Bike> bikes;
+    private static final List<Matrix> world = new ArrayList<>();
+    private static final List<Bike> bikes = new ArrayList<>();
 
     private Tron() {
-
-        world = new ArrayList<>();
-        bikes = new ArrayList<>();
-
     }
 
     public static Tron getInstance() {
@@ -30,9 +27,8 @@ public class Tron {
         MatrixGraphic mg = new MatrixGraphic();
         m.setGraphic(mg);
         TestWindow f = new TestWindow(mg);
-        f.addKeyListener(new Wheel(new Bike(30, 200, Color.orange, m), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
-        f.addKeyListener(new Wheel(new Bike(600, 500, Color.cyan, m), KeyEvent.VK_D, KeyEvent.VK_A));
-
+        world.add(m);
+        initBikes(f);
         Tron.getInstance().getWorld().add(m);
         f.setVisible(true);
         mg.init();
@@ -42,6 +38,15 @@ public class Tron {
 //        new Bike(90,200,m);
 //        new Bike(120,200,m);
         Clock.getInstance().start();
+
+    }
+    private void initGame(){
+        
+    }
+
+    private static void initBikes(JFrame f) {
+        f.addKeyListener(new Wheel(new Bike(30, 200, Color.orange, "1", world.get(0)), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+        f.addKeyListener(new Wheel(new Bike(600, 500, Color.cyan, "2", world.get(0)), KeyEvent.VK_D, KeyEvent.VK_A));
 
     }
 

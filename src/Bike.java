@@ -16,7 +16,9 @@ public class Bike implements Timed, Drawable {
 
     int x, y, length = Configs.getConfigValue("bikelength"), broadth = Configs.getConfigValue("bikebroadth");
     private Color c;
+    private String name;
     static Image imgright, imgleft, imgup, imgdown;
+    private final Matrix m;
 
     static {
         try {
@@ -28,7 +30,15 @@ public class Bike implements Timed, Drawable {
             Logger.getLogger(Bike.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private final Matrix m;
+
+    public Bike(int x, int y, Color c, String name, Matrix m) {
+        this.m = m;
+        this.x = x;
+        this.y = y;
+        this.c = c;
+        this.name = name;
+        Clock.getInstance().login(this);
+    }
 
     @Override
     public int getX() {
@@ -126,14 +136,6 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    public Bike(int x, int y, Color c, Matrix m) {
-        this.m = m;
-        this.x = x;
-        this.y = y;
-        this.c = c;
-        Clock.getInstance().login(this);
-    }
-
     @Override
     public void tick() {
         undraw();
@@ -198,9 +200,8 @@ public class Bike implements Timed, Drawable {
 
     void die() {
         Clock.getInstance().logout(this);
-        System.out.println("Bike died");
+        System.out.println("Bike \"" + name + "\" died");
         undraw();
-
     }
 
 }
