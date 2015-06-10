@@ -136,30 +136,35 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    @Override
-    public void tick() {
-        undraw();
+    private void updateBackground(){
         Field[][] ms = this.m.getFields();
-
         if (lastor == Orientation.DOWN || lastor == Orientation.UP) {
-            for (int i = (x - broadth / 2); i < (x + broadth / 2); i++) {
+            for (int i = (x - broadth / 2); i < (x + broadth / 2)+1; i++) {
                 for (int j = (y - length / 2); j < (y + length / 2); j++) {
-
-                    if (ms[i][j] != null) {
+                    if (i >= 0 && j >= 0
+                            && i < ms.length && j < ms[0].length
+                            && ms[i][j] != null) {
                         ms[i][j].draw();
                     }
                 }
             }
-
         } else {
-            for (int i = (x - length / 2); i < x + length / 2; i++) {
-                for (int j = (y - broadth / 2); j < y + broadth / 2; j++) {
-                    if (ms[i][j] != null) {
+            for (int i = (x - length / 2); i < (x + length / 2); i++) {
+                for (int j = (y - broadth / 2); j < (y + broadth / 2)+1; j++) {
+                    if (i >= 0 && j >= 0
+                            && i < ms.length && j < ms[0].length
+                            && ms[i][j] != null) {
                         ms[i][j].draw();
                     }
                 }
             }
         }
+    }
+    
+    @Override
+    public void tick() {
+        undraw();
+        updateBackground();
         switch (or) {
             case UP:
                 y--;
@@ -202,6 +207,7 @@ public class Bike implements Timed, Drawable {
         Clock.getInstance().logout(this);
         System.out.println("Bike \"" + name + "\" died");
         undraw();
+        updateBackground();
     }
 
 }
