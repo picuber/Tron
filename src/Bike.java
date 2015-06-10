@@ -136,10 +136,10 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    private void updateBackground(){
+    private void updateBackground() {
         Field[][] ms = this.m.getFields();
         if (lastor == Orientation.DOWN || lastor == Orientation.UP) {
-            for (int i = (x - broadth / 2); i < (x + broadth / 2)+1; i++) {
+            for (int i = (x - broadth / 2); i < (x + broadth / 2) + 1; i++) {
                 for (int j = (y - length / 2); j < (y + length / 2); j++) {
                     if (i >= 0 && j >= 0
                             && i < ms.length && j < ms[0].length
@@ -150,7 +150,7 @@ public class Bike implements Timed, Drawable {
             }
         } else {
             for (int i = (x - length / 2); i < (x + length / 2); i++) {
-                for (int j = (y - broadth / 2); j < (y + broadth / 2)+1; j++) {
+                for (int j = (y - broadth / 2); j < (y + broadth / 2) + 1; j++) {
                     if (i >= 0 && j >= 0
                             && i < ms.length && j < ms[0].length
                             && ms[i][j] != null) {
@@ -160,7 +160,7 @@ public class Bike implements Timed, Drawable {
             }
         }
     }
-    
+
     @Override
     public void tick() {
         undraw();
@@ -181,22 +181,22 @@ public class Bike implements Timed, Drawable {
         }
         draw();
         Field f = m.getFields()[x][y];
-        switch (or) {
-            case UP:
-                new LaserField(x, y, c, m);
-                break;
-            case DOWN:
-                new LaserField(x, y, c, m);
-                break;
-            case LEFT:
-                new LaserField(x, y, c, m);
-                break;
-            case RIGHT:
-                new LaserField(x, y, c, m);
-                break;
-        }
-
-        if (f != null) {
+        if (f == null) {
+            switch (or) {
+                case UP:
+                    new LaserField(x, y, c, m);
+                    break;
+                case DOWN:
+                    new LaserField(x, y, c, m);
+                    break;
+                case LEFT:
+                    new LaserField(x, y, c, m);
+                    break;
+                case RIGHT:
+                    new LaserField(x, y, c, m);
+                    break;
+            }
+        } else {
             f.collide(this);
         }
         this.lastor = or;

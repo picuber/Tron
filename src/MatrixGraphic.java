@@ -16,7 +16,7 @@ public class MatrixGraphic extends JPanel implements Timed {
     private Image offscreen;
 
     public MatrixGraphic() {
-        this.setSize(Configs.getConfigValue("sizeX")*Configs.getConfigValue("scaleX")+10, Configs.getConfigValue("sizeY")*Configs.getConfigValue("scaleY")+30);
+        this.setSize(Configs.getConfigValue("sizeX")*Configs.getConfigValue("scaleX")+18, Configs.getConfigValue("sizeY")*Configs.getConfigValue("scaleY")+47);
         Clock.getInstance().login(this);
     }
 
