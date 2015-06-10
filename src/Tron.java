@@ -23,25 +23,23 @@ public class Tron {
     }
 
     public static void main(String[] args) {
-        Matrix m = new Matrix();
-        MatrixGraphic mg = new MatrixGraphic();
-        m.setGraphic(mg);
-        TestWindow f = new TestWindow(mg);
-        world.add(m);
+        initWorld();
+        TestWindow f = new TestWindow(world.get(0).getGraphic());
         initBikes(f);
-        Tron.getInstance().getWorld().add(m);
         f.setVisible(true);
-        mg.init();
-        m.setBorderWalls();
-
-//        new Bike(60,200,m);
-//        new Bike(90,200,m);
-//        new Bike(120,200,m);
+        world.get(0).getGraphic().init();
+        world.get(0).setBorderWalls();
         Clock.getInstance().start();
 
     }
-    private void initGame(){
-        
+
+    private static void initWorld() {
+        for (int i = 0; i < 1; i++) {
+            Matrix m = new Matrix();
+            MatrixGraphic mg = new MatrixGraphic();
+            m.setGraphic(mg);
+            world.add(m);
+        }
     }
 
     private static void initBikes(JFrame f) {
