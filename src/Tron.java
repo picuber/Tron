@@ -44,8 +44,10 @@ public class Tron {
     }
 
     private static void initBikes(JFrame f) {
-        f.addKeyListener(new Wheel(new Bike(30, 200, Color.orange, "1", Tron.getInstance().world.get(0)), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
-        f.addKeyListener(new Wheel(new Bike(600, 500, Color.cyan, "2", Tron.getInstance().world.get(0)), KeyEvent.VK_D, KeyEvent.VK_A));
+        Tron.getInstance().bikes.add(new Bike(30, 200, Color.orange, "1", Tron.getInstance().world.get(0)));
+        f.addKeyListener(new Wheel(Tron.getInstance().bikes.get(0), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+        Tron.getInstance().bikes.add(new Bike(600, 500, Color.cyan, "2", Tron.getInstance().world.get(0)));
+        f.addKeyListener(new Wheel(Tron.getInstance().bikes.get(1), KeyEvent.VK_D, KeyEvent.VK_A));
 
     }
 

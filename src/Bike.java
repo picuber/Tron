@@ -205,6 +205,7 @@ public class Bike implements Timed, Drawable {
 
     void die() {
         Clock.getInstance().logout(this);
+        Tron.getInstance().getBikes().remove(this);
         System.out.println("Bike \"" + name + "\" died");
         undraw();
         updateBackground();
