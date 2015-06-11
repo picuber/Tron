@@ -26,15 +26,17 @@ public class Tron {
 
     public static void main(String[] args) {
         initWorld();
-        TestWindow f = new TestWindow(Tron.getInstance().world.get(0).getGraphic());
+        //TestWindow f = new TestWindow(Tron.getInstance().world.get(0).getGraphic());
+        TestWindow f = new TestWindow(Tron.getInstance().getWorld().get(0));
         initBikes(f);
-        f.setVisible(true);
+        //f.setVisible(true);
         Tron.getInstance().getWorld().get(0).init();
+        new LinkField(Tron.getInstance().getWorld().get(0), 50, 50, Tron.getInstance().getWorld().get(0), 100, 100);
         Clock.getInstance().start();
     }
 
     private static void initWorld() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < Configs.getConfigValue("height"); i++) {
             Matrix m = new Matrix();
             MatrixGraphic mg = new MatrixGraphic();
             m.setGraphic(mg);

@@ -1,30 +1,38 @@
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+
 /**
  *
  * @author Leon
  */
 public class LinkField extends Field {
 
-    private Matrix current;
+    private Matrix m;
     private int x, y;
     private LinkField link;
 
-    public LinkField(Matrix current, int x, int y, Matrix linkCurrent, int linkX, int linkY) {
-        this.current = current;
+    public LinkField(Matrix m, int x, int y, Matrix linkM, int linkX, int linkY) {
+        this.m = m;
         this.x = x;
         this.y = y;
-        this.link = new LinkField(linkCurrent, linkX, linkY, this);
+        this.link = new LinkField(linkM, linkX, linkY, this);
+        this.m.setField(x, y, this);
+        draw();
     }
 
-    private LinkField(Matrix current, int x, int y, LinkField link) {
-        this.current = current;
+    private LinkField(Matrix m, int x, int y, LinkField link) {
+        this.m = m;
         this.x = x;
         this.y = y;
         this.link = link;
+        this.m.setField(x, y, this);
+        draw();
     }
 
-    public Matrix getCurrent() {
-        return current;
+    public Matrix getM() {
+        return m;
     }
 
     public int getX() {
@@ -41,12 +49,14 @@ public class LinkField extends Field {
 
     @Override
     public void collide(Bike b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       b.goToLinkEnd(link);
     }
 
     @Override
     public void draw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Graphics g = m.getGraphic().getBufferGraphics();
+        g.setColor(Color.red);
+        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
 
 }

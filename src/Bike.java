@@ -54,12 +54,12 @@ public class Bike implements Timed, Drawable {
         return m;
     }
 
-    public void goThroughLink(LinkField linkStartPoint) {
+    public void goToLinkEnd(LinkField linkEndPoint) {
         undraw();
         updateBackground();
-        m = linkStartPoint.getLink().getCurrent();
-        x = linkStartPoint.getLink().getX();
-        y = linkStartPoint.getLink().getY();
+        m = linkEndPoint.getM();
+        x = linkEndPoint.getX();
+        y = linkEndPoint.getY();
         draw();
     }
 
