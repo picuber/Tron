@@ -12,38 +12,25 @@ import javax.swing.JFrame;
 public class Tron {
 
     private static final Tron instance = new Tron();
-    private static final List<Matrix> world = new ArrayList<>();
-    private static final List<Bike> bikes = new ArrayList<>();
+    private final List<Matrix> world;
+    private final List<Bike> bikes;
 
     private Tron() {
+        world = new ArrayList<>();
+        bikes = new ArrayList<>();
     }
 
     public static Tron getInstance() {
         return instance;
     }
 
-    public static void main2(String[] args) {
-        Matrix m = new Matrix();
-        MatrixGraphic mg = new MatrixGraphic();
-        m.setGraphic(mg);
-        TestWindow f = new TestWindow(mg);
-        world.add(m);
-        initBikes(f);
-        Tron.getInstance().getWorld().add(m);
-        f.setVisible(true);
-        mg.init();
-        m.setBorderWalls();
-        Clock.getInstance().start();
-
-    }
-
     public static void main(String[] args) {
         initWorld();
-        TestWindow f = new TestWindow(world.get(0).getGraphic());
+        TestWindow f = new TestWindow(Tron.getInstance().world.get(0).getGraphic());
         initBikes(f);
         f.setVisible(true);
-        world.get(0).getGraphic().init();
-        world.get(0).setBorderWalls();
+        Tron.getInstance().world.get(0).getGraphic().init();
+        Tron.getInstance().world.get(0).setBorderWalls();
         Clock.getInstance().start();
     }
 
@@ -52,13 +39,13 @@ public class Tron {
             Matrix m = new Matrix();
             MatrixGraphic mg = new MatrixGraphic();
             m.setGraphic(mg);
-            world.add(m);
+            Tron.getInstance().world.add(m);
         }
     }
 
     private static void initBikes(JFrame f) {
-        f.addKeyListener(new Wheel(new Bike(30, 200, Color.orange, "1", world.get(0)), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
-        f.addKeyListener(new Wheel(new Bike(600, 500, Color.cyan, "2", world.get(0)), KeyEvent.VK_D, KeyEvent.VK_A));
+        f.addKeyListener(new Wheel(new Bike(30, 200, Color.orange, "1", Tron.getInstance().world.get(0)), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
+        f.addKeyListener(new Wheel(new Bike(600, 500, Color.cyan, "2", Tron.getInstance().world.get(0)), KeyEvent.VK_D, KeyEvent.VK_A));
 
     }
 
