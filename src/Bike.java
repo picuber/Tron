@@ -18,7 +18,7 @@ public class Bike implements Timed, Drawable {
     private Color c;
     private String name;
     static Image imgright, imgleft, imgup, imgdown;
-    private final Matrix m;
+    private Matrix m;
 
     static {
         try {
@@ -48,6 +48,19 @@ public class Bike implements Timed, Drawable {
     @Override
     public int getY() {
         return y;
+    }
+
+    public Matrix getMatrix() {
+        return m;
+    }
+
+    public void goThroughLink(LinkField linkStartPoint) {
+        undraw();
+        updateBackground();
+        m = linkStartPoint.getLink().getCurrent();
+        x = linkStartPoint.getLink().getX();
+        y = linkStartPoint.getLink().getY();
+        draw();
     }
 
     @Override
