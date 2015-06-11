@@ -29,8 +29,7 @@ public class Tron {
         TestWindow f = new TestWindow(Tron.getInstance().world.get(0).getGraphic());
         initBikes(f);
         f.setVisible(true);
-        Tron.getInstance().world.get(0).getGraphic().init();
-        Tron.getInstance().world.get(0).setBorderWalls();
+        Tron.getInstance().getWorld().get(0).init();
         Clock.getInstance().start();
     }
 
