@@ -26,10 +26,8 @@ public class Tron {
 
     public static void main(String[] args) {
         initWorld();
-        //TestWindow f = new TestWindow(Tron.getInstance().world.get(0).getGraphic());
         TestWindow f = new TestWindow(Tron.getInstance().getWorld().get(0));
         initBikes(f);
-        //f.setVisible(true);
         Tron.getInstance().getWorld().get(0).init();
         new LinkField(Tron.getInstance().getWorld().get(0), 50, 50, Tron.getInstance().getWorld().get(0), 100, 100);
         Clock.getInstance().start();
