@@ -7,14 +7,17 @@ public class Matrix {
 
     private final Field[][] map;
     private MatrixGraphic graphic;
+    private boolean initialized;
 
     public Matrix() {
         map = new Field[Configs.getConfigValue("sizeX")][Configs.getConfigValue("sizeY")];
+        initialized = false;
     }
 
     public void init() {
         graphic.init();
         setBorderWalls();
+        initialized = true;
     }
 
     public void setBorderWalls() {
@@ -62,4 +65,7 @@ public class Matrix {
         return map;
     }
 
+    public boolean isInitialized() {
+        return initialized;
+    }
 }
