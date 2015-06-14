@@ -222,6 +222,9 @@ public class Bike implements Timed, Drawable {
         System.out.println("Bike \"" + name + "\" died");
         undraw();
         updateBackground();
+        if(Tron.getInstance().getBikes().isEmpty()){
+            Clock.getInstance().stop();
+        }
     }
 
 }
