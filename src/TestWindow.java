@@ -1,5 +1,4 @@
 
-import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,10 +17,12 @@ public class TestWindow extends JFrame {
         this.add(jp);
         this.setSize(jp.size().width, jp.size().height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBackground(new Color(211, 211, 211));
+        
         this.setVisible(true);
         if (!m.isInitialized()) {
             m.init();
         }
     }
 }
+  
+    

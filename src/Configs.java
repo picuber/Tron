@@ -11,7 +11,7 @@ public class Configs {
    private static final Map<String,Integer> configs;
    static{
        configs=new HashMap<>();
-       configs.put("gamespeed",0);
+       configs.put("gamespeed",10);
        configs.put("sizeX", 700);
        configs.put("sizeY",700);
        configs.put("height",1);
