@@ -45,13 +45,13 @@ public class Wheel implements KeyListener {
                 b.turnLeft();
             }
         } else {
-            if (e.getKeyCode() == rightcode) {
+            if (e.getKeyCode() == rightcode && b.getOr() != Bike.Orientation.LEFT) {
                 b.setOr(Bike.Orientation.RIGHT);
-            } else if (e.getKeyCode() == leftcode) {
+            } else if (e.getKeyCode() == leftcode && b.getOr() != Bike.Orientation.RIGHT) {
                 b.setOr(Bike.Orientation.LEFT);
-            } else if (e.getKeyCode() == upcode) {
+            } else if (e.getKeyCode() == upcode && b.getOr() != Bike.Orientation.DOWN) {
                 b.setOr(Bike.Orientation.UP);
-            } else if (e.getKeyCode() == downcode) {
+            } else if (e.getKeyCode() == downcode && b.getOr() != Bike.Orientation.UP) {
                 b.setOr(Bike.Orientation.DOWN);
             }
         }
