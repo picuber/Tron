@@ -23,7 +23,6 @@ import javax.swing.*;
  */
 public class Startpage extends JFrame {
 
-    private final JLabel Background = new JLabel();
     private final JLabel TRON = new JLabel();
     private final JButton Ok = new JButton();
     private final JTextField NamenEingabeFeld = new JTextField();

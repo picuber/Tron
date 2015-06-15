@@ -5,17 +5,22 @@
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MainMenue extends JFrame {
 
-    private final JLabel Background = new JLabel();
     private final JButton jButton1 = new JButton();
     private final JButton jButton2 = new JButton();
     private final JButton jButton3 = new JButton();
     private final JButton Beenden = new JButton();
     private final JLabel jLabel1 = new JLabel();
-    private ImageIcon BackgroundIcon = new ImageIcon("Raster.jpg");
+    private BufferedImage image = null;
 
     public MainMenue(String title) {
         super(title);
@@ -29,9 +34,20 @@ public class MainMenue extends JFrame {
         setLocation(x, y);
         setResizable(true);
         this.setLayout(null);
-        Background.setBounds(0, 0, 800, 600);
-        Background.setIcon(BackgroundIcon);
-        this.add(Background);
+        try {
+            image = ImageIO.read(new File("Raster.jpg"));
+        } catch (IOException ex) {
+            Logger.getLogger(Startpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Container c = new Container() {
+            public void paint(Graphics g) {
+                g.drawImage(image, 0, 0, null);
+                super.paint(g);
+            }
+        };
+        c.setBackground(new Color(0, 0, 0, 0));
+        this.setContentPane(c);
         
         jButton1.setBounds(300, 200, 150, 35);
         jButton1.setText("Start");
@@ -80,6 +96,7 @@ public class MainMenue extends JFrame {
         jLabel1.setBounds(290, 50, 164, 88);
         jLabel1.setText("TRON");
         jLabel1.setFont(new Font("Consolas", Font.BOLD, 72));
+        jLabel1.setForeground(Color.WHITE);
         this.add(jLabel1);
 
         setVisible(true);
