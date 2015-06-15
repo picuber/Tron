@@ -223,7 +223,7 @@ public class Bike implements Timed, Drawable {
         undraw();
         updateBackground();
         if(Tron.getInstance().getBikes().isEmpty()){
-            Clock.getInstance().stop();
+            Tron.getInstance().stopGame();
         }
     }
 

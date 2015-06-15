@@ -24,14 +24,20 @@ public class Tron {
         return instance;
     }
 
-    public static void main(String[] args) {
+    public void startGame(){
+        Tron.getInstance().world.removeAll(Tron.getInstance().world);
+        Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
         initWorld();
         initPlayers();
         Tron.getInstance().getWorld().get(0).init();
-        new LinkField(Tron.getInstance().getWorld().get(0), 50, 50, Tron.getInstance().getWorld().get(0), 100, 100);
+        new LinkField(Tron.getInstance().getWorld().get(0), 50, 50, Tron.getInstance().getWorld().get(0), 50, 252);
         Clock.getInstance().start();
     }
-
+    
+    public void stopGame(){
+        Clock.getInstance().stop();
+    }
+    
     private static void initWorld() {
         for (int i = 0; i < Configs.getConfigValue("height"); i++) {
             Matrix m = new Matrix();
@@ -45,7 +51,7 @@ public class Tron {
         TestWindow f = new TestWindow(Tron.getInstance().getWorld().get(0));
         Tron.getInstance().bikes.add(new Bike(600, 500, Color.orange, "1", Tron.getInstance().world.get(0)));
         f.addKeyListener(new Wheel(Tron.getInstance().bikes.get(0), KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT));
-        Tron.getInstance().bikes.add(new Bike(30, 200, Color.cyan, "2", Tron.getInstance().world.get(0)));
+        Tron.getInstance().bikes.add(new Bike(50, 200, Color.cyan, "2", Tron.getInstance().world.get(0)));
         f.addKeyListener(new Wheel(Tron.getInstance().bikes.get(1), KeyEvent.VK_D, KeyEvent.VK_A));
 
     }

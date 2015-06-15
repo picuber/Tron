@@ -15,14 +15,19 @@ import javax.swing.*;
 
 public class MainMenue extends JFrame {
 
-    private final JButton jButton1 = new JButton();
-    private final JButton jButton2 = new JButton();
-    private final JButton jButton3 = new JButton();
+    private static final MainMenue instance = new MainMenue("Tron");
+    private final JButton START = new JButton();
+    private final JButton CREDITS = new JButton();
+    private final JButton HIGHSCORE = new JButton();
     private final JButton Beenden = new JButton();
-    private final JLabel jLabel1 = new JLabel();
+    private final JLabel TRON = new JLabel();
     private BufferedImage image = null;
 
-    public MainMenue(String title) {
+    public static MainMenue getInstance() {
+        return instance;
+    }
+
+    private MainMenue(String title) {
         super(title);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         int frameWidth = 800;
@@ -32,7 +37,7 @@ public class MainMenue extends JFrame {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setResizable(true);
+        setResizable(false);
         this.setLayout(null);
         try {
             image = ImageIO.read(new File("Raster.jpg"));
@@ -48,92 +53,61 @@ public class MainMenue extends JFrame {
         };
         c.setBackground(new Color(0, 0, 0, 0));
         this.setContentPane(c);
-        
-        jButton1.setBounds(300, 200, 150, 35);
-        jButton1.setText("Start");
-        jButton1.setMargin(new Insets(2, 2, 2, 2));
-        jButton1.addActionListener(new ActionListener() {
+
+        START.setBounds(300, 200, 150, 35);
+        START.setText("Start");
+        START.setMargin(new Insets(2, 2, 2, 2));
+        START.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton1_ActionPerformed(evt);
+                new Startpage("Startpage");
+                setVisible(false);
             }
         });
-        jButton1.setFont(new Font("Consolas", Font.BOLD, 20));
-        this.add(jButton1);
-        
-        jButton2.setBounds(300, 300, 150, 35);
-        jButton2.setText("Credits");
-        jButton2.setMargin(new Insets(2, 2, 2, 2));
-        jButton2.addActionListener(new ActionListener() {
+        START.setFont(new Font("Consolas", Font.BOLD, 20));
+        this.add(START);
+
+        CREDITS.setBounds(300, 300, 150, 35);
+        CREDITS.setText("Credits");
+        CREDITS.setMargin(new Insets(2, 2, 2, 2));
+        CREDITS.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2_ActionPerformed(evt);
+
             }
         });
-        jButton2.setFont(new Font("Consolas", Font.BOLD, 20));
-        this.add(jButton2);
-        
-        jButton3.setBounds(300, 250, 150, 35);
-        jButton3.setText("Highscore");
-        jButton3.setMargin(new Insets(2, 2, 2, 2));
-        jButton3.addActionListener(new ActionListener() {
+        CREDITS.setFont(new Font("Consolas", Font.BOLD, 20));
+        this.add(CREDITS);
+
+        HIGHSCORE.setBounds(300, 250, 150, 35);
+        HIGHSCORE.setText("Highscore");
+        HIGHSCORE.setMargin(new Insets(2, 2, 2, 2));
+        HIGHSCORE.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton3_ActionPerformed(evt);
+
             }
         });
-        jButton3.setFont(new Font("Consolas", Font.BOLD, 20));
-        this.add(jButton3);
-        
+        HIGHSCORE.setFont(new Font("Consolas", Font.BOLD, 20));
+        this.add(HIGHSCORE);
+
         Beenden.setBounds(300, 350, 150, 35);
         Beenden.setText("Beenden");
         Beenden.setMargin(new Insets(2, 2, 2, 2));
         Beenden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Beenden_ActionPerformed(evt);
+                System.exit(0);
             }
         });
         Beenden.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(Beenden);
 
-        jLabel1.setBounds(290, 50, 164, 88);
-        jLabel1.setText("TRON");
-        jLabel1.setFont(new Font("Consolas", Font.BOLD, 72));
-        jLabel1.setForeground(Color.WHITE);
-        this.add(jLabel1);
+        TRON.setBounds(290, 50, 164, 88);
+        TRON.setText("TRON");
+        TRON.setFont(new Font("Consolas", Font.BOLD, 72));
+        TRON.setForeground(Color.WHITE);
+        this.add(TRON);
 
         setVisible(true);
     }
 
-    public void jButton1_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void jButton2_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void jButton3_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void Beenden_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void jButton4_ActionPerformed(ActionEvent evt) {
-
-    }
-
     public static void main(String[] args) {
-        new MainMenue("MainMenue");
-    }
-
-    protected ImageIcon createImageIcon(String path,
-            String description) {
-        java.net.URL imgURL = getClass().getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
     }
 }

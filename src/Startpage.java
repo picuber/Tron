@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.ComboBox;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -25,10 +26,15 @@ public class Startpage extends JFrame {
 
     private final JLabel TRON = new JLabel();
     private final JButton Ok = new JButton();
+    private final JButton Back = new JButton();
     private final JTextField NamenEingabeFeld = new JTextField();
+    private final JCheckBox cb = new JCheckBox("4 Tasten-Steuerung");
     private final JTextField NamenEingabeFeld2 = new JTextField();
+    private final JCheckBox cb2 = new JCheckBox("4 Tasten-Steuerung");
     private final JTextField NamenEingabeFeld3 = new JTextField();
+    private final JCheckBox cb3 = new JCheckBox("4 Tasten-Steuerung");
     private final JTextField NamenEingabeFeld4 = new JTextField();
+    private final JCheckBox cb4 = new JCheckBox("4 Tasten-Steuerung");
     private BufferedImage image = null;
 
     public Startpage(String title) {
@@ -69,7 +75,10 @@ public class Startpage extends JFrame {
             }
         });
         this.add(NamenEingabeFeld);
-        
+
+        cb.setBounds(25, 275, 150, 25);
+        this.add(cb);
+
         NamenEingabeFeld2.setBounds(225, 300, 150, 25);
         NamenEingabeFeld2.setFont(new Font("Consolas", Font.PLAIN, 12));
         NamenEingabeFeld2.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
@@ -81,7 +90,10 @@ public class Startpage extends JFrame {
             }
         });
         this.add(NamenEingabeFeld2);
-        
+
+        cb2.setBounds(225, 275, 150, 25);
+        this.add(cb2);
+
         NamenEingabeFeld3.setBounds(425, 300, 150, 25);
         NamenEingabeFeld3.setFont(new Font("Consolas", Font.PLAIN, 12));
         NamenEingabeFeld3.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
@@ -93,7 +105,10 @@ public class Startpage extends JFrame {
             }
         });
         this.add(NamenEingabeFeld3);
-        
+
+        cb3.setBounds(425, 275, 150, 25);
+        this.add(cb3);
+
         NamenEingabeFeld4.setBounds(625, 300, 150, 25);
         NamenEingabeFeld4.setFont(new Font("Consolas", Font.PLAIN, 12));
         NamenEingabeFeld4.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
@@ -106,31 +121,44 @@ public class Startpage extends JFrame {
         });
         this.add(NamenEingabeFeld4);
 
-        Ok.setBounds(360, 352, 75, 25);
+        cb4.setBounds(625, 275, 150, 25);
+        this.add(cb4);
+
+        Ok.setBounds(300, 352, 75, 25);
         Ok.setText("Ok");
         Ok.setMargin(new Insets(2, 2, 2, 2));
         Ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Configs.addPlayer(NamenEingabeFeld.getText(), 1);
+                Configs.addControlMode(cb.isSelected(), 1);
                 Configs.addPlayer(NamenEingabeFeld2.getText(), 2);
+                Configs.addControlMode(cb2.isSelected(), 2);
                 Configs.addPlayer(NamenEingabeFeld3.getText(), 3);
+                Configs.addControlMode(cb3.isSelected(), 3);
                 Configs.addPlayer(NamenEingabeFeld4.getText(), 4);
-                System.out.println(Arrays.toString(Configs.getPlayerNames()));
+                Configs.addControlMode(cb4.isSelected(), 4);
+                Tron.getInstance().startGame();
             }
         });
         this.add(Ok);
+        
+        Back.setBounds(425, 352, 75, 25);
+        Back.setText("Back");
+        Back.setMargin(new Insets(2, 2, 2, 2));
+        Back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                MainMenue.getInstance().setVisible(true);
+                dispose();
+            }
+        });
+        this.add(Back);
 
-        TRON.setBounds(296, 40, 216, 104);
+        TRON.setBounds(320, 50, 160, 80);
         TRON.setText("TRON");
         TRON.setFont(new Font("Consolas", Font.BOLD, 72));
         TRON.setForeground(Color.WHITE);
         this.add(TRON);
 
         setVisible(true);
-    }
-
-
-    public static void main(String[] args) {
-        new Startpage("Startseite");
     }
 }
