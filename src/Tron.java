@@ -15,7 +15,7 @@ public class Tron {
     private final List<Matrix> world;
     private final List<Bike> bikes;
 
-    private Tron() {
+    Tron() {
         world = new ArrayList<>();
         bikes = new ArrayList<>();
     }

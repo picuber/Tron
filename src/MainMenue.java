@@ -54,7 +54,7 @@ public class MainMenue extends JFrame {
         jButton1.setMargin(new Insets(2, 2, 2, 2));
         jButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton1_ActionPerformed(evt);
+                
             }
         });
         jButton1.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -65,7 +65,7 @@ public class MainMenue extends JFrame {
         jButton2.setMargin(new Insets(2, 2, 2, 2));
         jButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2_ActionPerformed(evt);
+                
             }
         });
         jButton2.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -76,7 +76,7 @@ public class MainMenue extends JFrame {
         jButton3.setMargin(new Insets(2, 2, 2, 2));
         jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton3_ActionPerformed(evt);
+                
             }
         });
         jButton3.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -87,7 +87,7 @@ public class MainMenue extends JFrame {
         Beenden.setMargin(new Insets(2, 2, 2, 2));
         Beenden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Beenden_ActionPerformed(evt);
+                System.exit(0);
             }
         });
         Beenden.setFont(new Font("Consolas", Font.BOLD, 20));
@@ -102,25 +102,7 @@ public class MainMenue extends JFrame {
         setVisible(true);
     }
 
-    public void jButton1_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void jButton2_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void jButton3_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void Beenden_ActionPerformed(ActionEvent evt) {
-
-    }
-
-    public void jButton4_ActionPerformed(ActionEvent evt) {
-
-    }
+    
 
     public static void main(String[] args) {
         new MainMenue("MainMenue");

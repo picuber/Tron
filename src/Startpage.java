@@ -30,6 +30,7 @@ public class Startpage extends JFrame {
     private final JTextField NamenEingabeFeld3 = new JTextField();
     private final JTextField NamenEingabeFeld4 = new JTextField();
     private BufferedImage image = null;
+    
 
     public Startpage(String title) {
         super(title);
