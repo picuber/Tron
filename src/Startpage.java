@@ -30,6 +30,7 @@ public class Startpage extends JFrame {
     private final JTextField[] names = new JTextField[4];
     private final JComboBox<PlayerStartConfig.MODE>[] mode = new JComboBox[4];
     private BufferedImage image = null;
+    
 
     public Startpage(String title) {
         super(title);

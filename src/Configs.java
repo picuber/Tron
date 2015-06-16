@@ -29,6 +29,7 @@ public class Configs {
         players[1] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") - 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, Color.cyan, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.LEFT);
         players[2] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, Configs.getConfigValue("sizeY") - 30, 0, KeyEvent.VK_H, KeyEvent.VK_F, KeyEvent.VK_T, KeyEvent.VK_G, Color.green, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.UP);
         players[3] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, 30, 0, KeyEvent.VK_L, KeyEvent.VK_J, KeyEvent.VK_I, KeyEvent.VK_K, Color.red, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.DOWN);
+
     }
 
     public static void setPlayerName(String name, int playerNumber) {

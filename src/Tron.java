@@ -16,7 +16,7 @@ public class Tron {
     private final List<Bike> bikes;
     private TestWindow f;
 
-    private Tron() {
+    Tron() {
         world = new ArrayList<>();
         bikes = new ArrayList<>();
     }
