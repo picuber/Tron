@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -228,17 +229,13 @@ public class Bike implements Timed, Drawable {
     void die() {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
-        System.out.println(name + " died");
+        JOptionPane.showMessageDialog(null, name + " died","Death", JOptionPane.PLAIN_MESSAGE, null);
         undraw();
         updateBackground();
         if (Tron.getInstance().getBikes().size() == 1) {
-            System.out.println(Tron.getInstance().getBikes().get(0).getName() + " won");
+            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won", "Win", JOptionPane.PLAIN_MESSAGE, null);
             Tron.getInstance().stopGame();
         }
-        
-        Clock.getInstance().stop(); //Pausiert das Spiel wenn ein Spieler stribt
-        //System.exit(0);  //Nur zum testen, kann wieder raus ;)
-        YouDied youDied = new YouDied("died"); //Fenster das aufgeht wenn ein spieler stirbt
         
     }
 

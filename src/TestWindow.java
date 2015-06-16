@@ -15,7 +15,7 @@ public class TestWindow extends JFrame {
         JPanel jp = m.getGraphic();
         jp.setLocation(0, 0);
         this.add(jp);
-        this.setSize(jp.size().width, jp.size().height);
+        this.setSize(jp.getSize().width, jp.getSize().height);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         this.setVisible(true);

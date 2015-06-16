@@ -1,9 +1,6 @@
 
-import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 
 /**
  *
@@ -14,7 +11,7 @@ public class Tron {
     private static final Tron instance = new Tron();
     private final List<Matrix> world;
     private final List<Bike> bikes;
-    private TestWindow f;
+    private TestWindow window;
 
     Tron() {
         world = new ArrayList<>();
@@ -42,8 +39,8 @@ public class Tron {
         Clock.getInstance().stop();
         Tron.getInstance().world.removeAll(Tron.getInstance().world);
         Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
-        f.dispose();
-        f = null;
+        window.dispose();
+        window = null;
     }
 
     private void initWorld() {
@@ -56,17 +53,16 @@ public class Tron {
     }
 
     private void initPlayers() {
-        f = new TestWindow(Tron.getInstance().getWorld().get(0));
-
+        window = new TestWindow(Tron.getInstance().getWorld().get(0));
         for (int i = 0; i < 4; i++) {
             PlayerStartConfig config = Configs.getPlayers()[i];
             if (!config.getName().equals("")) {
                 Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr());
                 Tron.getInstance().bikes.add(b);
                 if (config.getMode() == PlayerStartConfig.MODE.TWOKEY) {
-                    f.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode()));
+                    window.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode()));
                 } else if (config.getMode() == PlayerStartConfig.MODE.FOURKEY) {
-                    f.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode(), config.getUpcode(), config.getDowncode()));
+                    window.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode(), config.getUpcode(), config.getDowncode()));
                 } else if (config.getMode() == PlayerStartConfig.MODE.BOT) {
                     new Bot(b);
                 }
