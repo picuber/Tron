@@ -76,4 +76,8 @@ public class Clock implements ActionListener {
     public void setGamespeed(int delay) {
         timer.setDelay(delay);
     }
+    
+    public void emptyClients(){
+        timedObjects.removeAll(timedObjects);
+    }
 }

@@ -230,6 +230,7 @@ public class Bike implements Timed, Drawable {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
         JOptionPane.showMessageDialog(null, name + " died","Death", JOptionPane.PLAIN_MESSAGE, null);
+        length=broadth=Integer.max(length, broadth);
         undraw();
         updateBackground();
         if (Tron.getInstance().getBikes().size() == 1) {

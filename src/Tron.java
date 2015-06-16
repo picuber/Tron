@@ -37,6 +37,7 @@ public class Tron {
 
     public void stopGame() {
         Clock.getInstance().stop();
+        Clock.getInstance().emptyClients();
         Tron.getInstance().world.removeAll(Tron.getInstance().world);
         Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
         window.dispose();

@@ -3,7 +3,7 @@
  *
  * @author Leon
  */
-public class Bot implements Timed{
+public class Bot implements Timed {
 
     private Bike b;
 
@@ -14,47 +14,43 @@ public class Bot implements Timed{
 
     @Override
     public void tick() {
-        while (Tron.getInstance().getBikes().contains(b)) {
-            if (getNextField() instanceof Wall) {
+        if (getNextField() instanceof Wall) {
+            if (Math.random() >= 0.5) {
+                b.turnLeft();
+                if (getNextField() instanceof Wall) {
+                    b.turnRight();
+                    b.turnRight();
+                }
+            } else {
+                b.turnRight();
+                if (getNextField() instanceof Wall) {
+                    b.turnLeft();
+                    b.turnLeft();
+                }
+            }
+        } else {
+            if (Math.random() <= (1.0/Configs.getConfigValue("botRandomness"))) {
                 if (Math.random() >= 0.5) {
                     b.turnLeft();
                     if (getNextField() instanceof Wall) {
                         b.turnRight();
                         b.turnRight();
+                        if (getNextField() instanceof Wall) {
+                            b.turnLeft();
+                        }
                     }
                 } else {
                     b.turnRight();
                     if (getNextField() instanceof Wall) {
                         b.turnLeft();
                         b.turnLeft();
-                    }
-                }
-            } else {
-                if (Math.random() == 0.0) {
-                    if (getNextField() instanceof Wall) {
-                        if (Math.random() >= 0.5) {
-                            b.turnLeft();
-                            if (getNextField() instanceof Wall) {
-                                b.turnRight();
-                                b.turnRight();
-                                if (getNextField() instanceof Wall) {
-                                    b.turnLeft();
-                                }
-                            }
-                        } else {
+                        if (getNextField() instanceof Wall) {
                             b.turnRight();
-                            if (getNextField() instanceof Wall) {
-                                b.turnLeft();
-                                b.turnLeft();
-                                if (getNextField() instanceof Wall) {
-                                    b.turnRight();
-                                }
-                            }
                         }
                     }
                 }
-
             }
+
         }
     }
 

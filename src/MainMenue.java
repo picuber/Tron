@@ -17,6 +17,7 @@ public class MainMenue extends JFrame {
 
     private static final MainMenue instance = new MainMenue("Tron");
     private final JButton START = new JButton();
+    private final JButton SETTINGS = new JButton();
     private final JButton CREDITS = new JButton();
     private final JButton HIGHSCORE = new JButton();
     private final JButton Beenden = new JButton();
@@ -66,18 +67,19 @@ public class MainMenue extends JFrame {
         START.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(START);
 
-        CREDITS.setBounds(300, 300, 150, 35);
-        CREDITS.setText("Credits");
-        CREDITS.setMargin(new Insets(2, 2, 2, 2));
-        CREDITS.addActionListener(new ActionListener() {
+        SETTINGS.setBounds(300, 250, 150, 35);
+        SETTINGS.setText("Settings");
+        SETTINGS.setMargin(new Insets(2, 2, 2, 2));
+        SETTINGS.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-
+                new Settings("Settings");
+                setVisible(false);
             }
         });
-        CREDITS.setFont(new Font("Consolas", Font.BOLD, 20));
-        this.add(CREDITS);
-
-        HIGHSCORE.setBounds(300, 250, 150, 35);
+        SETTINGS.setFont(new Font("Consolas", Font.BOLD, 20));
+        this.add(SETTINGS);
+        
+        HIGHSCORE.setBounds(300, 300, 150, 35);
         HIGHSCORE.setText("Highscore");
         HIGHSCORE.setMargin(new Insets(2, 2, 2, 2));
         HIGHSCORE.addActionListener(new ActionListener() {
@@ -88,7 +90,18 @@ public class MainMenue extends JFrame {
         HIGHSCORE.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(HIGHSCORE);
 
-        Beenden.setBounds(300, 350, 150, 35);
+        CREDITS.setBounds(300, 350, 150, 35);
+        CREDITS.setText("Credits");
+        CREDITS.setMargin(new Insets(2, 2, 2, 2));
+        CREDITS.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+
+            }
+        });
+        CREDITS.setFont(new Font("Consolas", Font.BOLD, 20));
+        this.add(CREDITS);
+
+        Beenden.setBounds(300, 400, 150, 35);
         Beenden.setText("Beenden");
         Beenden.setMargin(new Insets(2, 2, 2, 2));
         Beenden.addActionListener(new ActionListener() {
@@ -109,6 +122,6 @@ public class MainMenue extends JFrame {
     }
 
     public static void main(String[] args) {
-    
+
     }
 }
