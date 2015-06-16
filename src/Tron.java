@@ -28,6 +28,10 @@ public class Tron {
     public void startGame() {
         initWorld();
         initPlayers();
+        if (Tron.getInstance().bikes.isEmpty()) {
+            Tron.getInstance().stopGame();
+            return;
+        }
         Tron.getInstance().getWorld().get(0).init();
         initLinks();
         initItems();
@@ -39,7 +43,7 @@ public class Tron {
         Tron.getInstance().world.removeAll(Tron.getInstance().world);
         Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
         f.dispose();
-        f=null;
+        f = null;
     }
 
     private void initWorld() {
@@ -59,21 +63,26 @@ public class Tron {
             if (!config.getName().equals("")) {
                 Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr());
                 Tron.getInstance().bikes.add(b);
-                if (config.isTwoKeyColtrol()) {
+                if (config.getMode() == PlayerStartConfig.MODE.TWOKEY) {
                     f.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode()));
-                } else {
+                } else if (config.getMode() == PlayerStartConfig.MODE.FOURKEY) {
                     f.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode(), config.getUpcode(), config.getDowncode()));
+                } else if (config.getMode() == PlayerStartConfig.MODE.BOT) {
+                    new Bot(b);
                 }
             }
         }
     }
-    
-    private void initLinks(){
-        new LinkField(Tron.getInstance().getWorld().get(0), 50, 50, Tron.getInstance().getWorld().get(0), 100, 100);
+
+    private void initLinks() {
+        new LinkField(Tron.getInstance().getWorld().get(0), 501, 501, Tron.getInstance().getWorld().get(0), 900, 900);
+        new LinkField(Tron.getInstance().getWorld().get(0), 500, 500, Tron.getInstance().getWorld().get(0), 100, 100);
+        new LinkField(Tron.getInstance().getWorld().get(0), 501, 500, Tron.getInstance().getWorld().get(0), 900, 100);
+        new LinkField(Tron.getInstance().getWorld().get(0), 500, 501, Tron.getInstance().getWorld().get(0), 100, 900);
     }
-    
-    private void initItems(){
-        
+
+    private void initItems() {
+
     }
 
     public List<Matrix> getWorld() {

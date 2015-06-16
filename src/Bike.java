@@ -115,6 +115,10 @@ public class Bike implements Timed, Drawable {
         return or;
     }
 
+    public String getName() {
+        return name;
+    }
+
     enum Orientation {
 
         UP, DOWN, RIGHT, LEFT
@@ -227,7 +231,8 @@ public class Bike implements Timed, Drawable {
         System.out.println(name + " died");
         undraw();
         updateBackground();
-        if (Tron.getInstance().getBikes().isEmpty()) {
+        if (Tron.getInstance().getBikes().size() == 1) {
+            System.out.println(Tron.getInstance().getBikes().get(0).getName() + " won");
             Tron.getInstance().stopGame();
         }
     }
