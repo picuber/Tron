@@ -30,6 +30,7 @@ public class Startpage extends JFrame {
     private final JTextField[] names = new JTextField[4];
     private final JCheckBox[] mode = new JCheckBox[4];
     private BufferedImage image = null;
+    
 
     public Startpage(String title) {
         super(title);

@@ -28,7 +28,7 @@ public class Configs {
         configs.put("scaleY", 1);
         configs.put("bikelength", 30);
         configs.put("bikebroadth", 15);
-        configs.put("laserlength", 200);
+        configs.put("laserlength", 1000);
     }
 
     public static void setPlayerName(String name, int playerNumber) {
