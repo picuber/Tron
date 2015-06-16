@@ -19,6 +19,7 @@ public class Bike implements Timed, Drawable {
     private String name;
     static Image imgright, imgleft, imgup, imgdown;
     private Matrix m;
+    private Orientation or, lastor;
 
     static {
         try {
@@ -31,12 +32,14 @@ public class Bike implements Timed, Drawable {
         }
     }
 
-    public Bike(int x, int y, Color c, String name, Matrix m) {
+    public Bike(int x, int y, Color c, String name, Matrix m, Orientation or) {
         this.m = m;
         this.x = x;
         this.y = y;
         this.c = c;
         this.name = name;
+        this.or = or;
+        this.lastor = or;
         Clock.getInstance().login(this);
     }
 
@@ -108,12 +111,14 @@ public class Bike implements Timed, Drawable {
         this.or = or;
     }
 
+    public Orientation getOr() {
+        return or;
+    }
+
     enum Orientation {
 
         UP, DOWN, RIGHT, LEFT
     }
-    private Orientation or = Orientation.UP;
-    private Orientation lastor = Orientation.UP;
 
     public void turnRight() {
         switch (or) {
@@ -219,11 +224,11 @@ public class Bike implements Timed, Drawable {
     void die() {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
-        System.out.println("Bike \"" + name + "\" died");
+        System.out.println(name + " died");
         undraw();
         updateBackground();
-        if(Tron.getInstance().getBikes().isEmpty()){
-            Clock.getInstance().stop();
+        if (Tron.getInstance().getBikes().isEmpty()) {
+            Tron.getInstance().stopGame();
         }
         
         Clock.getInstance().stop(); //Pausiert das Spiel wenn ein Spieler stribt
