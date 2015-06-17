@@ -15,7 +15,7 @@ public class Configs {
 
     static {
         configs = new HashMap<>();
-        configs.put("gamespeed", 0);
+        configs.put("gamespeed", 1);
         configs.put("sizeX", 1000);
         configs.put("sizeY", 1000);
         configs.put("height", 1);
