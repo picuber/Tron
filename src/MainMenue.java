@@ -123,5 +123,24 @@ public class MainMenue extends JFrame {
 
     public static void main(String[] args) {
 
+         
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    try {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (UnsupportedLookAndFeelException ex) {
+                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                }
+            }
+       
+
     }
 }
