@@ -10,9 +10,9 @@ import java.util.Random;
 public class Tron {
 
     private static final Tron instance = new Tron();
-    private final List<Matrix> world;
-    private final List<Bike> bikes;
-    private final List<LinkField> links;
+    private List<Matrix> world;
+    private List<Bike> bikes;
+    private List<LinkField> links;
     private TestWindow window;
 
     Tron() {
@@ -35,16 +35,19 @@ public class Tron {
         Tron.getInstance().getWorld().get(0).init();
         initLinks();
         initItems();
+        Clock.getInstance().resetGamespeed();
         Clock.getInstance().start();
     }
 
     public void stopGame() {
         Clock.getInstance().stop();
         Clock.getInstance().emptyClients();
-        Tron.getInstance().world.removeAll(Tron.getInstance().world);
-        Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
+        Tron.getInstance().world = new ArrayList<>();
+        Tron.getInstance().bikes = new ArrayList<>();
+        Tron.getInstance().links = new ArrayList<>();
         window.dispose();
         window = null;
+        Startpage.getInstance().setVisible(true);
     }
 
     private void initWorld() {
@@ -75,20 +78,14 @@ public class Tron {
     }
 
     private void initLinks() {
-            Random r = new Random();
+        Random r = new Random();
         for (int i = 0; i < Configs.getConfigValue("numberLinks"); i++) {
             int xPos, yPos, mPos;
-            xPos = Math.abs(r.nextInt()%Configs.getConfigValue("sizeX"));
-            yPos = Math.abs(r.nextInt()%Configs.getConfigValue("sizeY"));
-            mPos = Math.abs(r.nextInt()%Configs.getConfigValue("height"));
-            new LinkField(Tron.getInstance().getWorld().get(mPos), xPos, yPos);
+            xPos = Math.abs(r.nextInt() % (Configs.getConfigValue("sizeX")-2)) + 1;
+            yPos = Math.abs(r.nextInt() % (Configs.getConfigValue("sizeY")-2)) + 1;
+            mPos = Math.abs(r.nextInt() % Configs.getConfigValue("height"));
+            links.add(new LinkField(Tron.getInstance().getWorld().get(mPos), xPos, yPos));
         }
-        //new LinkField(Tron.getInstance().getWorld().get(0), 501, 501, Tron.getInstance().getWorld().get(0), 900, 900);
-        //new LinkField(Tron.getInstance().getWorld().get(0), 500, 500, Tron.getInstance().getWorld().get(0), 100, 100);
-        //new LinkField(Tron.getInstance().getWorld().get(0), 501, 500, Tron.getInstance().getWorld().get(0), 900, 100);
-        //new LinkField(Tron.getInstance().getWorld().get(0), 500, 501, Tron.getInstance().getWorld().get(0), 100, 900);
-        //new LinkField(Tron.getInstance().getWorld().get(0), 998, 998, Tron.getInstance().getWorld().get(0), 1, 1);
-        //new LinkField(Tron.getInstance().getWorld().get(0), 998, 1, Tron.getInstance().getWorld().get(0), 1, 998);
     }
 
     private void initItems() {
@@ -106,5 +103,5 @@ public class Tron {
     public List<LinkField> getLinks() {
         return links;
     }
-    
+
 }

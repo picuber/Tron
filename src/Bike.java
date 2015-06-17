@@ -64,6 +64,22 @@ public class Bike implements Timed, Drawable {
         m = linkEndPoint.getM();
         x = linkEndPoint.getX();
         y = linkEndPoint.getY();
+        switch ((int) (Math.random() * 4)) {
+            case 0:
+                or = Orientation.UP;
+                break;
+            case 1:
+                or = Orientation.DOWN;
+                break;
+            case 2:
+                or = Orientation.LEFT;
+                break;
+            case 3:
+                or = Orientation.RIGHT;
+                break;
+            default:
+                System.out.println("ERROR");
+        }
         draw();
     }
 

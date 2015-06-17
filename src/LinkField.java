@@ -37,7 +37,7 @@ public class LinkField extends Field {
     public void collide(Bike b) {
         List<LinkField> linkList = Tron.getInstance().getLinks();
         Random r = new Random();
-        LinkField link = linkList.get(r.nextInt() % Configs.getConfigValue("numberLinks"));
+        LinkField link = linkList.get(Math.abs(r.nextInt() % Configs.getConfigValue("numberLinks")));
         b.goToLinkEnd(link);
     }
 

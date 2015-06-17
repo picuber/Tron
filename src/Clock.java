@@ -70,11 +70,9 @@ public class Clock implements ActionListener {
 
     /**
      * sets the time gap between two impulses
-     *
-     * @param delay the time gap
      */
-    public void setGamespeed(int delay) {
-        timer.setDelay(delay);
+    public void resetGamespeed() {
+        timer.setDelay(Configs.getConfigValue("gamespeed"));
     }
     
     public void emptyClients(){

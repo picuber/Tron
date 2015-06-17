@@ -8,10 +8,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.ComboBox;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -24,15 +22,20 @@ import javax.swing.*;
  */
 public class Startpage extends JFrame {
 
+    private static final Startpage instance = new Startpage("Startpage");
+
     private final JLabel TRON = new JLabel();
     private final JButton Ok = new JButton();
     private final JButton Back = new JButton();
     private final JTextField[] names = new JTextField[4];
     private final JComboBox<PlayerStartConfig.MODE>[] mode = new JComboBox[4];
     private BufferedImage image = null;
-    
 
-    public Startpage(String title) {
+    public static Startpage getInstance() {
+        return instance;
+    }
+
+    private Startpage(String title) {
         super(title);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         int frameWidth = 800;
@@ -146,15 +149,15 @@ public class Startpage extends JFrame {
         Ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Configs.setPlayerName(names[0].getText(), 1);
-                Configs.setControlMode((PlayerStartConfig.MODE)mode[0].getSelectedItem(), 1);
+                Configs.setControlMode((PlayerStartConfig.MODE) mode[0].getSelectedItem(), 1);
                 Configs.setPlayerName(names[1].getText(), 2);
-                Configs.setControlMode((PlayerStartConfig.MODE)mode[1].getSelectedItem(), 2);
+                Configs.setControlMode((PlayerStartConfig.MODE) mode[1].getSelectedItem(), 2);
                 Configs.setPlayerName(names[2].getText(), 3);
-                Configs.setControlMode((PlayerStartConfig.MODE)mode[2].getSelectedItem(), 3);
+                Configs.setControlMode((PlayerStartConfig.MODE) mode[2].getSelectedItem(), 3);
                 Configs.setPlayerName(names[3].getText(), 4);
-                Configs.setControlMode((PlayerStartConfig.MODE)mode[3].getSelectedItem(), 4);
+                Configs.setControlMode((PlayerStartConfig.MODE) mode[3].getSelectedItem(), 4);
                 Tron.getInstance().startGame();
-                dispose();
+                setVisible(false);
             }
         });
         this.add(Ok);
@@ -165,7 +168,7 @@ public class Startpage extends JFrame {
         Back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 MainMenue.getInstance().setVisible(true);
-                dispose();
+                setVisible(false);
             }
         });
         this.add(Back);

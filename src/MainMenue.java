@@ -60,7 +60,7 @@ public class MainMenue extends JFrame {
         START.setMargin(new Insets(2, 2, 2, 2));
         START.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                new Startpage("Startpage");
+                Startpage.getInstance().setVisible(true);
                 setVisible(false);
             }
         });
