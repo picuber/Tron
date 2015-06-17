@@ -1,4 +1,6 @@
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -8,15 +10,22 @@ import javax.swing.JPanel;
  * @author michael
  */
 public class TestWindow extends JFrame {
-
+    
     private static final long serialVersionUID = 1L;
-
+    
     public TestWindow(Matrix m) {
         JPanel jp = m.getGraphic();
         jp.setLocation(0, 0);
         this.add(jp);
-        this.setSize(jp.size().width, jp.size().height);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(jp.getSize().width, jp.getSize().height);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we){
+                Tron.getInstance().stopGame();
+                dispose();
+            }
+        });
         
         this.setVisible(true);
         if (!m.isInitialized()) {
@@ -24,5 +33,3 @@ public class TestWindow extends JFrame {
         }
     }
 }
-  
-    

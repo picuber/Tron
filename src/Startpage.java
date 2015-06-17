@@ -28,8 +28,9 @@ public class Startpage extends JFrame {
     private final JButton Ok = new JButton();
     private final JButton Back = new JButton();
     private final JTextField[] names = new JTextField[4];
-    private final JCheckBox[] mode = new JCheckBox[4];
+    private final JComboBox<PlayerStartConfig.MODE>[] mode = new JComboBox[4];
     private BufferedImage image = null;
+    
 
     public Startpage(String title) {
         super(title);
@@ -59,13 +60,13 @@ public class Startpage extends JFrame {
         this.setContentPane(c);
 
         names[0] = new JTextField();
-        mode[0] = new JCheckBox("2 Tasten-Steuerung");
+        mode[0] = new JComboBox<>();
         names[1] = new JTextField();
-        mode[1] = new JCheckBox("2 Tasten-Steuerung");
+        mode[1] = new JComboBox<>();
         names[2] = new JTextField();
-        mode[2] = new JCheckBox("2 Tasten-Steuerung");
+        mode[2] = new JComboBox<>();
         names[3] = new JTextField();
-        mode[3] = new JCheckBox("2 Tasten-Steuerung");
+        mode[3] = new JComboBox<>();
 
         names[0].setBounds(25, 300, 150, 25);
         names[0].setFont(new Font("Consolas", Font.PLAIN, 12));
@@ -80,6 +81,9 @@ public class Startpage extends JFrame {
         this.add(names[0]);
 
         mode[0].setBounds(25, 275, 150, 25);
+        mode[0].addItem(PlayerStartConfig.MODE.TWOKEY);
+        mode[0].addItem(PlayerStartConfig.MODE.FOURKEY);
+        mode[0].addItem(PlayerStartConfig.MODE.BOT);
         this.add(mode[0]);
 
         names[1].setBounds(225, 300, 150, 25);
@@ -95,6 +99,9 @@ public class Startpage extends JFrame {
         this.add(names[1]);
 
         mode[1].setBounds(225, 275, 150, 25);
+        mode[1].addItem(PlayerStartConfig.MODE.TWOKEY);
+        mode[1].addItem(PlayerStartConfig.MODE.FOURKEY);
+        mode[1].addItem(PlayerStartConfig.MODE.BOT);
         this.add(mode[1]);
 
         names[2].setBounds(425, 300, 150, 25);
@@ -110,6 +117,9 @@ public class Startpage extends JFrame {
         this.add(names[2]);
 
         mode[2].setBounds(425, 275, 150, 25);
+        mode[2].addItem(PlayerStartConfig.MODE.TWOKEY);
+        mode[2].addItem(PlayerStartConfig.MODE.FOURKEY);
+        mode[2].addItem(PlayerStartConfig.MODE.BOT);
         this.add(mode[2]);
 
         names[3].setBounds(625, 300, 150, 25);
@@ -125,6 +135,9 @@ public class Startpage extends JFrame {
         this.add(names[3]);
 
         mode[3].setBounds(625, 275, 150, 25);
+        mode[3].addItem(PlayerStartConfig.MODE.TWOKEY);
+        mode[3].addItem(PlayerStartConfig.MODE.FOURKEY);
+        mode[3].addItem(PlayerStartConfig.MODE.BOT);
         this.add(mode[3]);
 
         Ok.setBounds(300, 352, 75, 25);
@@ -133,13 +146,13 @@ public class Startpage extends JFrame {
         Ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Configs.setPlayerName(names[0].getText(), 1);
-                Configs.setControlMode(mode[0].isSelected(), 1);
+                Configs.setControlMode((PlayerStartConfig.MODE)mode[0].getSelectedItem(), 1);
                 Configs.setPlayerName(names[1].getText(), 2);
-                Configs.setControlMode(mode[1].isSelected(), 2);
+                Configs.setControlMode((PlayerStartConfig.MODE)mode[1].getSelectedItem(), 2);
                 Configs.setPlayerName(names[2].getText(), 3);
-                Configs.setControlMode(mode[2].isSelected(), 3);
+                Configs.setControlMode((PlayerStartConfig.MODE)mode[2].getSelectedItem(), 3);
                 Configs.setPlayerName(names[3].getText(), 4);
-                Configs.setControlMode(mode[3].isSelected(), 4);
+                Configs.setControlMode((PlayerStartConfig.MODE)mode[3].getSelectedItem(), 4);
                 Tron.getInstance().startGame();
                 dispose();
             }

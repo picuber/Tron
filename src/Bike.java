@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -113,6 +114,10 @@ public class Bike implements Timed, Drawable {
 
     public Orientation getOr() {
         return or;
+    }
+
+    public String getName() {
+        return name;
     }
 
     enum Orientation {
@@ -224,12 +229,15 @@ public class Bike implements Timed, Drawable {
     void die() {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
-        System.out.println(name + " died");
+        JOptionPane.showMessageDialog(null, name + " died","Death", JOptionPane.PLAIN_MESSAGE, null);
+        length=broadth=Integer.max(length, broadth);
         undraw();
         updateBackground();
-        if (Tron.getInstance().getBikes().isEmpty()) {
+        if (Tron.getInstance().getBikes().size() == 1) {
+            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won", "Win", JOptionPane.PLAIN_MESSAGE, null);
             Tron.getInstance().stopGame();
         }
+        
     }
 
 }

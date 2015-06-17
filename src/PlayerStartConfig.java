@@ -10,10 +10,15 @@ public class PlayerStartConfig {
     private Color color;
     private int x, y, matrix, leftcode, rightcode, upcode, downcode;
     private String name;
-    private boolean twoKeyColtrol;
+    private MODE mode;
     private Bike.Orientation or;
 
-    public PlayerStartConfig(String name, int x, int y, int matrix, int rightcode, int leftcode, int upcode, int downcode, Color c, boolean twoKeyMode, Bike.Orientation or) {
+    enum MODE {
+
+        TWOKEY, FOURKEY, BOT
+    }
+
+    public PlayerStartConfig(String name, int x, int y, int matrix, int rightcode, int leftcode, int upcode, int downcode, Color c, MODE mode, Bike.Orientation or) {
         this.color = c;
         this.x = x;
         this.y = y;
@@ -23,7 +28,7 @@ public class PlayerStartConfig {
         this.upcode = upcode;
         this.downcode = downcode;
         this.name = name;
-        this.twoKeyColtrol = twoKeyMode;
+        this.mode = mode;
         this.or = or;
     }
 
@@ -67,8 +72,8 @@ public class PlayerStartConfig {
         return or;
     }
 
-    public boolean isTwoKeyColtrol() {
-        return twoKeyColtrol;
+    public MODE getMode() {
+        return mode;
     }
 
     public void setColor(Color color) {
@@ -107,8 +112,8 @@ public class PlayerStartConfig {
         this.name = name;
     }
 
-    public void setTwoKeyColtrol(boolean twoKeyColtrol) {
-        this.twoKeyColtrol = twoKeyColtrol;
+    public void setMode(MODE mode) {
+        this.mode = mode;
     }
 
     public void setOr(Bike.Orientation or) {
