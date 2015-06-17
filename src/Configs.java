@@ -25,12 +25,16 @@ public class Configs {
         configs.put("bikebroadth", 15);
         configs.put("laserlength", 300);
         configs.put("botRandomness", 1000);
+        configs.put("numberLinks", 5);
         players = new PlayerStartConfig[4];
-        players[0] = new PlayerStartConfig(null, 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S, Color.orange, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.RIGHT);
-        players[1] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") - 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, Color.cyan, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.LEFT);
-        players[2] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, Configs.getConfigValue("sizeY") - 30, 0, KeyEvent.VK_H, KeyEvent.VK_F, KeyEvent.VK_T, KeyEvent.VK_G, Color.green, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.UP);
-        players[3] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, 30, 0, KeyEvent.VK_L, KeyEvent.VK_J, KeyEvent.VK_I, KeyEvent.VK_K, Color.red, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.DOWN);
+        resetDefaultConfigPlayers();
+    }
 
+    public static void resetDefaultConfigPlayers() {
+        players[0] = new PlayerStartConfig(null, 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S, Color.orange, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.DOWN);
+        players[1] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") - 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, Color.cyan, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.UP);
+        players[2] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, Configs.getConfigValue("sizeY") - 30, 0, KeyEvent.VK_H, KeyEvent.VK_F, KeyEvent.VK_T, KeyEvent.VK_G, Color.green, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.RIGHT);
+        players[3] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, 30, 0, KeyEvent.VK_L, KeyEvent.VK_J, KeyEvent.VK_I, KeyEvent.VK_K, Color.red, PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.LEFT);
     }
 
     public static void setPlayerName(String name, int playerNumber) {
@@ -48,6 +52,7 @@ public class Configs {
     public static int getConfigValue(String key) {
         return configs.get(key);
     }
+
     public static Map<String, Integer> getConfigs() {
         return configs;
     }

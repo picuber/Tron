@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -11,11 +12,13 @@ public class Tron {
     private static final Tron instance = new Tron();
     private final List<Matrix> world;
     private final List<Bike> bikes;
+    private final List<LinkField> links;
     private TestWindow window;
 
     Tron() {
         world = new ArrayList<>();
         bikes = new ArrayList<>();
+        links = new ArrayList<>();
     }
 
     public static Tron getInstance() {
@@ -72,10 +75,20 @@ public class Tron {
     }
 
     private void initLinks() {
-        new LinkField(Tron.getInstance().getWorld().get(0), 501, 501, Tron.getInstance().getWorld().get(0), 900, 900);
-        new LinkField(Tron.getInstance().getWorld().get(0), 500, 500, Tron.getInstance().getWorld().get(0), 100, 100);
-        new LinkField(Tron.getInstance().getWorld().get(0), 501, 500, Tron.getInstance().getWorld().get(0), 900, 100);
-        new LinkField(Tron.getInstance().getWorld().get(0), 500, 501, Tron.getInstance().getWorld().get(0), 100, 900);
+            Random r = new Random();
+        for (int i = 0; i < Configs.getConfigValue("numberLinks"); i++) {
+            int xPos, yPos, mPos;
+            xPos = Math.abs(r.nextInt()%Configs.getConfigValue("sizeX"));
+            yPos = Math.abs(r.nextInt()%Configs.getConfigValue("sizeY"));
+            mPos = Math.abs(r.nextInt()%Configs.getConfigValue("height"));
+            new LinkField(Tron.getInstance().getWorld().get(mPos), xPos, yPos);
+        }
+        //new LinkField(Tron.getInstance().getWorld().get(0), 501, 501, Tron.getInstance().getWorld().get(0), 900, 900);
+        //new LinkField(Tron.getInstance().getWorld().get(0), 500, 500, Tron.getInstance().getWorld().get(0), 100, 100);
+        //new LinkField(Tron.getInstance().getWorld().get(0), 501, 500, Tron.getInstance().getWorld().get(0), 900, 100);
+        //new LinkField(Tron.getInstance().getWorld().get(0), 500, 501, Tron.getInstance().getWorld().get(0), 100, 900);
+        //new LinkField(Tron.getInstance().getWorld().get(0), 998, 998, Tron.getInstance().getWorld().get(0), 1, 1);
+        //new LinkField(Tron.getInstance().getWorld().get(0), 998, 1, Tron.getInstance().getWorld().get(0), 1, 998);
     }
 
     private void initItems() {
@@ -89,4 +102,9 @@ public class Tron {
     public List<Bike> getBikes() {
         return bikes;
     }
+
+    public List<LinkField> getLinks() {
+        return links;
+    }
+    
 }

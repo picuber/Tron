@@ -35,6 +35,7 @@ public class Settings extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
+                Configs.resetDefaultConfigPlayers();
                 dispose();
                 MainMenue.getInstance().setVisible(true);
             }
@@ -105,8 +106,9 @@ public class Settings extends JFrame {
         Back.setMargin(new Insets(2, 2, 2, 2));
         Back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                MainMenue.getInstance().setVisible(true);
+                Configs.resetDefaultConfigPlayers();
                 dispose();
+                MainMenue.getInstance().setVisible(true);
             }
         });
         this.add(Back);

@@ -1,7 +1,8 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -11,22 +12,11 @@ public class LinkField extends Field {
 
     private Matrix m;
     private int x, y;
-    private LinkField link;
 
-    public LinkField(Matrix m, int x, int y, Matrix linkM, int linkX, int linkY) {
+    public LinkField(Matrix m, int x, int y) {
         this.m = m;
         this.x = x;
         this.y = y;
-        this.link = new LinkField(linkM, linkX, linkY, this);
-        this.m.setField(x, y, this);
-        draw();
-    }
-
-    private LinkField(Matrix m, int x, int y, LinkField link) {
-        this.m = m;
-        this.x = x;
-        this.y = y;
-        this.link = link;
         this.m.setField(x, y, this);
         draw();
     }
@@ -43,13 +33,12 @@ public class LinkField extends Field {
         return y;
     }
 
-    public LinkField getLink() {
-        return link;
-    }
-
     @Override
     public void collide(Bike b) {
-       b.goToLinkEnd(link);
+        List<LinkField> linkList = Tron.getInstance().getLinks();
+        Random r = new Random();
+        LinkField link = linkList.get(r.nextInt() % Configs.getConfigValue("numberLinks"));
+        b.goToLinkEnd(link);
     }
 
     @Override
