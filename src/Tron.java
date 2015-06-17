@@ -40,6 +40,7 @@ public class Tron {
         Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
         f.dispose();
         f=null;
+        new Startpage("Startpage");
     }
 
     private void initWorld() {

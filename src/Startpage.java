@@ -141,6 +141,7 @@ public class Startpage extends JFrame {
                 Configs.setPlayerName(names[3].getText(), 4);
                 Configs.setControlMode(mode[3].isSelected(), 4);
                 Tron.getInstance().startGame();
+                dispose();
             }
         });
         this.add(Ok);
@@ -156,7 +157,7 @@ public class Startpage extends JFrame {
         });
         this.add(Back);
 
-        TRON.setBounds(320, 50, 160, 80);
+        TRON.setBounds(320, 50, 160, 90);
         TRON.setText("TRON");
         TRON.setFont(new Font("Consolas", Font.BOLD, 72));
         TRON.setForeground(Color.WHITE);

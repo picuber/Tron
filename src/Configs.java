@@ -20,7 +20,7 @@ public class Configs {
         players[2] = new PlayerStartConfig(null, 350, 670, 0, KeyEvent.VK_H, KeyEvent.VK_F, KeyEvent.VK_T, KeyEvent.VK_G, Color.green, true, Bike.Orientation.UP);
         players[3] = new PlayerStartConfig(null, 350, 30, 0, KeyEvent.VK_L, KeyEvent.VK_J, KeyEvent.VK_I, KeyEvent.VK_K, Color.red, true, Bike.Orientation.DOWN);
         configs = new HashMap<>();
-        configs.put("gamespeed", 5);
+        configs.put("gamespeed", 2);
         configs.put("sizeX", 700);
         configs.put("sizeY", 700);
         configs.put("height", 1);
