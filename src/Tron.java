@@ -40,8 +40,11 @@ public class Tron {
         Clock.getInstance().emptyClients();
         Tron.getInstance().world.removeAll(Tron.getInstance().world);
         Tron.getInstance().bikes.removeAll(Tron.getInstance().bikes);
+        if(window !=null){
         window.dispose();
+        }
         window = null;
+        new Startpage("Continue...");
     }
 
     private void initWorld() {
