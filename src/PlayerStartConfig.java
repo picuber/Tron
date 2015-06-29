@@ -7,7 +7,7 @@ import java.awt.Color;
  */
 public class PlayerStartConfig {
 
-    private Color color;
+    private String color;
     private int x, y, matrix, leftcode, rightcode, upcode, downcode;
     private String name;
     private MODE mode;
@@ -18,7 +18,7 @@ public class PlayerStartConfig {
         TWOKEY, FOURKEY, BOT
     }
 
-    public PlayerStartConfig(String name, int x, int y, int matrix, int rightcode, int leftcode, int upcode, int downcode, Color c, MODE mode, Bike.Orientation or) {
+    public PlayerStartConfig(String name, int x, int y, int matrix, int rightcode, int leftcode, int upcode, int downcode, String c, MODE mode, Bike.Orientation or) {
         this.color = c;
         this.x = x;
         this.y = y;
@@ -32,7 +32,7 @@ public class PlayerStartConfig {
         this.or = or;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -76,7 +76,7 @@ public class PlayerStartConfig {
         return mode;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

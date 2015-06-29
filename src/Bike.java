@@ -18,26 +18,28 @@ public class Bike implements Timed, Drawable {
     int x, y, length = Configs.getConfigValue("bikelength"), broadth = Configs.getConfigValue("bikebroadth");
     private Color c;
     private String name;
-    static Image imgright, imgleft, imgup, imgdown;
     private Matrix m;
     private Orientation or, lastor;
+    private final String color;
 
-    static {
-        try {
-            imgright = ImageIO.read(new File("bikeright.png"));
-            imgleft = ImageIO.read(new File("bikerleft.png"));
-            imgdown = ImageIO.read(new File("bikerdown.png"));
-            imgup = ImageIO.read(new File("bikerup.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Bike.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public Bike(int x, int y, Color c, String name, Matrix m, Orientation or) {
+    public Bike(int x, int y, String color, String name, Matrix m, Orientation or) {
         this.m = m;
         this.x = x;
         this.y = y;
-        this.c = c;
+        this.color=color;
+        switch(color){
+            case "lilac":c=new Color(110,9,103);
+                break;
+            case "green":c=Color.GREEN;
+                break;
+            case "blue":c=Color.BLUE;
+                break;
+            case "orange":c=Color.ORANGE;
+                break;
+            case "red":c=Color.red;
+                break;
+            default: throw new RuntimeException("Du dummer Idiot! Es gibt nur 5 Farben");
+        }
         this.name = name;
         this.or = or;
         this.lastor = or;
@@ -86,21 +88,7 @@ public class Bike implements Timed, Drawable {
     @Override
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
-        Image img = null;
-        switch (or) {
-            case UP:
-                img = imgup;
-                break;
-            case DOWN:
-                img = imgdown;
-                break;
-            case RIGHT:
-                img = imgright;
-                break;
-            case LEFT:
-                img = imgleft;
-                break;
-        }
+        Image img = ImageManager.get(or,color);
 
         if (or == Orientation.DOWN || or == Orientation.UP) {
             g.drawImage(img, (x - broadth / 2) * Configs.getConfigValue("scaleX"), (y - length / 2) * Configs.getConfigValue("scaleY"), broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"), null);
