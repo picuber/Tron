@@ -1,6 +1,6 @@
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -9,12 +9,19 @@ import java.util.List;
  */
 public class Item {
 
-    Field[][] elemente;
-    BufferedImage image;
-    int subimgwidth, subimgheight;
+    private Field[][] elemente;
+    private List<ItemElement> item;
+    private BufferedImage image;
+    private int subimgwidth, subimgheight;
+    private int x, y;
+    private Matrix m;
 
-    public Item(BufferedImage image, int height, int width) {
+    public Item(BufferedImage image, int x, int y, int height, int width, Matrix m) {
+        this.m = m;
+        this.x = x;
+        this.y = y;
         elemente = new Field[width][height];
+        item = new LinkedList<>();
         this.image = image;
         subimgwidth = this.image.getWidth() / elemente.length;
         subimgheight = this.image.getHeight() / elemente[0].length;
@@ -22,16 +29,27 @@ public class Item {
     }
 
     private void init() {
-        for (int i = 0; i < elemente.length; i++) {
-            for (int j = 0; j < elemente[0].length; j++) {
-                int imgX = i*subimgwidth;
-                int imgY = i*subimgheight;
+        for (int i = x; i < elemente.length; i++) {
+            for (int j = y; j < elemente[0].length; j++) {
+                int imgX = i * subimgwidth;
+                int imgY = i * subimgheight;
                 BufferedImage sub = image.getSubimage(imgX, imgY, subimgwidth, subimgheight);
+                item.add(new ItemElement(this, i, j, sub, m));
             }
+        }
+        for (ItemElement ie : item) {
+            ie.draw();
         }
     }
 
-    public void collect() {
-        
+    public Matrix getMatrix() {
+        return m;
+    }
+
+    public void collect(Bike b) {
+        for (ItemElement ie : item) {
+            ie.delete();
+        }
+        System.out.println("Collected");
     }
 }

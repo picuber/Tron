@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
@@ -9,26 +11,29 @@ public class ItemElement extends Field {
 
     private Item i;
     private BufferedImage image;
-    private int x, y;
 
-    public ItemElement(Item i, int x, int y, BufferedImage image) {
+    public ItemElement(Item i, int x, int y, BufferedImage image, Matrix m) {
+        this.m = m;
+        this.x = x;
+        this.y = y;
         this.i = i;
         this.image = image;
+        i.getMatrix().setField(x, y, this);
     }
 
     @Override
     public void collide(Bike b) {
-        i.collect();
+        i.collect(b);
     }
 
     @Override
     public void draw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Graphics g = i.getMatrix().getGraphic().getBufferGraphics();
+        g.drawImage(image, x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"), null);
     }
 
-    @Override
-    public void undraw() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete() {
+        undraw();
+        i.getMatrix().deleteField(x, y);
     }
-
 }

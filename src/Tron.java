@@ -1,7 +1,12 @@
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -81,15 +86,19 @@ public class Tron {
         Random r = new Random();
         for (int i = 0; i < Configs.getConfigValue("numberLinks"); i++) {
             int xPos, yPos, mPos;
-            xPos = Math.abs(r.nextInt() % (Configs.getConfigValue("sizeX")-2)) + 1;
-            yPos = Math.abs(r.nextInt() % (Configs.getConfigValue("sizeY")-2)) + 1;
+            xPos = Math.abs(r.nextInt() % (Configs.getConfigValue("sizeX") - 2)) + 1;
+            yPos = Math.abs(r.nextInt() % (Configs.getConfigValue("sizeY") - 2)) + 1;
             mPos = Math.abs(r.nextInt() % Configs.getConfigValue("height"));
             links.add(new LinkField(Tron.getInstance().getWorld().get(mPos), xPos, yPos));
         }
     }
 
     private void initItems() {
-
+        try {
+            new Item(ImageIO.read(new File("images/item_score.png")), 1, 1, 20, 20, world.get(0));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public List<Matrix> getWorld() {
