@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Leon
  */
-public class Item {
+public abstract class Item {
 
     private Field[][] elemente;
     private List<ItemElement> item;
@@ -50,6 +50,11 @@ public class Item {
         for (ItemElement ie : item) {
             ie.delete();
         }
-        System.out.println("Collected");
+        doEffect(b);
+    }
+    
+    void doEffect(Bike b){
+        //specified in sublasses
+        System.out.println("Collected - No Effect");
     }
 }

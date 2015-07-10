@@ -2,11 +2,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +10,8 @@ import javax.swing.JOptionPane;
  */
 public class Bike implements Timed, Drawable {
 
-    int x, y, length = Configs.getConfigValue("bikelength"), broadth = Configs.getConfigValue("bikebroadth");
+    private int x, y, length = Configs.getConfigValue("bikelength"), broadth = Configs.getConfigValue("bikebroadth");
+    private int score, laserLength;
     private Color c;
     private String name;
     private Matrix m;
@@ -26,23 +22,31 @@ public class Bike implements Timed, Drawable {
         this.m = m;
         this.x = x;
         this.y = y;
-        this.color=color;
-        switch(color){
-            case "lilac":c=new Color(110,9,103);
+        this.color = color;
+        switch (color) {
+            case "lilac":
+                c = new Color(110, 9, 103);
                 break;
-            case "green":c=Color.GREEN;
+            case "green":
+                c = Color.GREEN;
                 break;
-            case "blue":c=Color.BLUE;
+            case "blue":
+                c = Color.BLUE;
                 break;
-            case "orange":c=Color.ORANGE;
+            case "orange":
+                c = Color.ORANGE;
                 break;
-            case "red":c=Color.red;
+            case "red":
+                c = Color.red;
                 break;
-            default: throw new RuntimeException("Du dummer Idiot! Es gibt nur 5 Farben");
+            default:
+                throw new RuntimeException("Du dummer Idiot! Es gibt nur 5 Farben");
         }
         this.name = name;
         this.or = or;
         this.lastor = or;
+        this.score = 0;
+        this.laserLength = Configs.getConfigValue("laserlength");
         Clock.getInstance().login(this);
     }
 
@@ -58,6 +62,26 @@ public class Bike implements Timed, Drawable {
 
     public Matrix getMatrix() {
         return m;
+    }
+
+    public int getLaserLength() {
+        return laserLength;
+    }
+
+    public void setLaserLength(int laserLength) {
+        this.laserLength = laserLength;
+    }
+    
+    public void addLaserLength(int length){
+        laserLength += length;
+    }
+    
+    public void subLaserLength(int length){
+        laserLength -= length;
+    }
+
+    public void setDefaultLaserLength() {
+        this.laserLength = Configs.getConfigValue("laserlength");
     }
 
     public void goToLinkEnd(LinkField linkEndPoint) {
@@ -88,7 +112,7 @@ public class Bike implements Timed, Drawable {
     @Override
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
-        Image img = ImageManager.get(or,color);
+        Image img = ImageManager.get(or, color);
 
         if (or == Orientation.DOWN || or == Orientation.UP) {
             g.drawImage(img, (x - broadth / 2) * Configs.getConfigValue("scaleX"), (y - length / 2) * Configs.getConfigValue("scaleY"), broadth * Configs.getConfigValue("scaleX"), length * Configs.getConfigValue("scaleY"), null);
@@ -209,20 +233,7 @@ public class Bike implements Timed, Drawable {
         draw();
         Field f = m.getFields()[x][y];
         if (f == null) {
-            switch (or) {
-                case UP:
-                    new LaserField(x, y, c, m);
-                    break;
-                case DOWN:
-                    new LaserField(x, y, c, m);
-                    break;
-                case LEFT:
-                    new LaserField(x, y, c, m);
-                    break;
-                case RIGHT:
-                    new LaserField(x, y, c, m);
-                    break;
-            }
+            new LaserField(x, y, c, m, this);
         } else {
             f.collide(this);
         }
@@ -230,18 +241,34 @@ public class Bike implements Timed, Drawable {
 
     }
 
-    void die() {
+    public void die() {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
-        JOptionPane.showMessageDialog(null, name + " died", "Death", JOptionPane.PLAIN_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, name + " died with a scroe of " + score, "Death", JOptionPane.PLAIN_MESSAGE, null);
         length = broadth = Integer.max(length, broadth);
         undraw();
         updateBackground();
         if (Tron.getInstance().getBikes().size() == 1) {
-            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won", "Win", JOptionPane.PLAIN_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won with a score of " + Tron.getInstance().getBikes().get(0).getName(), "Win", JOptionPane.PLAIN_MESSAGE, null);
             Tron.getInstance().stopGame();
         }
 
+    }
+
+    public void score(int score) {
+        this.score += score;
+    }
+
+    public void unscore(int score) {
+        this.score -= score;
+    }
+
+    public void resetScore() {
+        score = 0;
+    }
+
+    public int getScore() {
+        return score;
     }
 
 }

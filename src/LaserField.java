@@ -10,10 +10,12 @@ public class LaserField extends Wall implements Timed {
 
     private int counter = 0;
     private Color c;
+    private Bike b;
 
-    public LaserField(int x, int y, Color c, Matrix m) {
+    public LaserField(int x, int y, Color c, Matrix m, Bike b) {
         super(x, y, m);
         this.c = c;
+        this.b = b;
         m.setField(x, y, this);
         draw();
         Clock.getInstance().login(this);
@@ -28,7 +30,7 @@ public class LaserField extends Wall implements Timed {
 
     @Override
     public void tick() {
-        if (++counter == Configs.getConfigValue("laserlength")) {
+        if (++counter == b.getLaserLength()) {
             m.deleteField(x, y);
             Clock.getInstance().logout(this);
         }

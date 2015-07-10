@@ -76,7 +76,7 @@ public class Tron {
                 } else if (config.getMode() == PlayerStartConfig.MODE.FOURKEY) {
                     window.addKeyListener(new Wheel(b, config.getRightcode(), config.getLeftcode(), config.getUpcode(), config.getDowncode()));
                 } else if (config.getMode() == PlayerStartConfig.MODE.BOT) {
-                    new Bot(b);
+                    new WallSurfer(b);
                 }
             }
         }
@@ -95,7 +95,7 @@ public class Tron {
 
     private void initItems() {
         try {
-            new Item(ImageIO.read(new File("images/item_score.png")), 1, 1, 20, 20, world.get(0));
+            new Coin(ImageIO.read(new File("images/item_score.png")), 1, 1, 20, 20, world.get(0), 3);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
