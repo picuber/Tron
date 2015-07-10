@@ -244,12 +244,12 @@ public class Bike implements Timed, Drawable {
     public void die() {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
-        JOptionPane.showMessageDialog(null, name + " died with a scroe of " + score, "Death", JOptionPane.PLAIN_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, name + " died with a score of " + score, "Death", JOptionPane.PLAIN_MESSAGE, null);
         length = broadth = Integer.max(length, broadth);
         undraw();
         updateBackground();
         if (Tron.getInstance().getBikes().size() == 1) {
-            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won with a score of " + Tron.getInstance().getBikes().get(0).getName(), "Win", JOptionPane.PLAIN_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won with a score of " + Tron.getInstance().getBikes().get(0).getScore(), "Win", JOptionPane.PLAIN_MESSAGE, null);
             Tron.getInstance().stopGame();
         }
 

@@ -156,8 +156,8 @@ public class Startpage extends JFrame {
                 Configs.setControlMode((PlayerStartConfig.MODE) mode[2].getSelectedItem(), 3);
                 Configs.setPlayerName(names[3].getText(), 4);
                 Configs.setControlMode((PlayerStartConfig.MODE) mode[3].getSelectedItem(), 4);
-                Tron.getInstance().startGame();
                 setVisible(false);
+                Tron.getInstance().startGame();
             }
         });
         this.add(Ok);

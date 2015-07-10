@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +34,8 @@ public class Tron {
     public void startGame() {
         initWorld();
         initPlayers();
-        if (Tron.getInstance().bikes.isEmpty()) {
+        if (Tron.getInstance().bikes.size() <= 1) {
+            JOptionPane.showMessageDialog(null, "Not enougth Players or Bots", "WARNING", JOptionPane.PLAIN_MESSAGE, null);        
             Tron.getInstance().stopGame();
             return;
         }
@@ -68,7 +70,7 @@ public class Tron {
         window = new TestWindow(Tron.getInstance().getWorld().get(0));
         for (int i = 0; i < 4; i++) {
             PlayerStartConfig config = Configs.getPlayers()[i];
-            if (!config.getName().equals("")) {
+            if (!config.getName().equals("")||config.getMode() == PlayerStartConfig.MODE.BOT) {
                 Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr());
                 Tron.getInstance().bikes.add(b);
                 if (config.getMode() == PlayerStartConfig.MODE.TWOKEY) {
