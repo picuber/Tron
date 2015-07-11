@@ -48,5 +48,5 @@ public class MatrixGraphic extends JPanel implements Timed {
     public Graphics getBufferGraphics() {
         return bufferGraphics;
     }
-
+    
 }

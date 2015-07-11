@@ -32,9 +32,9 @@ public class Configs {
 
     public static void resetDefaultConfigPlayers() {
         players[0] = new PlayerStartConfig(null, 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S, "orange", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.DOWN);
-        players[1] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") - 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, "blue", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.UP);
-        players[2] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, Configs.getConfigValue("sizeY") - 30, 0, KeyEvent.VK_H, KeyEvent.VK_F, KeyEvent.VK_T, KeyEvent.VK_G, "green", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.RIGHT);
-        players[3] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, 30, 0, KeyEvent.VK_L, KeyEvent.VK_J, KeyEvent.VK_I, KeyEvent.VK_K, "lilac", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.LEFT);
+        players[1] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, Configs.getConfigValue("sizeY") - 30, 0, KeyEvent.VK_H, KeyEvent.VK_F, KeyEvent.VK_T, KeyEvent.VK_G, "green", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.RIGHT);
+        players[2] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") / 2, 30, 0, KeyEvent.VK_L, KeyEvent.VK_J, KeyEvent.VK_I, KeyEvent.VK_K, "lilac", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.LEFT);
+        players[3] = new PlayerStartConfig(null, Configs.getConfigValue("sizeX") - 30, Configs.getConfigValue("sizeY") / 2, 0, KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, "blue", PlayerStartConfig.MODE.TWOKEY, Bike.Orientation.UP);
     }
 
     public static void setPlayerName(String name, int playerNumber) {

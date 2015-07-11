@@ -15,9 +15,11 @@ public class Matrix {
     }
 
     public void init() {
-        graphic.init();
-        setBorderWalls();
-        initialized = true;
+        if (!initialized) {
+            graphic.init();
+            setBorderWalls();
+            initialized = true;
+        }
     }
 
     public void setBorderWalls() {
@@ -67,5 +69,13 @@ public class Matrix {
 
     public boolean isInitialized() {
         return initialized;
+    }
+
+    public int getWidth() {
+        return map.length * Configs.getConfigs().get("scaleX");
+    }
+
+    public int getHeight() {
+        return map[0].length * Configs.getConfigValue("scaleY");
     }
 }
