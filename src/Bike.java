@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +18,9 @@ public class Bike implements Timed, Drawable {
     private Matrix m;
     private Orientation or, lastor;
     private final String color;
-
-    public Bike(int x, int y, String color, String name, Matrix m, Orientation or) {
+    private PlayerWindow window;
+    
+    public Bike(int x, int y, String color, String name, Matrix m, Orientation or, PlayerWindow window) {
         this.m = m;
         this.x = x;
         this.y = y;
@@ -46,6 +48,7 @@ public class Bike implements Timed, Drawable {
         this.or = or;
         this.lastor = or;
         this.score = 0;
+        this.window = window;
         this.laserLength = Configs.getConfigValue("laserlength");
         Clock.getInstance().login(this);
     }
@@ -66,6 +69,10 @@ public class Bike implements Timed, Drawable {
 
     public int getLaserLength() {
         return laserLength;
+    }
+
+    public PlayerWindow getWindow() {
+        return window;
     }
 
     public void setLaserLength(int laserLength) {
@@ -90,6 +97,8 @@ public class Bike implements Timed, Drawable {
         m = linkEndPoint.getM();
         x = linkEndPoint.getX();
         y = linkEndPoint.getY();
+        window.changeMatrix(m.getGraphic().getView());
+        m.init();
         switch ((int) (Math.random() * 4)) {
             case 0:
                 or = Orientation.UP;
@@ -248,8 +257,10 @@ public class Bike implements Timed, Drawable {
         length = broadth = Integer.max(length, broadth);
         undraw();
         updateBackground();
+        window.dispose();
         if (Tron.getInstance().getBikes().size() == 1) {
             JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won with a score of " + Tron.getInstance().getBikes().get(0).getScore(), "Win", JOptionPane.PLAIN_MESSAGE, null);
+            Tron.getInstance().getBikes().get(0).getWindow().dispose();
             Tron.getInstance().stopGame();
         }
 

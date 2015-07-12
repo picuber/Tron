@@ -3,43 +3,31 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
  *
  * @author michael
  */
-public class MatrixGraphic extends JPanel implements Timed {
+public class MatrixGraphic {
 
     private static final long serialVersionUID = 1L;
     private Graphics bufferGraphics;
-    private Image offscreen;
+    private Image image;
 
     public MatrixGraphic() {
-        this.setSize(Configs.getConfigValue("sizeX")*Configs.getConfigValue("scaleX")+18, Configs.getConfigValue("sizeY")*Configs.getConfigValue("scaleY")+47);
-        Clock.getInstance().login(this);
-    }
 
-    @Override
-    public void tick() {
-        repaint();
     }
 
     public void init() {
-        Dimension dim = getSize();
-        offscreen = createImage(dim.width, dim.height);
-        bufferGraphics = offscreen.getGraphics();
-
+        image = new BufferedImage(Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") + 18, Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 47, BufferedImage.TYPE_INT_RGB);
+        bufferGraphics = image.getGraphics();
     }
-
-    @Override
-    public void paint(Graphics g) {
-        g.drawImage(offscreen, 0, 0, this);
-    }
-
-    @Override
-    public void update(Graphics g) {
-        paint(g);
+    
+    
+    public MatrixView getView(){
+        return new MatrixView(image);
     }
 
     /**
@@ -48,5 +36,5 @@ public class MatrixGraphic extends JPanel implements Timed {
     public Graphics getBufferGraphics() {
         return bufferGraphics;
     }
-    
+
 }

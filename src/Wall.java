@@ -24,7 +24,7 @@ public class Wall extends Field {
     @Override
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
-        g.setColor(Color.darkGray);
+        g.setColor(Color.white);
         g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
     }
 

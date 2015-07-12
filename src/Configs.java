@@ -18,7 +18,7 @@ public class Configs {
         configs.put("gamespeed", 0);
         configs.put("sizeX", 500);
         configs.put("sizeY", 500);
-        configs.put("height", 1);
+        configs.put("height", 2);
         configs.put("scaleX", 1);
         configs.put("scaleY", 1);
         configs.put("bikelength", 30);
