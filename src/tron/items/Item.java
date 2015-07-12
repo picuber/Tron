@@ -1,6 +1,5 @@
 package tron.items;
 
-
 import tron.Matrix;
 import tron.fields.Field;
 import tron.fields.ItemElement;
@@ -15,12 +14,12 @@ import tron.bikes.Bike;
  */
 public abstract class Item {
 
-    private Field[][] elemente;
-    private List<ItemElement> item;
-    private BufferedImage image;
-    private int subimgwidth, subimgheight;
-    private int x, y;
-    private Matrix m;
+    private final Field[][] elemente;
+    private final List<ItemElement> item;
+    private final BufferedImage image;
+    private final int subimgwidth, subimgheight;
+    private final int x, y;
+    private final Matrix m;
 
     public Item(BufferedImage image, int x, int y, int height, int width, Matrix m) {
         this.m = m;
@@ -38,14 +37,14 @@ public abstract class Item {
         for (int i = x; i < elemente.length; i++) {
             for (int j = y; j < elemente[0].length; j++) {
                 int imgX = i * subimgwidth;
-                int imgY = i * subimgheight;
+                int imgY = j * subimgheight;
                 BufferedImage sub = image.getSubimage(imgX, imgY, subimgwidth, subimgheight);
                 item.add(new ItemElement(this, i, j, sub, m));
             }
         }
-        for (ItemElement ie : item) {
+        item.stream().forEach((ie) -> {
             ie.draw();
-        }
+        });
     }
 
     public Matrix getMatrix() {
@@ -53,14 +52,11 @@ public abstract class Item {
     }
 
     public void collect(Bike b) {
-        for (ItemElement ie : item) {
+        item.stream().forEach((ie) -> {
             ie.delete();
-        }
+        });
         doEffect(b);
     }
-    
-    void doEffect(Bike b){
-        //specified in sublasses
-        System.out.println("Collected - No Effect");
-    }
+
+    protected abstract void doEffect(Bike b);
 }

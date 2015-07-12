@@ -16,9 +16,6 @@ import tron.bikes.Bike;
  */
 public class LinkField extends Field {
 
-    private Matrix m;
-    private int x, y;
-
     public LinkField(Matrix m, int x, int y) {
         this.m = m;
         this.x = x;
@@ -29,14 +26,6 @@ public class LinkField extends Field {
 
     public Matrix getM() {
         return m;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     @Override
@@ -51,7 +40,11 @@ public class LinkField extends Field {
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(Color.red);
-        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
+        int pX = x * Configs.getConfigValue("scaleX");
+        int pY = y * Configs.getConfigValue("scaleY");
+        int pWidth = Configs.getConfigValue("scaleX");
+        int pHeight = Configs.getConfigValue("scaleY");
+        g.fillRect(pX, pY, pWidth, pHeight);
     }
 
 }

@@ -1,11 +1,8 @@
 package tron;
 
-
 import tron.views.View;
-import tron.bikes.Bike;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,21 +13,22 @@ import javax.swing.JPanel;
  */
 public class PlayerWindow extends JFrame {
 
-    JPanel jp;
+    private JPanel jp;
 
     public PlayerWindow(View v) {
         jp = v;
         jp.setLocation(0, 0);
         this.add(jp);
         this.setSize(jp.getSize().width, jp.getSize().height);
+        //this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
                 Tron.getInstance().stopGame();
-                for (Bike b : Tron.getInstance().getBikes()) {
+                Tron.getInstance().getBikes().stream().forEach((b) -> {
                     b.getWindow().dispose();
-                }
+                });
             }
         });
 

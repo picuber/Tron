@@ -16,7 +16,7 @@ public class Wheel implements KeyListener {
     int upcode;
     int downcode;
 
-    private boolean control2KeyMode;
+    private final boolean control2KeyMode;
 
     public Wheel(Bike b, int rightcode, int leftcode, int upcode, int downcode) {
         this.b = b;

@@ -1,6 +1,5 @@
 package tron;
 
-
 /**
  *
  * @author Leon
@@ -8,23 +7,21 @@ package tron;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import tron.graphic.ImageManager;
 
 public class MainMenue extends JFrame {
 
-    private static final MainMenue instance = new MainMenue("Tron");
+    private BufferedImage image = null;
+
     private final JButton START = new JButton();
     private final JButton SETTINGS = new JButton();
     private final JButton CREDITS = new JButton();
     private final JButton HIGHSCORE = new JButton();
     private final JButton Beenden = new JButton();
     private final JLabel TRON = new JLabel();
-    private BufferedImage image = null;
+
+    private static final MainMenue instance = new MainMenue("Tron");
 
     public static MainMenue getInstance() {
         return instance;
@@ -42,13 +39,10 @@ public class MainMenue extends JFrame {
         setLocation(x, y);
         setResizable(false);
         this.setLayout(null);
-        try {
-            image = ImageIO.read(new File("Raster.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(Startpage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        image = (BufferedImage) ImageManager.get("Raster");
 
         Container c = new Container() {
+            @Override
             public void paint(Graphics g) {
                 g.drawImage(image, 0, 0, null);
                 super.paint(g);
@@ -60,11 +54,9 @@ public class MainMenue extends JFrame {
         START.setBounds(300, 200, 150, 35);
         START.setText("Start");
         START.setMargin(new Insets(2, 2, 2, 2));
-        START.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Startpage.getInstance().setVisible(true);
-                setVisible(false);
-            }
+        START.addActionListener((ActionEvent evt) -> {
+            Startpage.getInstance().setVisible(true);
+            setVisible(false);
         });
         START.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(START);
@@ -72,22 +64,17 @@ public class MainMenue extends JFrame {
         SETTINGS.setBounds(300, 250, 150, 35);
         SETTINGS.setText("Settings");
         SETTINGS.setMargin(new Insets(2, 2, 2, 2));
-        SETTINGS.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                new Settings("Settings");
-                setVisible(false);
-            }
+        SETTINGS.addActionListener((ActionEvent evt) -> {
+            new Settings("Settings");
+            setVisible(false);
         });
         SETTINGS.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(SETTINGS);
-        
+
         HIGHSCORE.setBounds(300, 300, 150, 35);
         HIGHSCORE.setText("Highscore");
         HIGHSCORE.setMargin(new Insets(2, 2, 2, 2));
-        HIGHSCORE.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-
-            }
+        HIGHSCORE.addActionListener((ActionEvent evt) -> {
         });
         HIGHSCORE.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(HIGHSCORE);
@@ -95,10 +82,7 @@ public class MainMenue extends JFrame {
         CREDITS.setBounds(300, 350, 150, 35);
         CREDITS.setText("Credits");
         CREDITS.setMargin(new Insets(2, 2, 2, 2));
-        CREDITS.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-
-            }
+        CREDITS.addActionListener((ActionEvent evt) -> {
         });
         CREDITS.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(CREDITS);
@@ -106,10 +90,8 @@ public class MainMenue extends JFrame {
         Beenden.setBounds(300, 400, 150, 35);
         Beenden.setText("Beenden");
         Beenden.setMargin(new Insets(2, 2, 2, 2));
-        Beenden.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                System.exit(0);
-            }
+        Beenden.addActionListener((ActionEvent evt) -> {
+            System.exit(0);
         });
         Beenden.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(Beenden);
@@ -125,24 +107,14 @@ public class MainMenue extends JFrame {
 
     public static void main(String[] args) {
 
-         
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    try {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (UnsupportedLookAndFeelException ex) {
-                        Logger.getLogger(MainMenue.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    break;
-                }
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                try {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {}
+                break;
             }
-       
+        }
 
     }
 }

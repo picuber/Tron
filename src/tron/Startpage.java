@@ -1,6 +1,5 @@
 package tron;
 
-
 /**
  *
  * @author Leon
@@ -8,12 +7,8 @@ package tron;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import tron.graphic.ImageManager;
 
 /**
  *
@@ -49,13 +44,10 @@ public class Startpage extends JFrame {
         setLocation(x, y);
         setResizable(false);
         this.setLayout(null);
-        try {
-            image = ImageIO.read(new File("BikeBackground.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(Startpage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        image = (BufferedImage) ImageManager.get("Background");
 
         Container c = new Container() {
+            @Override
             public void paint(Graphics g) {
                 g.drawImage(image, 0, 0, null);
                 super.paint(g);
@@ -78,10 +70,8 @@ public class Startpage extends JFrame {
         names[0].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         names[0].setBackground(Color.WHITE);
         names[0].setToolTipText("Enter your name, program!");
-        names[0].addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Configs.setPlayerName(names[0].getText(), 1);
-            }
+        names[0].addActionListener((ActionEvent evt) -> {
+            Configs.setPlayerName(names[0].getText(), 1);
         });
         this.add(names[0]);
 
@@ -96,10 +86,8 @@ public class Startpage extends JFrame {
         names[1].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         names[1].setBackground(Color.WHITE);
         names[1].setToolTipText("Enter your name, program!");
-        names[1].addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Configs.setPlayerName(names[1].getText(), 2);
-            }
+        names[1].addActionListener((ActionEvent evt) -> {
+            Configs.setPlayerName(names[1].getText(), 2);
         });
         this.add(names[1]);
 
@@ -114,10 +102,8 @@ public class Startpage extends JFrame {
         names[2].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         names[2].setBackground(Color.WHITE);
         names[2].setToolTipText("Enter your name, program!");
-        names[2].addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Configs.setPlayerName(names[2].getText(), 3);
-            }
+        names[2].addActionListener((ActionEvent evt) -> {
+            Configs.setPlayerName(names[2].getText(), 3);
         });
         this.add(names[2]);
 
@@ -132,10 +118,8 @@ public class Startpage extends JFrame {
         names[3].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         names[3].setBackground(Color.WHITE);
         names[3].setToolTipText("Enter your name, program!");
-        names[3].addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Configs.setPlayerName(names[3].getText(), 4);
-            }
+        names[3].addActionListener((ActionEvent evt) -> {
+            Configs.setPlayerName(names[3].getText(), 4);
         });
         this.add(names[3]);
 
@@ -148,30 +132,22 @@ public class Startpage extends JFrame {
         Ok.setBounds(300, 352, 75, 25);
         Ok.setText("Ok");
         Ok.setMargin(new Insets(2, 2, 2, 2));
-        Ok.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Configs.setPlayerName(names[0].getText(), 1);
-                Configs.setControlMode((PlayerStartConfig.MODE) mode[0].getSelectedItem(), 1);
-                Configs.setPlayerName(names[1].getText(), 2);
-                Configs.setControlMode((PlayerStartConfig.MODE) mode[1].getSelectedItem(), 2);
-                Configs.setPlayerName(names[2].getText(), 3);
-                Configs.setControlMode((PlayerStartConfig.MODE) mode[2].getSelectedItem(), 3);
-                Configs.setPlayerName(names[3].getText(), 4);
-                Configs.setControlMode((PlayerStartConfig.MODE) mode[3].getSelectedItem(), 4);
-                setVisible(false);
-                Tron.getInstance().startGame();
+        Ok.addActionListener((ActionEvent evt) -> {
+            for (int i = 0; i < 4; i++) {
+                Configs.setPlayerName(names[i].getText(), i + 1);
+                Configs.setControlMode((PlayerStartConfig.MODE) mode[i].getSelectedItem(), i + 1);
             }
+            setVisible(false);
+            Tron.getInstance().startGame();
         });
         this.add(Ok);
 
         Back.setBounds(425, 352, 75, 25);
         Back.setText("Back");
         Back.setMargin(new Insets(2, 2, 2, 2));
-        Back.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                MainMenue.getInstance().setVisible(true);
-                setVisible(false);
-            }
+        Back.addActionListener((ActionEvent evt) -> {
+            MainMenue.getInstance().setVisible(true);
+            setVisible(false);
         });
         this.add(Back);
 

@@ -1,6 +1,5 @@
 package tron.fields;
 
-
 import tron.Matrix;
 import tron.Configs;
 import tron.clock.Clock;
@@ -16,8 +15,9 @@ import tron.clock.Timed;
 public class LaserField extends Wall implements Timed {
 
     private int counter = 0;
-    private Color c;
-    private Bike b;
+    
+    private final Color c;
+    private final Bike b;
 
     public LaserField(int x, int y, Color c, Matrix m, Bike b) {
         super(x, y, m);
@@ -32,7 +32,11 @@ public class LaserField extends Wall implements Timed {
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(c);
-        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
+        int pX = x * Configs.getConfigValue("scaleX");
+        int pY = y * Configs.getConfigValue("scaleY");
+        int pWidth = Configs.getConfigValue("scaleX");
+        int pHeight = Configs.getConfigValue("scaleY");
+        g.fillRect(pX, pY, pWidth, pHeight);
     }
 
     @Override

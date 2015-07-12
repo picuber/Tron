@@ -55,7 +55,6 @@ public class WallSurfer extends Bot{
                     }
                 }
             }
-
         }
     }
 

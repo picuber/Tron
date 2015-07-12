@@ -1,9 +1,7 @@
 package tron.fields;
 
-
 import tron.Matrix;
 import tron.Configs;
-import java.awt.Color;
 import java.awt.Graphics;
 import tron.bikes.Bike;
 import tron.graphic.Drawable;
@@ -14,19 +12,8 @@ import tron.graphic.Drawable;
  */
 public abstract class Field implements Drawable {
 
-    /**
-     * Matrix to which this Field belongs
-     */
     protected Matrix m;
-
-    /**
-     * x-position of Field
-     */
     protected int x;
-
-    /**
-     * y-position of Field
-     */
     protected int y;
 
     /**
@@ -46,10 +33,18 @@ public abstract class Field implements Drawable {
         return y;
     }
 
+    public Matrix getMatrix() {
+        return m;
+    }
+
     @Override
     public void undraw() {
         Graphics g = m.getGraphic().getBufferGraphics();
-        g.clearRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
+        int pX = x * Configs.getConfigValue("scaleX");
+        int pY = y * Configs.getConfigValue("scaleY");
+        int pWidth = Configs.getConfigValue("scaleX");
+        int pHeight = Configs.getConfigValue("scaleY");
+        g.clearRect(pX, pY, pWidth, pHeight);
     }
 
 }

@@ -1,5 +1,6 @@
 package tron.bikes;
 
+import tron.graphic.ImageManager;
 import tron.Tron;
 import tron.Configs;
 import tron.PlayerWindow;
@@ -22,6 +23,8 @@ import javax.swing.JOptionPane;
 public class Bike implements Timed, Drawable {
 
     private int x, y;
+    private int length;
+    private int broadth;
     private int score;
     private int laserLength;
     private Color c;
@@ -31,9 +34,6 @@ public class Bike implements Timed, Drawable {
     private final String name;
     private final String color;
     private final PlayerWindow window;
-
-    private static int length = Configs.getConfigValue("bikelength");
-    private static int broadth = Configs.getConfigValue("bikebroadth");
 
     public Bike(int x, int y, String color, String name, Matrix m, Orientation or, PlayerWindow window) {
         this.m = m;
@@ -64,6 +64,8 @@ public class Bike implements Timed, Drawable {
         this.lastor = or;
         this.score = 0;
         this.window = window;
+        this.length = Configs.getConfigValue("bikelength");
+        this.broadth = Configs.getConfigValue("bikebroadth");
         this.laserLength = Configs.getConfigValue("laserlength");
         Clock.getInstance().login(this);
     }

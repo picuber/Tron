@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -113,7 +111,7 @@ public class Tron {
 
     private void initItems() {
         try {
-            new Coin(ImageIO.read(new File("images/item_score.png")), 50, 50, 20, 20, world.get(0), 3);
+            new Coin(ImageIO.read(new File("images/items/score.png")), 50, 50, 20, 20, world.get(0), 3);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -1,6 +1,5 @@
 package tron;
 
-
 import tron.bikes.Bike;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -13,7 +12,7 @@ import java.util.Map;
 public class Configs {
 
     private static final Map<String, Integer> configs;
-    private static PlayerStartConfig[] players;
+    private static final PlayerStartConfig[] players;
 
     static {
         configs = new HashMap<>();

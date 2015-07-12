@@ -1,6 +1,5 @@
 package tron.fields;
 
-
 import tron.Matrix;
 import tron.Configs;
 import java.awt.Color;
@@ -30,7 +29,11 @@ public class Wall extends Field {
     public void draw() {
         Graphics g = m.getGraphic().getBufferGraphics();
         g.setColor(Color.white);
-        g.fillRect(x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"));
+        int pX = x * Configs.getConfigValue("scaleX");
+        int pY = y * Configs.getConfigValue("scaleY");
+        int pWidth = Configs.getConfigValue("scaleX");
+        int pHeight = Configs.getConfigValue("scaleY");
+        g.fillRect(pX, pY, pWidth, pHeight);
     }
 
 }

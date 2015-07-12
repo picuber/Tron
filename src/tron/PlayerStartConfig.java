@@ -1,7 +1,6 @@
 package tron;
 
 import tron.bikes.Bike;
-import java.awt.Color;
 
 /**
  *
@@ -9,8 +8,8 @@ import java.awt.Color;
  */
 public class PlayerStartConfig {
 
-    private String color;
     private int x, y, matrix, leftcode, rightcode, upcode, downcode;
+    private String color;
     private String name;
     private MODE mode;
     private Bike.Orientation or;

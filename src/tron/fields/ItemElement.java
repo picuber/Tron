@@ -1,10 +1,8 @@
 package tron.fields;
 
-
 import tron.Matrix;
 import tron.Configs;
 import tron.items.Item;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import tron.bikes.Bike;
@@ -15,8 +13,8 @@ import tron.bikes.Bike;
  */
 public class ItemElement extends Field {
 
-    private Item i;
-    private BufferedImage image;
+    private final Item i;
+    private final BufferedImage image;
 
     public ItemElement(Item i, int x, int y, BufferedImage image, Matrix m) {
         this.m = m;
@@ -35,7 +33,11 @@ public class ItemElement extends Field {
     @Override
     public void draw() {
         Graphics g = i.getMatrix().getGraphic().getBufferGraphics();
-        g.drawImage(image, x * Configs.getConfigValue("scaleX"), y * Configs.getConfigValue("scaleY"), Configs.getConfigValue("scaleX"), Configs.getConfigValue("scaleY"), null);
+        int pX = x * Configs.getConfigValue("scaleX");
+        int pY = y * Configs.getConfigValue("scaleY");
+        int pWidth = Configs.getConfigValue("scaleX");
+        int pHeight = Configs.getConfigValue("scaleY");
+        g.drawImage(image, pX, pY, pWidth, pHeight, null);
     }
 
     public void delete() {

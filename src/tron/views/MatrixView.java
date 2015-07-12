@@ -1,6 +1,5 @@
 package tron.views;
 
-
 import tron.Configs;
 import tron.clock.Clock;
 import java.awt.Graphics;
@@ -12,11 +11,13 @@ import java.awt.Image;
  */
 public class MatrixView extends View {
 
-    private Image image;
+    private final Image image;
 
     public MatrixView(Image image) {
         this.image = image;
-        this.setSize(Configs.getConfigValue("sizeX")*Configs.getConfigValue("scaleX")+18, Configs.getConfigValue("sizeY")*Configs.getConfigValue("scaleY")+47);
+        int x = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") + 18;
+        int y = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 47;
+        this.setSize(x, y);
         Clock.getInstance().login(this);
     }
 

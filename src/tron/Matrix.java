@@ -1,10 +1,8 @@
 package tron;
 
-
 import tron.graphic.MatrixGraphic;
 import tron.fields.Wall;
 import tron.fields.Field;
-
 
 /**
  *
@@ -12,9 +10,10 @@ import tron.fields.Field;
  */
 public class Matrix {
 
-    private final Field[][] map;
     private MatrixGraphic graphic;
     private boolean initialized;
+
+    private final Field[][] map;
 
     public Matrix() {
         map = new Field[Configs.getConfigValue("sizeX")][Configs.getConfigValue("sizeY")];
@@ -31,12 +30,12 @@ public class Matrix {
 
     public void setBorderWalls() {
         for (int i = 0; i < map.length; i++) {
-            map[i][0] = new Wall(i, 0, this);//top walls
-            map[i][map[i].length - 1] = new Wall(i, map[i].length - 1, this);//bottom walls
+            map[i][0] = new Wall(i, 0, this);
+            map[i][map[i].length - 1] = new Wall(i, map[i].length - 1, this);
         }
         for (int i = 1; i < map[0].length - 1; i++) {
-            map[0][i] = new Wall(0, i, this);//left walls
-            map[map.length - 1][i] = new Wall(map.length - 1, i, this);//right walls
+            map[0][i] = new Wall(0, i, this);
+            map[map.length - 1][i] = new Wall(map.length - 1, i, this);
         }
     }
 

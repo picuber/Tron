@@ -1,6 +1,5 @@
 package tron;
 
-
 /**
  *
  * @author Leon
@@ -8,13 +7,9 @@ package tron;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import tron.graphic.ImageManager;
 
 /**
  *
@@ -27,9 +22,10 @@ public class Settings extends JFrame {
 
     private JComboBox<String> settings;
     private JTextField input;
-    private JButton confirm;
-    private JButton Back;
     private BufferedImage image = null;
+    
+    private final JButton confirm;
+    private final JButton Back;
 
     public Settings(String title) {
         super(title);
@@ -51,13 +47,10 @@ public class Settings extends JFrame {
         setLocation(x, y);
         setResizable(false);
         this.setLayout(null);
-        try {
-            image = ImageIO.read(new File("BikeBackground.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(Startpage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        image = (BufferedImage) ImageManager.get("Background");
 
         Container c = new Container() {
+            @Override
             public void paint(Graphics g) {
                 g.drawImage(image, 0, 0, null);
                 super.paint(g);
@@ -70,9 +63,9 @@ public class Settings extends JFrame {
         settings.setBounds(75, 300, 300, 25);
         {
             TreeSet<String> sortedConfigKeys = new TreeSet(Configs.getConfigs().keySet());
-            for (String s : sortedConfigKeys) {
+            sortedConfigKeys.stream().forEach((s) -> {
                 settings.addItem(s);
-            }
+            });
         }
         this.add(settings);
 
@@ -88,17 +81,15 @@ public class Settings extends JFrame {
         confirm.setBounds(625, 300, 75, 25);
         confirm.setText("Confirm");
         confirm.setMargin(new Insets(2, 2, 2, 2));
-        confirm.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (!input.getText().equals("")) {
-                    try {
-                        Configs.setConfigValue((String) settings.getSelectedItem(), Integer.parseInt(input.getText()));
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Enter an integer", "ERROR", JOptionPane.PLAIN_MESSAGE, null);
-                    }
+        confirm.addActionListener((ActionEvent evt) -> {
+            if (!input.getText().equals("")) {
+                try {
+                    Configs.setConfigValue((String) settings.getSelectedItem(), Integer.parseInt(input.getText()));
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Enter an integer", "ERROR", JOptionPane.PLAIN_MESSAGE, null);
                 }
-                input.setText("");
             }
+            input.setText("");
         });
         this.add(confirm);
 
@@ -106,12 +97,10 @@ public class Settings extends JFrame {
         Back.setBounds(350, 350, 100, 25);
         Back.setText("Back");
         Back.setMargin(new Insets(2, 2, 2, 2));
-        Back.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Configs.resetDefaultConfigPlayers();
-                dispose();
-                MainMenue.getInstance().setVisible(true);
-            }
+        Back.addActionListener((ActionEvent evt) -> {
+            Configs.resetDefaultConfigPlayers();
+            dispose();
+            MainMenue.getInstance().setVisible(true);
         });
         this.add(Back);
         setVisible(true);
