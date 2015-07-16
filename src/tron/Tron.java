@@ -1,6 +1,5 @@
 package tron;
 
-
 import tron.clock.Clock;
 import tron.bikes.*;
 import tron.bikes.bots.*;
@@ -50,6 +49,12 @@ public class Tron {
         }
         initLinks();
         initItems();
+    }
+
+    public void finallyStart() {
+        for (Bike b : bikes) {
+            b.startGame();
+        }
         Clock.getInstance().resetGamespeed();
         Clock.getInstance().start();
     }
@@ -65,7 +70,7 @@ public class Tron {
 
     private void initWorld() {
         for (int i = 0; i < Configs.getConfigValue("height"); i++) {
-            Matrix m = new Matrix();
+            Matrix m = new Matrix(i);
             MatrixGraphic mg = new MatrixGraphic();
             m.setGraphic(mg);
             Tron.getInstance().world.add(m);
@@ -76,7 +81,7 @@ public class Tron {
         for (int i = 0; i < 4; i++) {
             PlayerStartConfig config = Configs.getPlayers()[i];
             if (!config.getName().equals("") || config.getMode() == PlayerStartConfig.MODE.BOT) {
-                Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr(), new PlayerWindow(Tron.getInstance().world.get(config.getMatrix()).getGraphic().getView()));
+                Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr(), i);
                 Tron.getInstance().world.get(config.getMatrix()).init();
                 Tron.getInstance().bikes.add(b);
             }

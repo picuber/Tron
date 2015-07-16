@@ -14,9 +14,11 @@ public class Matrix {
     private boolean initialized;
 
     private final Field[][] map;
+    private final int layer;
 
-    public Matrix() {
+    public Matrix(int layer) {
         map = new Field[Configs.getConfigValue("sizeX")][Configs.getConfigValue("sizeY")];
+        this.layer = layer;
         initialized = false;
     }
 
@@ -84,4 +86,9 @@ public class Matrix {
     public int getHeight() {
         return map[0].length * Configs.getConfigValue("scaleY");
     }
+
+    public int getLayer() {
+        return layer;
+    }
+
 }

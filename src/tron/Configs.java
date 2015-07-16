@@ -27,6 +27,7 @@ public class Configs {
         configs.put("laserlength", 300);
         configs.put("botRandomness", 1000);
         configs.put("numberLinks", 5);
+        configs.put("windowNotVisible", 0);
         players = new PlayerStartConfig[4];
         resetDefaultConfigPlayers();
     }
