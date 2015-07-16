@@ -32,9 +32,6 @@ public class ReadyView extends View {
         READY.setBackground(Color.red);
         READY.addActionListener((ActionEvent e) -> {
             setReadyState(true, b);
-            if (allReady()) {
-                Tron.getInstance().finallyStart();
-            }
 
         });
         READY.setFont(new Font("Consolas", Font.BOLD, 20));
