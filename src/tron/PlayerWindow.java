@@ -7,7 +7,6 @@ import tron.views.View;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * JFrame for easy Testing It wrapps a JPanel
@@ -16,16 +15,16 @@ import javax.swing.JPanel;
  */
 public class PlayerWindow extends JFrame {
 
-    private JPanel jp;
+    private View view;
 
     public PlayerWindow(View v, int playerNr) {
-        jp = v;
-        jp.setLocation(0, 0);
+        view = v;
+        view.setLocation(0, 0);
         if (Configs.getConfigValue("windowNotVisible") == 1) {
             this.setUndecorated(true);
         }
-        this.add(jp);
-        this.setSize(jp.getSize().width, jp.getSize().height);
+        this.add(view);
+        this.setSize(view.getSize().width, view.getSize().height);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setLocation(getPosition(playerNr));
@@ -51,10 +50,14 @@ public class PlayerWindow extends JFrame {
         return new Point(x, y);
     }
 
+    public View getView() {
+        return view;
+    }
+
     public void changeView(View v) {
-        this.remove(jp);
-        jp = v;
-        jp.setLocation(0, 0);
-        this.add(jp);
+        this.remove(view);
+        view = v;
+        view.setLocation(0, 0);
+        this.add(view);
     }
 }
