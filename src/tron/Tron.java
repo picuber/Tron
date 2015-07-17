@@ -1,6 +1,5 @@
 package tron;
 
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import tron.clock.Clock;
 import tron.bikes.*;
@@ -9,12 +8,9 @@ import tron.graphic.MatrixGraphic;
 import tron.items.Coin;
 import tron.fields.FixedLinkField;
 import tron.fields.LinkField;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import tron.graphic.ImageManager;
 
