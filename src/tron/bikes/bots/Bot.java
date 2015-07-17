@@ -4,6 +4,7 @@ import tron.Matrix;
 import tron.clock.Clock;
 import tron.clock.Timed;
 import tron.bikes.Bike;
+import tron.views.ReadyView;
 
 /**
  *
@@ -15,6 +16,7 @@ public abstract class Bot implements Timed {
 
     public Bot(Bike b) {
         this.b = b;
+        ((ReadyView) b.getWindow().getView()).setReadyState(true, b);
         Clock.getInstance().login(this);
     }
 

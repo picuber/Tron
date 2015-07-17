@@ -14,7 +14,9 @@ import tron.fields.LinkField;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import javax.swing.JOptionPane;
+import tron.views.ReadyView;
+import tron.views.messageView.DeathView;
+import tron.views.messageView.WinView;
 
 /**
  *
@@ -30,12 +32,14 @@ public class Bike implements Timed, Drawable {
     private Color c;
     private Matrix m;
     private Orientation or, lastor;
+    private boolean ready;
 
     private final String name;
     private final String color;
+    private final int playerNr;
     private final PlayerWindow window;
 
-    public Bike(int x, int y, String color, String name, Matrix m, Orientation or, PlayerWindow window) {
+    public Bike(int x, int y, String color, String name, Matrix m, Orientation or, int playerNr) {
         this.m = m;
         this.x = x;
         this.y = y;
@@ -59,14 +63,25 @@ public class Bike implements Timed, Drawable {
             default:
                 throw new RuntimeException("Du dummer Idiot! Es gibt nur 5 Farben");
         }
+        if (name.equals("")) {
+            name = "BOT";
+        }
         this.name = name;
         this.or = or;
         this.lastor = or;
         this.score = 0;
-        this.window = window;
+        this.playerNr = playerNr;
         this.length = Configs.getConfigValue("bikelength");
         this.broadth = Configs.getConfigValue("bikebroadth");
         this.laserLength = Configs.getConfigValue("laserlength");
+        ready = false;
+        this.window = new PlayerWindow(new ReadyView(this), playerNr);
+        window.setTitle("Are you ready?");
+    }
+
+    public void startGame() {
+        window.changeView(m.getGraphic().getView());
+        window.setTitle(name + " - Level " + m.getLayer());
         Clock.getInstance().login(this);
     }
 
@@ -92,6 +107,14 @@ public class Bike implements Timed, Drawable {
         return window;
     }
 
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
+
     public void setLaserLength(int laserLength) {
         this.laserLength = laserLength;
     }
@@ -114,7 +137,7 @@ public class Bike implements Timed, Drawable {
         m = linkEndPoint.getM();
         x = linkEndPoint.getX();
         y = linkEndPoint.getY();
-        window.changeMatrix(m.getGraphic().getView());
+        window.changeView(m.getGraphic().getView());
         m.init();
         switch ((int) (Math.random() * 4)) {
             case 0:
@@ -133,6 +156,7 @@ public class Bike implements Timed, Drawable {
                 System.out.println("ERROR");
         }
         draw();
+        window.setTitle(name + " - Level " + m.getLayer());
     }
 
     @Override
@@ -284,15 +308,14 @@ public class Bike implements Timed, Drawable {
     public void die() {
         Clock.getInstance().logout(this);
         Tron.getInstance().getBikes().remove(this);
-        JOptionPane.showMessageDialog(null, name + " died with a score of " + score, "Death", JOptionPane.PLAIN_MESSAGE, null);
         length = broadth = Integer.max(length, broadth);
         undraw();
         updateBackground();
-        window.dispose();
+        window.changeView(new DeathView(this));
         if (Tron.getInstance().getBikes().size() == 1) {
-            JOptionPane.showMessageDialog(null, Tron.getInstance().getBikes().get(0).getName() + " won with a score of " + Tron.getInstance().getBikes().get(0).getScore(), "Win", JOptionPane.PLAIN_MESSAGE, null);
-            Tron.getInstance().getBikes().get(0).getWindow().dispose();
-            Tron.getInstance().stopGame();
+            Clock.getInstance().logout(Tron.getInstance().getBikes().get(0));
+            Tron.getInstance().getBikes().get(0).getWindow().changeView(new WinView(Tron.getInstance().getBikes().get(0)));
+            Tron.getInstance().getBikes().remove(0);
         }
     }
 

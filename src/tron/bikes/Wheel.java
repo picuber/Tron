@@ -40,6 +40,7 @@ public class Wheel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("d");
         if (control2KeyMode) {
             if (e.getKeyCode() == rightcode) {
                 b.turnRight();
