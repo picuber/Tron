@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import tron.Configs;
 import tron.Tron;
@@ -26,30 +28,38 @@ public class ReadyView extends View {
         int height = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 35;
         this.setSize(width, height);
 
-        READY.setLocation((width / 2) - (width / 5), (height / 2) - (height / 5));
-        READY.setPreferredSize(new Dimension((width / 5) * 2, (height / 5) * 2));
         READY.setMargin(new Insets(2, 2, 2, 2));
         READY.setBackground(Color.red);
+        READY.setText("I'M NOT READY YET!");
         READY.setFocusable(false);
         READY.addActionListener((ActionEvent e) -> {
             setReadyState(true, b);
 
         });
         READY.setFont(new Font("Consolas", Font.BOLD, 20));
-        this.add(READY);
 
-        UNREADY.setVisible(false);
-        UNREADY.setLocation((width / 2) - (width / 5), (height / 2) - (height / 5));
-        UNREADY.setPreferredSize(new Dimension((width / 5) * 2, (height / 5) * 2));
+        UNREADY.setVisible(false);//UNREADY.setPreferredSize(new Dimension((width / 5) * 2, (height / 5) * 2));
         UNREADY.setMargin(new Insets(2, 2, 2, 2));
         UNREADY.setBackground(Color.green);
+        UNREADY.setText("I AM READY!");
         UNREADY.setFocusable(false);
         UNREADY.addActionListener((ActionEvent e) -> {
             setReadyState(false, b);
 
         });
         UNREADY.setFont(new Font("Consolas", Font.BOLD, 20));
-        this.add(UNREADY);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        Box horizontalBox = Box.createHorizontalBox();
+        horizontalBox.add(Box.createHorizontalGlue());
+        horizontalBox.add(READY);
+        horizontalBox.add(UNREADY);
+        horizontalBox.add(Box.createHorizontalGlue());
+        Box verticalBox = Box.createVerticalBox();
+        verticalBox.add(Box.createVerticalGlue());
+        verticalBox.add(horizontalBox);
+        verticalBox.add(Box.createVerticalGlue());
+        this.add(verticalBox);
     }
 
     public void setReadyState(boolean ready, Bike b) {

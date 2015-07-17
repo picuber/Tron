@@ -3,6 +3,7 @@ package tron.views.messageView;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import tron.Configs;
 import tron.bikes.Bike;
 import tron.clock.Clock;
@@ -33,6 +34,8 @@ public abstract class EndMessageView extends View {
         MESSAGE.setText(message);
         MESSAGE.setForeground(c);
         MESSAGE.setFont(new Font("Consolas", Font.BOLD, 40));
+        MESSAGE.setHorizontalAlignment(SwingConstants.CENTER);
+        MESSAGE.setVerticalAlignment(SwingConstants.CENTER);
         this.add(MESSAGE);
         repaint();
         Clock.getInstance().login(this);
