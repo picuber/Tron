@@ -1,6 +1,7 @@
 package tron.views.messageView;
 
 import java.awt.Color;
+import tron.Tron;
 import tron.bikes.Bike;
 
 /**
@@ -16,7 +17,9 @@ public class DeathView extends EndMessageView {
     @Override
     public void tick() {
         repaint();
-        if (counter++ >= 500)
+        if (counter++ >= 500) {
             b.getWindow().dispose();
+            Tron.getInstance().getBikes().remove(b);
+        }
     }
 }

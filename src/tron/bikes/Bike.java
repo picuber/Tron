@@ -33,6 +33,7 @@ public class Bike implements Timed, Drawable {
     private Matrix m;
     private Orientation or, lastor;
     private boolean ready;
+    private boolean dead;
 
     private final String name;
     private final String color;
@@ -75,6 +76,7 @@ public class Bike implements Timed, Drawable {
         this.broadth = Configs.getConfigValue("bikebroadth");
         this.laserLength = Configs.getConfigValue("laserlength");
         ready = false;
+        dead = false;
         this.window = new PlayerWindow(new ReadyView(this), playerNr);
         window.setTitle("Are you ready?");
     }
@@ -109,6 +111,10 @@ public class Bike implements Timed, Drawable {
 
     public boolean isReady() {
         return ready;
+    }
+
+    public boolean isDead() {
+        return dead;
     }
 
     public void setReady(boolean ready) {
@@ -305,17 +311,27 @@ public class Bike implements Timed, Drawable {
 
     }
 
+    private int numberAlive() {
+        int numberAllPlayers = Tron.getInstance().getBikes().size();
+        int numberAlivePlayers = numberAllPlayers;
+        for (Bike b : Tron.getInstance().getBikes()) {
+            if (b.isDead()) {
+             numberAlivePlayers--;   
+            }
+        }
+        return numberAlivePlayers;
+    }
+
     public void die() {
         Clock.getInstance().logout(this);
-        Tron.getInstance().getBikes().remove(this);
+        dead = true;
         length = broadth = Integer.max(length, broadth);
         undraw();
         updateBackground();
         window.changeView(new DeathView(this));
-        if (Tron.getInstance().getBikes().size() == 1) {
+        if (numberAlive() == 1) {
             Clock.getInstance().logout(Tron.getInstance().getBikes().get(0));
             Tron.getInstance().getBikes().get(0).getWindow().changeView(new WinView(Tron.getInstance().getBikes().get(0)));
-            Tron.getInstance().getBikes().remove(0);
         }
     }
 
