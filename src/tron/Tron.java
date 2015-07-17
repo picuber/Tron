@@ -1,6 +1,7 @@
 package tron;
 
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import tron.clock.Clock;
 import tron.bikes.*;
 import tron.bikes.bots.*;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import tron.graphic.ImageManager;
 
 /**
  *
@@ -116,11 +118,12 @@ public class Tron {
     }
 
     private void initItems() {
-        try {
-            new Coin(ImageIO.read(new File("images/items/score.png")), 50, 50, 20, 20, world.get(0), 3);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        //try {
+            new Coin((BufferedImage)ImageManager.get("Coin"), 50, 50, 36, 36, world.get(0), 3);
+        //    //new Coin(ImageIO.read(new File("images/items/score.png")), 50, 50, 20, 20, world.get(0), 3);
+        //} catch (IOException ex) {
+        //    ex.printStackTrace();
+        //}
     }
 
     public List<Matrix> getWorld() {

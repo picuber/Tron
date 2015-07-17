@@ -34,12 +34,12 @@ public abstract class Item {
     }
 
     private void init() {
-        for (int i = x; i < elemente.length; i++) {
-            for (int j = y; j < elemente[0].length; j++) {
+        for (int i = 0; i < elemente.length; i++) {
+            for (int j = 0; j < elemente[0].length; j++) {
                 int imgX = i * subimgwidth;
                 int imgY = j * subimgheight;
                 BufferedImage sub = image.getSubimage(imgX, imgY, subimgwidth, subimgheight);
-                item.add(new ItemElement(this, i, j, sub, m));
+                item.add(new ItemElement(this, i+x, j+y, sub, m));
             }
         }
         item.stream().forEach((ie) -> {
