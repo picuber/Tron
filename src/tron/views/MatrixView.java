@@ -15,8 +15,8 @@ public class MatrixView extends View {
 
     public MatrixView(Image image) {
         this.image = image;
-        int x = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") + 6;
-        int y = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 35;
+        int x = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX");
+        int y = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY");
         this.setSize(x, y);
         Clock.getInstance().login(this);
     }

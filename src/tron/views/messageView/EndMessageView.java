@@ -25,8 +25,8 @@ public abstract class EndMessageView extends View {
         counter = 0;
         this.b = b;
         this.setBackground(Color.black);
-        int width = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") + 6;
-        int height = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 35;
+        int width = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") ;
+        int height = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") ;
         this.setSize(width, height);
 
         MESSAGE.setLocation(0, 0);
