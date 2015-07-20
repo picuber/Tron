@@ -47,6 +47,8 @@ public class Credits extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -61,7 +63,7 @@ public class Credits extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel3.setText("Maxi , Creative Director");
+        jLabel3.setText("Maxi Maier , Creative Director");
 
         jLabel4.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
@@ -78,6 +80,9 @@ public class Credits extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("Michael Jungmair ,...");
+                jLabel8.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel8.setText("Tobias Fischer ,...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +101,8 @@ public class Credits extends javax.swing.JFrame {
                                                 .addComponent(jLabel4)
                                                 .addComponent(jLabel5)
                                                 .addComponent(jLabel6)
-                                                .addComponent(jLabel7))))
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel8))))
                         .addContainerGap(308, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,7 +121,9 @@ public class Credits extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                                          .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
                         .addContainerGap(113, Short.MAX_VALUE))
         );
 
@@ -156,5 +164,6 @@ public class Credits extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
