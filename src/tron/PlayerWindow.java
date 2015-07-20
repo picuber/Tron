@@ -37,7 +37,6 @@ public class PlayerWindow extends JFrame {
                 Tron.getInstance().stopGame();
             }
         });
-        System.out.println(this.getSize());
         this.pack();
         this.setLocation(getPosition(playerNr));
         this.setVisible(true);

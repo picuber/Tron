@@ -5,7 +5,7 @@ import tron.clock.Clock;
 import tron.bikes.*;
 import tron.bikes.bots.*;
 import tron.graphic.MatrixGraphic;
-import tron.items.Coin;
+import tron.items.*;
 import tron.fields.FixedLinkField;
 import tron.fields.LinkField;
 import java.util.ArrayList;
@@ -43,17 +43,17 @@ public class Tron {
             Tron.getInstance().stopGame();
             return;
         }
-        for (Matrix w : world) {
+        world.stream().forEach((w) -> {
             w.init();
-        }
+        });
         initLinks();
         initItems();
     }
 
     public void finallyStart() {
-        for (Bike b : bikes) {
+        bikes.stream().forEach((b) -> {
             b.startGame();
-        }
+        });
         Clock.getInstance().resetGamespeed();
         Clock.getInstance().start();
     }
@@ -87,11 +87,11 @@ public class Tron {
         }
         for (int i = 0; i < bikes.size(); i++) {
             PlayerStartConfig config = Configs.getPlayers()[i];
-            if (config.getMode() == PlayerStartConfig.MODE.TWOKEY) {
+            if (!config.getName().equals("") && config.getMode() == PlayerStartConfig.MODE.TWOKEY) {
                 for (Bike b : bikes) {
                     b.getWindow().addKeyListener(new Wheel(bikes.get(i), config.getRightcode(), config.getLeftcode()));
                 }
-            } else if (config.getMode() == PlayerStartConfig.MODE.FOURKEY) {
+            } else if (!config.getName().equals("") && config.getMode() == PlayerStartConfig.MODE.FOURKEY) {
                 for (Bike b : bikes) {
                     b.getWindow().addKeyListener(new Wheel(bikes.get(i), config.getRightcode(), config.getLeftcode(), config.getUpcode(), config.getDowncode()));
                 }
@@ -110,16 +110,21 @@ public class Tron {
             mPos = Math.abs(r.nextInt() % Configs.getConfigValue("height"));
             links.add(new LinkField(Tron.getInstance().getWorld().get(mPos), xPos, yPos));
         }
-        new FixedLinkField(Tron.getInstance().world.get(0), 1, 1, Tron.getInstance().world.get(1), 1, 1);
+        initInterLayerLinks();
+    }
+
+    private void initInterLayerLinks() {
+        for (int i = 0; i < world.size() - 1; i++) {
+            new FixedLinkField(Tron.getInstance().world.get(i), 1, 1, Tron.getInstance().world.get(i + 1), 1, 1);
+        }
     }
 
     private void initItems() {
-        //try {
-            new Coin((BufferedImage)ImageManager.get("Coin"), 50, 50, 36, 36, world.get(0), 3);
-        //    //new Coin(ImageIO.read(new File("images/items/score.png")), 50, 50, 20, 20, world.get(0), 3);
-        //} catch (IOException ex) {
-        //    ex.printStackTrace();
-        //}
+        new Coin((BufferedImage) ImageManager.get("Coin36"), 50, 50, 36, 36, world.get(0), 1);
+        new Coin((BufferedImage) ImageManager.get("Coin22"), 100, 50, 22, 22, world.get(0), 2);
+        new Coin((BufferedImage) ImageManager.get("Coin16"), 50, 100, 16, 16, world.get(0), 3);
+        new ShorterLaser((BufferedImage) ImageManager.get("ShortLaser36"), 100, 100, 36, 36, world.get(0), 100);
+        new LongerLaser((BufferedImage) ImageManager.get("LongLaser36"), 50, 150, 36, 36, world.get(0), 100);
     }
 
     public List<Matrix> getWorld() {

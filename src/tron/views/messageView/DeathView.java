@@ -19,7 +19,6 @@ public class DeathView extends EndMessageView {
         repaint();
         if (counter++ >= 500) {
             b.getWindow().dispose();
-            Tron.getInstance().getBikes().remove(b);
         }
     }
 }

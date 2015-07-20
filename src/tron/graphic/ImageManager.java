@@ -52,9 +52,11 @@ public class ImageManager {
     public static void load() throws IOException {
         images.put("Background", ImageIO.read(new File("images/BikeBackground.jpg")));
         images.put("Raster", ImageIO.read(new File("images/Raster.jpg")));
-        images.put("Coin", ImageIO.read(new File("images/items/coin.png")));
-        images.put("ShortLaser", ImageIO.read(new File("images/items/lasershort.png")));
-        images.put("LongLaser", ImageIO.read(new File("images/items/laserlong.png")));
+        images.put("Coin16", ImageIO.read(new File("images/items/coin/16.png")));
+        images.put("Coin22", ImageIO.read(new File("images/items/coin/22.png")));
+        images.put("Coin36", ImageIO.read(new File("images/items/coin/36.png")));
+        images.put("ShortLaser36", ImageIO.read(new File("images/items/lasershort/36.png")));
+        images.put("LongLaser36", ImageIO.read(new File("images/items/laserlong/36.png")));
     }
 
     public static Image get(String imgname) {

@@ -19,7 +19,6 @@ public class WinView extends EndMessageView {
         repaint();
         if (counter++ >= 510) {
             b.getWindow().dispose();
-            Tron.getInstance().getBikes().remove(b);
             Tron.getInstance().stopGame();
         }
     }
