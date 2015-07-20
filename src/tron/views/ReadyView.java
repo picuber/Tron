@@ -24,8 +24,8 @@ public class ReadyView extends View {
     public ReadyView(Bike b) {
         super();
         this.setBackground(Color.black);
-        int width = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") + 6;
-        int height = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 35;
+        int width = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX");
+        int height = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY");
         this.setSize(width, height);
 
         READY.setMargin(new Insets(2, 2, 2, 2));

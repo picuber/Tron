@@ -24,10 +24,10 @@ public class PlayerWindow extends JFrame {
             this.setUndecorated(true);
         }
         this.add(view);
-        this.setSize(view.getSize().width, view.getSize().height);
+        this.getContentPane().setPreferredSize(new Dimension(view.getSize().width, view.getSize().height));
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.setResizable(false);
-        this.setLocation(getPosition(playerNr));
+        
+        
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
@@ -37,8 +37,11 @@ public class PlayerWindow extends JFrame {
                 Tron.getInstance().stopGame();
             }
         });
-
+        System.out.println(this.getSize());
+        this.pack();
+        this.setLocation(getPosition(playerNr));
         this.setVisible(true);
+        this.setResizable(false);
     }
 
     private Point getPosition(int playerNr) {
