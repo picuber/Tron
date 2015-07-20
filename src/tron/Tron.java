@@ -115,7 +115,7 @@ public class Tron {
 
     private void initInterLayerLinks() {
         for (int i = 0; i < world.size() - 1; i++) {
-            new FixedLinkField(Tron.getInstance().world.get(i), 1, 1, Tron.getInstance().world.get(i + 1), 1, 1);
+            new FixedLinkField(Tron.getInstance().world.get(i), 1, 1, Tron.getInstance().world.get(i + 1), Configs.getConfigValue("sizeX") - 2, Configs.getConfigValue("sizeY") - 2);
         }
     }
 
