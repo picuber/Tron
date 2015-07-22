@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class GameScore {
 
-    private List<GameSingleScore> scoreList;
+    private final List<GameSingleScore> scoreList;
 
     public GameScore() {
         scoreList = new ArrayList<>();
@@ -21,6 +21,12 @@ public class GameScore {
 
     public List<GameSingleScore> getScoreList() {
         return scoreList;
+    }
+
+    public void uploadToDB() {
+        scoreList.stream().forEach((gss) -> {
+            gss.uploadToDB();
+        });
     }
 
     @Override

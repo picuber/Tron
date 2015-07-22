@@ -65,6 +65,7 @@ public class Tron {
         Clock.getInstance().stop();
         Clock.getInstance().emptyClients();
         System.out.println(scoreList);
+        scoreList.uploadToDB();
         Tron.getInstance().world = new ArrayList<>();
         Tron.getInstance().bikes = new ArrayList<>();
         Tron.getInstance().links = new ArrayList<>();

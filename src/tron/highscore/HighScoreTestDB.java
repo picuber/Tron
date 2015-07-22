@@ -1,6 +1,5 @@
 package tron.highscore;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,32 +10,32 @@ import java.util.List;
  */
 public class HighScoreTestDB implements HighScoreDB {
 
-    List<HighscoreDef> highscore;
+    List<HighscoreEntry> highscore;
 
     public HighScoreTestDB() {
         highscore = new ArrayList<>();
-        highscore.add(new HighscoreDef("[1]", 1));
-        highscore.add(new HighscoreDef("[1]", 2));
-        highscore.add(new HighscoreDef("[1]", 4));
-        highscore.add(new HighscoreDef("[2]", 1));
-        highscore.add(new HighscoreDef("[2]", 2));
-        highscore.add(new HighscoreDef("[2]", 4));
-        highscore.add(new HighscoreDef("[3]", 1));
-        highscore.add(new HighscoreDef("[3]", 2));
-        highscore.add(new HighscoreDef("[3]", 4));
+        highscore.add(new HighscoreEntry("[1]", 1));
+        highscore.add(new HighscoreEntry("[1]", 2));
+        highscore.add(new HighscoreEntry("[1]", 4));
+        highscore.add(new HighscoreEntry("[2]", 1));
+        highscore.add(new HighscoreEntry("[2]", 2));
+        highscore.add(new HighscoreEntry("[2]", 4));
+        highscore.add(new HighscoreEntry("[3]", 1));
+        highscore.add(new HighscoreEntry("[3]", 2));
+        highscore.add(new HighscoreEntry("[3]", 4));
     }
 
     @Override
     public void insert(int score, String name) {
-        highscore.add(new HighscoreDef(name, score));
+        highscore.add(new HighscoreEntry(name, score));
     }
 
     @Override
-    public List<HighscoreDef> topten() {
-        List<HighscoreDef> res = new ArrayList<>();
+    public List<HighscoreEntry> getTopTen() {
+        List<HighscoreEntry> res = new ArrayList<>();
         Collections.sort(highscore);
         int counter = 0;
-        for (HighscoreDef hd : highscore) {
+        for (HighscoreEntry hd : highscore) {
             if (counter++ == 10) {
                 break;
             }
@@ -46,11 +45,11 @@ public class HighScoreTestDB implements HighScoreDB {
     }
 
     @Override
-    public List<HighscoreDef> topten(String name) {
-        List<HighscoreDef> res = new ArrayList<>();
+    public List<HighscoreEntry> getTopTen(String name) {
+        List<HighscoreEntry> res = new ArrayList<>();
         Collections.sort(highscore);
         int counter = 0;
-        for (HighscoreDef hd : highscore) {
+        for (HighscoreEntry hd : highscore) {
             if (counter++ == 10) {
                 break;
             }

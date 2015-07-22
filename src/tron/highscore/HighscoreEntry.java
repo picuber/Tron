@@ -1,17 +1,17 @@
 package tron.highscore;
 
-
 /**
  *
  * @author michael
  */
-public class HighscoreDef implements Comparable<HighscoreDef>{
+public class HighscoreEntry implements Comparable<HighscoreEntry> {
+
     private String name;
     private int score;
-    
-    public HighscoreDef(String name, int score){
-        this.name=name;
-        this.score=score;
+
+    public HighscoreEntry(String name, int score) {
+        this.name = name;
+        this.score = score;
     }
 
     /**
@@ -42,16 +42,14 @@ public class HighscoreDef implements Comparable<HighscoreDef>{
         this.score = score;
     }
 
-   
     @Override
-    public int compareTo(HighscoreDef o) {
-        return (int) Math.signum(score-o.score)*-1;
+    public int compareTo(HighscoreEntry o) {
+        return (int) Math.signum(score - o.score) * -1;
     }
 
     @Override
     public String toString() {
         return "HighscoreDef{" + "name=" + name + ", score=" + score + '}';
     }
-    
-    
+
 }
