@@ -1,4 +1,4 @@
-package tron.fields;
+package tron.fields.links;
 
 import tron.Matrix;
 import tron.bikes.Bike;

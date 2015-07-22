@@ -6,13 +6,14 @@ import tron.bikes.*;
 import tron.bikes.bots.*;
 import tron.graphic.MatrixGraphic;
 import tron.items.*;
-import tron.fields.FixedLinkField;
-import tron.fields.LinkField;
+import tron.fields.links.FixedLinkField;
+import tron.fields.links.LinkField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import tron.graphic.ImageManager;
+import tron.highscore.GameScore;
 
 /**
  *
@@ -24,11 +25,13 @@ public class Tron {
     private List<Matrix> world;
     private List<Bike> bikes;
     private List<LinkField> links;
+    private GameScore scoreList;
 
     Tron() {
         world = new ArrayList<>();
         bikes = new ArrayList<>();
         links = new ArrayList<>();
+        scoreList = new GameScore();
     }
 
     public static Tron getInstance() {
@@ -61,9 +64,11 @@ public class Tron {
     public void stopGame() {
         Clock.getInstance().stop();
         Clock.getInstance().emptyClients();
+        System.out.println(scoreList);
         Tron.getInstance().world = new ArrayList<>();
         Tron.getInstance().bikes = new ArrayList<>();
         Tron.getInstance().links = new ArrayList<>();
+        Tron.getInstance().scoreList = new GameScore();
         Startpage.getInstance().setVisible(true);
     }
 
@@ -86,7 +91,7 @@ public class Tron {
             }
         }
         for (int i = 0; i < bikes.size(); i++) {
-            PlayerStartConfig config = Configs.getPlayers()[i];
+            PlayerStartConfig config = Configs.getPlayers()[bikes.get(i).getPlayerNr()];
             if (!config.getName().equals("") && config.getMode() == PlayerStartConfig.MODE.TWOKEY) {
                 for (Bike b : bikes) {
                     b.getWindow().addKeyListener(new Wheel(bikes.get(i), config.getRightcode(), config.getLeftcode()));
@@ -137,6 +142,10 @@ public class Tron {
 
     public List<LinkField> getLinks() {
         return links;
+    }
+
+    public GameScore getScoreList() {
+        return scoreList;
     }
 
 }

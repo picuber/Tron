@@ -10,10 +10,11 @@ import tron.clock.Timed;
 import tron.graphic.Drawable;
 import tron.fields.Field;
 import tron.fields.LaserField;
-import tron.fields.LinkField;
+import tron.fields.links.LinkField;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import tron.highscore.GameSingleScore;
 import tron.views.ReadyView;
 import tron.views.messageView.DeathView;
 import tron.views.messageView.WinView;
@@ -45,25 +46,7 @@ public class Bike implements Timed, Drawable {
         this.x = x;
         this.y = y;
         this.color = color;
-        switch (color) {
-            case "lilac":
-                c = new Color(110, 9, 103);
-                break;
-            case "green":
-                c = Color.GREEN;
-                break;
-            case "blue":
-                c = Color.BLUE;
-                break;
-            case "orange":
-                c = Color.ORANGE;
-                break;
-            case "red":
-                c = Color.red;
-                break;
-            default:
-                throw new RuntimeException("Du dummer Idiot! Es gibt nur 5 Farben");
-        }
+        c = getColorFromString(color);
         if (name.equals("")) {
             name = "BOT";
         }
@@ -87,6 +70,23 @@ public class Bike implements Timed, Drawable {
         Clock.getInstance().login(this);
     }
 
+    public static Color getColorFromString(String color) {
+        switch (color) {
+            case "lilac":
+                return new Color(110, 9, 103);
+            case "green":
+                return Color.GREEN;
+            case "blue":
+                return Color.BLUE;
+            case "orange":
+                return Color.ORANGE;
+            case "red":
+                return Color.red;
+            default:
+                throw new RuntimeException("Du dummer Idiot! Es gibt nur 5 Farben");
+        }
+    }
+
     @Override
     public int getX() {
         return x;
@@ -107,6 +107,10 @@ public class Bike implements Timed, Drawable {
 
     public PlayerWindow getWindow() {
         return window;
+    }
+
+    public int getPlayerNr() {
+        return playerNr;
     }
 
     public boolean isReady() {
@@ -316,10 +320,21 @@ public class Bike implements Timed, Drawable {
         int numberAlivePlayers = numberAllPlayers;
         for (Bike b : Tron.getInstance().getBikes()) {
             if (b.isDead()) {
-             numberAlivePlayers--;   
+                numberAlivePlayers--;
             }
         }
         return numberAlivePlayers;
+    }
+
+    private Bike getWinner() {
+        if (numberAlive() == 1) {
+            for (Bike b : Tron.getInstance().getBikes()) {
+                if (!b.isDead()) {
+                    return b;
+                }
+            }
+        }
+        return null;
     }
 
     public void die() {
@@ -329,9 +344,19 @@ public class Bike implements Timed, Drawable {
         undraw();
         updateBackground();
         window.changeView(new DeathView(this));
+        Tron.getInstance().getScoreList().add(new GameSingleScore(name, score, false));
+
+        for (Bike b : Tron.getInstance().getBikes()) {
+            if (!b.isDead()) {
+                b.score++;
+            }
+        }
+
         if (numberAlive() == 1) {
-            Clock.getInstance().logout(Tron.getInstance().getBikes().get(0));
-            Tron.getInstance().getBikes().get(0).getWindow().changeView(new WinView(Tron.getInstance().getBikes().get(0)));
+            Bike winner = getWinner();
+            Clock.getInstance().logout(winner);
+            winner.getWindow().changeView(new WinView(winner));
+            Tron.getInstance().getScoreList().add(new GameSingleScore(winner.getName(), winner.getScore(), true));
         }
     }
 

@@ -1,5 +1,4 @@
-package tron.fields;
-
+package tron.fields.links;
 
 import tron.Tron;
 import tron.Configs;
@@ -9,6 +8,7 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.Random;
 import tron.bikes.Bike;
+import tron.fields.Field;
 
 /**
  *
@@ -22,6 +22,7 @@ public class LinkField extends Field {
         this.y = y;
         this.m.setField(x, y, this);
         draw();
+        System.out.println("Link at (" + x + "|" + y + "|" + m.getLayer()+ ")");
     }
 
     public Matrix getM() {

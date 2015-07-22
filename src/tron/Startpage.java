@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+import tron.bikes.Bike;
 import tron.graphic.ImageManager;
 
 /**
@@ -68,7 +69,6 @@ public class Startpage extends JFrame {
         names[0].setBounds(25, 300, 150, 25);
         names[0].setFont(new Font("Consolas", Font.PLAIN, 12));
         names[0].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        names[0].setBackground(Color.WHITE);
         names[0].setToolTipText("Enter your name, program!");
         names[0].addActionListener((ActionEvent evt) -> {
             Configs.setPlayerName(names[0].getText(), 1);
@@ -76,6 +76,21 @@ public class Startpage extends JFrame {
         this.add(names[0]);
 
         mode[0].setBounds(25, 275, 150, 25);
+        PlayerStartConfig player0 = Configs.getPlayers()[0];
+        mode[0].setBackground(Bike.getColorFromString(player0.getColor()));
+        mode[0].setToolTipText("<html>"
+                + "TWOKEY: controling your bike with"
+                + " left (" + KeyEvent.getKeyText(player0.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player0.getRightcode()) + ")"
+                + "<br>"
+                + "FOURKEY: controling your bike with"
+                + " up (" + KeyEvent.getKeyText(player0.getUpcode()) + ")"
+                + " down (" + KeyEvent.getKeyText(player0.getDowncode()) + ")"
+                + " left (" + KeyEvent.getKeyText(player0.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player0.getRightcode()) + ")"
+                + "<br>"
+                + "BOT: the computer drives this bike"
+                + "</html>");
         mode[0].addItem(PlayerStartConfig.MODE.TWOKEY);
         mode[0].addItem(PlayerStartConfig.MODE.FOURKEY);
         mode[0].addItem(PlayerStartConfig.MODE.BOT);
@@ -84,7 +99,6 @@ public class Startpage extends JFrame {
         names[1].setBounds(225, 300, 150, 25);
         names[1].setFont(new Font("Consolas", Font.PLAIN, 12));
         names[1].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        names[1].setBackground(Color.WHITE);
         names[1].setToolTipText("Enter your name, program!");
         names[1].addActionListener((ActionEvent evt) -> {
             Configs.setPlayerName(names[1].getText(), 2);
@@ -92,6 +106,21 @@ public class Startpage extends JFrame {
         this.add(names[1]);
 
         mode[1].setBounds(225, 275, 150, 25);
+        PlayerStartConfig player1 = Configs.getPlayers()[1];
+        mode[1].setBackground(Bike.getColorFromString(player1.getColor()));
+        mode[1].setToolTipText("<html>"
+                + "TWOKEY: controling your bike with"
+                + " left (" + KeyEvent.getKeyText(player1.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player1.getRightcode()) + ")"
+                + "<br>"
+                + "FOURKEY: controling your bike with"
+                + " up (" + KeyEvent.getKeyText(player1.getUpcode()) + ")"
+                + " down (" + KeyEvent.getKeyText(player1.getDowncode()) + ")"
+                + " left (" + KeyEvent.getKeyText(player1.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player1.getRightcode()) + ")"
+                + "<br>"
+                + "BOT: the computer drives this bike"
+                + "</html>");
         mode[1].addItem(PlayerStartConfig.MODE.TWOKEY);
         mode[1].addItem(PlayerStartConfig.MODE.FOURKEY);
         mode[1].addItem(PlayerStartConfig.MODE.BOT);
@@ -100,7 +129,6 @@ public class Startpage extends JFrame {
         names[2].setBounds(425, 300, 150, 25);
         names[2].setFont(new Font("Consolas", Font.PLAIN, 12));
         names[2].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        names[2].setBackground(Color.WHITE);
         names[2].setToolTipText("Enter your name, program!");
         names[2].addActionListener((ActionEvent evt) -> {
             Configs.setPlayerName(names[2].getText(), 3);
@@ -108,6 +136,21 @@ public class Startpage extends JFrame {
         this.add(names[2]);
 
         mode[2].setBounds(425, 275, 150, 25);
+        PlayerStartConfig player2 = Configs.getPlayers()[2];
+        mode[2].setBackground(Bike.getColorFromString(player2.getColor()));
+        mode[2].setToolTipText("<html>"
+                + "TWOKEY: controling your bike with"
+                + " left (" + KeyEvent.getKeyText(player2.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player2.getRightcode()) + ")"
+                + "<br>"
+                + "FOURKEY: controling your bike with"
+                + " up (" + KeyEvent.getKeyText(player2.getUpcode()) + ")"
+                + " down (" + KeyEvent.getKeyText(player2.getDowncode()) + ")"
+                + " left (" + KeyEvent.getKeyText(player2.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player2.getRightcode()) + ")"
+                + "<br>"
+                + "BOT: the computer drives this bike"
+                + "</html>");
         mode[2].addItem(PlayerStartConfig.MODE.TWOKEY);
         mode[2].addItem(PlayerStartConfig.MODE.FOURKEY);
         mode[2].addItem(PlayerStartConfig.MODE.BOT);
@@ -116,7 +159,6 @@ public class Startpage extends JFrame {
         names[3].setBounds(625, 300, 150, 25);
         names[3].setFont(new Font("Consolas", Font.PLAIN, 12));
         names[3].setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        names[3].setBackground(Color.WHITE);
         names[3].setToolTipText("Enter your name, program!");
         names[3].addActionListener((ActionEvent evt) -> {
             Configs.setPlayerName(names[3].getText(), 4);
@@ -124,6 +166,21 @@ public class Startpage extends JFrame {
         this.add(names[3]);
 
         mode[3].setBounds(625, 275, 150, 25);
+        PlayerStartConfig player3 = Configs.getPlayers()[3];
+        mode[3].setBackground(Bike.getColorFromString(player3.getColor()));
+        mode[3].setToolTipText("<html>"
+                + "TWOKEY: controling your bike with"
+                + " left (" + KeyEvent.getKeyText(player3.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player3.getRightcode()) + ")"
+                + "<br>"
+                + "FOURKEY: controling your bike with"
+                + " up (" + KeyEvent.getKeyText(player3.getUpcode()) + ")"
+                + " down (" + KeyEvent.getKeyText(player3.getDowncode()) + ")"
+                + " left (" + KeyEvent.getKeyText(player3.getLeftcode()) + ")"
+                + " and right (" + KeyEvent.getKeyText(player3.getRightcode()) + ")"
+                + "<br>"
+                + "BOT: the computer drives this bike"
+                + "</html>");
         mode[3].addItem(PlayerStartConfig.MODE.TWOKEY);
         mode[3].addItem(PlayerStartConfig.MODE.FOURKEY);
         mode[3].addItem(PlayerStartConfig.MODE.BOT);
