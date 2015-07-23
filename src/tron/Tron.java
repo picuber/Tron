@@ -126,11 +126,11 @@ public class Tron {
     }
 
     private void initItems() {
-        new Coin((BufferedImage) ImageManager.get("Coin36"), 50, 50, 36, 36, world.get(0), 1);
-        new Coin((BufferedImage) ImageManager.get("Coin22"), 100, 50, 22, 22, world.get(0), 2);
-        new Coin((BufferedImage) ImageManager.get("Coin16"), 50, 100, 16, 16, world.get(0), 3);
-        new ShorterLaser((BufferedImage) ImageManager.get("ShortLaser36"), 100, 100, 36, 36, world.get(0), 100);
-        new LongerLaser((BufferedImage) ImageManager.get("LongLaser36"), 50, 150, 36, 36, world.get(0), 100);
+        new Coin(50, 50, world.get(0), Item.Size.LARGE, 1);
+        new Coin(100, 50, world.get(0), Item.Size.MEDIUM, 2);
+        new Coin(50, 100, world.get(0), Item.Size.SMALL, 3);
+        new ShorterLaser(100, 100, world.get(0), Item.Size.LARGE, 100);
+        new LongerLaser(50, 150, world.get(0), Item.Size.LARGE, 100);
     }
 
     public List<Matrix> getWorld() {

@@ -16,8 +16,8 @@ public class MatrixGraphic {
     private Image image;
 
     public void init() {
-        int pX = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX") + 18;
-        int pY = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY") + 47;
+        int pX = Configs.getConfigValue("sizeX") * Configs.getConfigValue("scaleX");
+        int pY = Configs.getConfigValue("sizeY") * Configs.getConfigValue("scaleY");
         image = new BufferedImage(pX, pY, BufferedImage.TYPE_INT_RGB);
         bufferGraphics = image.getGraphics();
     }

@@ -3,6 +3,7 @@ package tron.items;
 import tron.Matrix;
 import java.awt.image.BufferedImage;
 import tron.bikes.Bike;
+import tron.graphic.ImageManager;
 
 /**
  *
@@ -12,8 +13,8 @@ public class ShorterLaser extends Item {
 
     private final int value;
 
-    public ShorterLaser(BufferedImage image, int x, int y, int height, int width, Matrix m, int value) {
-        super(image, x, y, height, width, m);
+    public ShorterLaser(int x, int y, Matrix m, Size size, int value) {
+        super((BufferedImage) ImageManager.get("ShortLaser" + size), x, y, size, m);
         this.value = value;
     }
 
