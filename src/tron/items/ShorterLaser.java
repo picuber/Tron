@@ -11,15 +11,26 @@ import tron.graphic.ImageManager;
  */
 public class ShorterLaser extends Item {
 
-    private final int value;
-
-    public ShorterLaser(int x, int y, Matrix m, Size size, int value) {
+    public ShorterLaser(int x, int y, Matrix m, Size size) {
         super((BufferedImage) ImageManager.get("ShortLaser" + size), x, y, size, m);
-        this.value = value;
     }
 
     @Override
     protected void doEffect(Bike b) {
         b.subLaserLength(value);
+    }
+
+    @Override
+    protected int getValue(Size s) {
+        switch (s) {
+            case SMALL:
+                return 100;
+            case MEDIUM:
+                return 50;
+            case LARGE:
+                return 25;
+            default:
+                return 0;
+        }
     }
 }

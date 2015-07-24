@@ -28,6 +28,7 @@ public class Configs {
         configs.put("botRandomness", 1000);
         configs.put("numberLinks", 5);
         configs.put("windowNotVisible", 0);
+        configs.put("itemSpawningFrequency", 500);
         players = new PlayerStartConfig[4];
         resetDefaultConfigPlayers();
     }

@@ -1,6 +1,5 @@
 package tron;
 
-import java.awt.image.BufferedImage;
 import tron.clock.Clock;
 import tron.bikes.*;
 import tron.bikes.bots.*;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import tron.graphic.ImageManager;
 import tron.highscore.GameScore;
 
 /**
@@ -43,7 +41,7 @@ public class Tron {
         initPlayers();
         if (Tron.getInstance().bikes.size() <= 1) {
             JOptionPane.showMessageDialog(null, "Not enougth Players or Bots", "WARNING", JOptionPane.PLAIN_MESSAGE, null);
-            Tron.getInstance().stopGame();
+            Tron.getInstance().stopGame(true);
             return;
         }
         world.stream().forEach((w) -> {
@@ -61,11 +59,16 @@ public class Tron {
         Clock.getInstance().start();
     }
 
-    public void stopGame() {
+    public void stopGame(boolean aborted) {
         Clock.getInstance().stop();
         Clock.getInstance().emptyClients();
         System.out.println(scoreList);
-        scoreList.uploadToDB();
+        if (!aborted) {
+            scoreList.uploadToDB();
+        }
+        bikes.stream().forEach((b) -> {
+            b.getWindow().dispose();
+        });
         Tron.getInstance().world = new ArrayList<>();
         Tron.getInstance().bikes = new ArrayList<>();
         Tron.getInstance().links = new ArrayList<>();
@@ -83,10 +86,11 @@ public class Tron {
     }
 
     private void initPlayers() {
+        int playerWindowNr = 0;
         for (int i = 0; i < 4; i++) {
             PlayerStartConfig config = Configs.getPlayers()[i];
             if (!config.getName().equals("") || config.getMode() == PlayerStartConfig.MODE.BOT) {
-                Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr(), i);
+                Bike b = new Bike(config.getX(), config.getY(), config.getColor(), config.getName(), Tron.getInstance().world.get(config.getMatrix()), config.getOr(), i, playerWindowNr++, config.getMode() == PlayerStartConfig.MODE.BOT);
                 Tron.getInstance().world.get(config.getMatrix()).init();
                 Tron.getInstance().bikes.add(b);
             }
@@ -126,11 +130,12 @@ public class Tron {
     }
 
     private void initItems() {
-        new Coin(50, 50, world.get(0), Item.Size.LARGE, 1);
-        new Coin(100, 50, world.get(0), Item.Size.MEDIUM, 2);
-        new Coin(50, 100, world.get(0), Item.Size.SMALL, 3);
-        new ShorterLaser(100, 100, world.get(0), Item.Size.LARGE, 100);
-        new LongerLaser(50, 150, world.get(0), Item.Size.LARGE, 100);
+        //new Coin(50, 50, world.get(0), Item.Size.LARGE);
+        //new Coin(100, 50, world.get(0), Item.Size.MEDIUM);
+        //new Coin(50, 100, world.get(0), Item.Size.SMALL);
+        //new ShorterLaser(100, 100, world.get(0), Item.Size.LARGE);
+        //new LongerLaser(50, 150, world.get(0), Item.Size.LARGE);
+        new ItemGenerator();
     }
 
     public List<Matrix> getWorld() {

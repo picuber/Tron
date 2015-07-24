@@ -11,15 +11,26 @@ import tron.graphic.ImageManager;
  */
 public class Coin extends Item {
 
-    private final int value;
-
-    public Coin(int x, int y, Matrix m, Size size, int value) {
+    public Coin(int x, int y, Matrix m, Size size) {
         super((BufferedImage) ImageManager.get("Coin" + size), x, y, size, m);
-        this.value = value;
     }
 
     @Override
     protected void doEffect(Bike b) {
         b.score(value);
+    }
+
+    @Override
+    protected int getValue(Size s) {
+        switch (s) {
+            case SMALL:
+                return 3;
+            case MEDIUM:
+                return 2;
+            case LARGE:
+                return 1;
+            default:
+                return 0;
+        }
     }
 }

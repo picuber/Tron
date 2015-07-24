@@ -40,8 +40,9 @@ public class Bike implements Timed, Drawable {
     private final String color;
     private final int playerNr;
     private final PlayerWindow window;
+    private final boolean bot;
 
-    public Bike(int x, int y, String color, String name, Matrix m, Orientation or, int playerNr) {
+    public Bike(int x, int y, String color, String name, Matrix m, Orientation or, int playerNr, int playerWindowNr, boolean bot) {
         this.m = m;
         this.x = x;
         this.y = y;
@@ -55,12 +56,13 @@ public class Bike implements Timed, Drawable {
         this.lastor = or;
         this.score = 0;
         this.playerNr = playerNr;
+        this.bot = bot;
         this.length = Configs.getConfigValue("bikelength");
         this.broadth = Configs.getConfigValue("bikebroadth");
         this.laserLength = Configs.getConfigValue("laserlength");
         ready = false;
         dead = false;
-        this.window = new PlayerWindow(new ReadyView(this), playerNr);
+        this.window = new PlayerWindow(new ReadyView(this), playerWindowNr);
         window.setTitle("Are you ready?");
     }
 
@@ -111,6 +113,10 @@ public class Bike implements Timed, Drawable {
 
     public int getPlayerNr() {
         return playerNr;
+    }
+
+    public Color getColor() {
+        return c;
     }
 
     public boolean isReady() {
@@ -220,6 +226,10 @@ public class Bike implements Timed, Drawable {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isBot() {
+        return bot;
     }
 
     public enum Orientation {
@@ -344,7 +354,7 @@ public class Bike implements Timed, Drawable {
         undraw();
         updateBackground();
         window.changeView(new DeathView(this));
-        Tron.getInstance().getScoreList().add(new GameSingleScore(name, score, false));
+        Tron.getInstance().getScoreList().add(new GameSingleScore(name, score, false, bot));
 
         for (Bike b : Tron.getInstance().getBikes()) {
             if (!b.isDead()) {
@@ -356,7 +366,7 @@ public class Bike implements Timed, Drawable {
             Bike winner = getWinner();
             Clock.getInstance().logout(winner);
             winner.getWindow().changeView(new WinView(winner));
-            Tron.getInstance().getScoreList().add(new GameSingleScore(winner.getName(), winner.getScore(), true));
+            Tron.getInstance().getScoreList().add(new GameSingleScore(winner.getName(), winner.getScore(), true, winner.isBot()));
         }
     }
 

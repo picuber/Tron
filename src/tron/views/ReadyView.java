@@ -30,6 +30,7 @@ public class ReadyView extends View {
 
         READY.setMargin(new Insets(2, 2, 2, 2));
         READY.setBackground(Color.red);
+        READY.setForeground(b.getColor());
         READY.setText("I'M NOT READY YET!");
         READY.setFocusable(false);
         READY.addActionListener((ActionEvent e) -> {
@@ -41,6 +42,7 @@ public class ReadyView extends View {
         UNREADY.setVisible(false);//UNREADY.setPreferredSize(new Dimension((width / 5) * 2, (height / 5) * 2));
         UNREADY.setMargin(new Insets(2, 2, 2, 2));
         UNREADY.setBackground(Color.green);
+        UNREADY.setForeground(b.getColor());
         UNREADY.setText("I AM READY!");
         UNREADY.setFocusable(false);
         UNREADY.addActionListener((ActionEvent e) -> {

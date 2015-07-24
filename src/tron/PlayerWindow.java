@@ -34,7 +34,7 @@ public class PlayerWindow extends JFrame {
                 Tron.getInstance().getBikes().stream().forEach((b) -> {
                     b.getWindow().dispose();
                 });
-                Tron.getInstance().stopGame();
+                Tron.getInstance().stopGame(true);
             }
         });
         this.pack();

@@ -21,10 +21,13 @@ public abstract class Item {
     private final int x, y;
     private final Matrix m;
 
+    protected final int value;
+
     public Item(BufferedImage image, int x, int y, Size size, Matrix m) {
         this.m = m;
         this.x = x;
         this.y = y;
+        this.value = getValue(size);
         elemente = new Field[size.getSize()][size.getSize()];
         item = new LinkedList<>();
         this.image = image;
@@ -79,4 +82,6 @@ public abstract class Item {
     }
 
     protected abstract void doEffect(Bike b);
+
+    protected abstract int getValue(Size s);
 }
