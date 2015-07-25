@@ -43,9 +43,9 @@ public class ItemGenerator implements Timed {
             if (checkPosIsFree(x, y, m, s)) {
                 int poss = r.nextInt(100);
                 if (poss >= 0 && poss < 20) {
-                    //new ShorterLaser(x, y, m, s);
+                    new ShorterLaser(x, y, m, s);
                 } else if (poss >= 20 && poss < 40) {
-                    //new LongerLaser(x, y, m, s);
+                    new LongerLaser(x, y, m, s);
                 } else {
                     new Coin(x, y, m, s);
                 }

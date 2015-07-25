@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import tron.graphic.ImageManager;
+import tron.highscore.HighScore;
 
 public class MainMenue extends JFrame {
 
@@ -75,6 +76,8 @@ public class MainMenue extends JFrame {
         HIGHSCORE.setText("Highscore");
         HIGHSCORE.setMargin(new Insets(2, 2, 2, 2));
         HIGHSCORE.addActionListener((ActionEvent evt) -> {
+            HighScore.getInstance().setVisible(true);
+            setVisible(false);
         });
         HIGHSCORE.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(HIGHSCORE);

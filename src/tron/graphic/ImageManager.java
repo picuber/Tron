@@ -55,7 +55,11 @@ public class ImageManager {
         images.put("Coin16", ImageIO.read(new File("images/items/coin/16.png")));
         images.put("Coin22", ImageIO.read(new File("images/items/coin/22.png")));
         images.put("Coin36", ImageIO.read(new File("images/items/coin/36.png")));
+        images.put("ShortLaser16", ImageIO.read(new File("images/items/lasershort/16.png")));
+        images.put("ShortLaser22", ImageIO.read(new File("images/items/lasershort/22.png")));
         images.put("ShortLaser36", ImageIO.read(new File("images/items/lasershort/36.png")));
+        images.put("LongLaser16", ImageIO.read(new File("images/items/laserlong/16.png")));
+        images.put("LongLaser22", ImageIO.read(new File("images/items/laserlong/22.png")));
         images.put("LongLaser36", ImageIO.read(new File("images/items/laserlong/36.png")));
     }
 
