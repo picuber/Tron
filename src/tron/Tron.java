@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import tron.highscore.GameScore;
+import tron.highscore.ScoreUploadThread;
 
 /**
  *
@@ -64,7 +65,7 @@ public class Tron {
         Clock.getInstance().emptyClients();
         System.out.println(scoreList);
         if (!aborted) {
-            scoreList.uploadToDB();
+            new ScoreUploadThread(scoreList);
         }
         bikes.stream().forEach((b) -> {
             b.getWindow().dispose();

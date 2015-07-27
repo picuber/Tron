@@ -31,6 +31,7 @@ public class HighScore extends JFrame {
     private final JLabel[] rank = new JLabel[10];
     private final JLabel[] name = new JLabel[10];
     private final JLabel[] score = new JLabel[10];
+    private final JButton Back = new JButton();
     private BufferedImage image = null;
 
     public static HighScore getInstance() {
@@ -97,8 +98,18 @@ public class HighScore extends JFrame {
         playerName.setBounds(225, 150, 325, 25);
         playerName.addActionListener((ActionEvent e) -> {
             resetText(playerName.getText());
+            playerName.setText("");
         });
         this.add(playerName);
+
+        Back.setBounds(350, 475, 100, 25);
+        Back.setText("Back");
+        Back.setMargin(new Insets(2, 2, 2, 2));
+        Back.addActionListener((ActionEvent evt) -> {
+            setVisible(false);
+            MainMenue.getInstance().setVisible(true);
+        });
+        this.add(Back);
 
         setVisible(true);
     }

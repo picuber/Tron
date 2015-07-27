@@ -47,8 +47,9 @@ public class DatabaseConnection implements HighScoreDB {
             Statement st;
             st = conn.createStatement();
             st.execute("INSERT INTO Highscores (spielername, score) VALUES ('" + name + "', " + score + ");");
+            System.out.println("Uploaded (" + name + ": " + score + ")");
         } catch (Exception ex) {
-            System.out.println("Unable to upload scores!\n"
+            System.out.println("Unable to upload score!\n"
                     + "This game will not appear in the highscores");
         }
 
