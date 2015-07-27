@@ -203,8 +203,8 @@ public class Startpage extends JFrame {
         Back.setText("Back");
         Back.setMargin(new Insets(2, 2, 2, 2));
         Back.addActionListener((ActionEvent evt) -> {
-            MainMenue.getInstance().setVisible(true);
             setVisible(false);
+            MainMenue.getInstance().setVisible(true);
         });
         this.add(Back);
 

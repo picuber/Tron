@@ -86,6 +86,8 @@ public class MainMenue extends JFrame {
         CREDITS.setText("Credits");
         CREDITS.setMargin(new Insets(2, 2, 2, 2));
         CREDITS.addActionListener((ActionEvent evt) -> {
+            Credits.getInstance().setVisible(true);
+            setVisible(false);
         });
         CREDITS.setFont(new Font("Consolas", Font.BOLD, 20));
         this.add(CREDITS);
