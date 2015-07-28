@@ -92,7 +92,7 @@ public class Credits extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Cantarell", 0, 18));
         jLabel5.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel5.setText("Martin Didrich, Assisstant of Assasination");
+        jLabel5.setText("Martin Didrich, Assisstant of Assassination");
 
         jLabel6.setFont(new java.awt.Font("Cantarell", 0, 18));
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
